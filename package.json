@@ -1,0 +1,21 @@
+{
+  "name": "p7_les_petits_plats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css",
+    "prefix": "postcss ./css/style.css --use autoprefixer -d ./css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OTH21DEV/OxanaTheis_7_02012022.git"
+  },
+  "browserslist": "last 4 versions",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OTH21DEV/OxanaTheis_7_02012022/issues"
+  },
+  "homepage": "https://github.com/OTH21DEV/OxanaTheis_7_02012022#readme"
+}
