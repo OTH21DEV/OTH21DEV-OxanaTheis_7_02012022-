@@ -1,9 +1,9 @@
 body {
-  margin: 20px 40px;
+  margin: 20px 3git add0px;
 }
 
 section {
-  position: relative;
+  margin-bottom: 20px;
 }
 
 .search {
@@ -17,13 +17,24 @@ section {
 .search::placeholder {
   padding-left: 20px;
   font-size: 1.2em;
+  background-image: url(/image/loupe.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position-x: right;
 }
 
+/*
 .fa-search {
   position: absolute;
   font-size: l9em;
+
   right: 10px;
   top: 50%;
+}
+*/
+.test {
+  display: flex;
+  justify-content: space-between;
 }
 
 .header p {
@@ -77,6 +88,7 @@ section {
 .wrapper-recipe .recipe-img {
   height: 120px;
   background-color: #C7BEBE;
+  border-radius: 5px 5px 0 0;
 }
 
 .wrapper-recipe-tittle-time {
@@ -104,24 +116,38 @@ section {
 .wrapper-recipe-ingredients-making {
   display: flex;
   justify-content: space-between;
+  height: 180px;
 }
 
 .recipe-ingredients {
-  width: 42%;
+  width: 47%;
   font-size: 0.7em;
   font-family: "Lato", sans-serif;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  line-height: 1em;
+}
+
+.recipe-ingredients__li {
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
 }
 
 .recipe-making {
   width: 50%;
   font-size: 0.7em;
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 
 .wrapper {
-  height: 140px;
-  padding: 0 10px;
+  padding: 0 10px 10px 10px;
   background-color: #E7E7E7;
+  border-radius: 0 0 5px 5px;
 }
 
 .recipes {

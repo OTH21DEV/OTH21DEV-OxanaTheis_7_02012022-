@@ -20,7 +20,7 @@ const recipes = [
             },
             {
                 "ingredient" : "Sucre",
-                "quantite" : 30,
+                "quantity" : 30,
                 "unit" : "grammes"
             },
             {
@@ -40,7 +40,7 @@ const recipes = [
             {
                 "ingredient" : "Thon Rouge (ou blanc)",
                 "quantity" : 200,
-                "unit" : "grammes"
+                "unit" : "g"
             },
             {
                 "ingredient" : "Concombre",
@@ -89,14 +89,14 @@ const recipes = [
             },
             {
                 "ingredient": "Oignon",
-                "quantity" : 1
+                "quantity" : 1,
             },
             {
                 "ingredient": "Poivron rouge",
-                "quantity": 1
+                "quantity": 1,
             },
             {
-                "ingredient": "Huile d'olive"
+                "ingredient": "Huile d'olive",
                 "quantity": 1,
                "unit": "cuillères à soupe"
             }
@@ -1696,7 +1696,7 @@ const recipes = [
             {
                 "ingredient": "Pâte feuilletée",
                 "quantity": 400,
-                "unit":"grammes"
+                "unit":"g"
             },
             {
                 "ingredient": "Oeuf",
@@ -1705,17 +1705,17 @@ const recipes = [
             {
                 "ingredient": "Poudre d'amendes",
                 "quantity": 500,
-                "unit": "grammes"
+                "unit": "g"
             },
             {
                 "ingredient": "Beurre",
                 "quantity": 500,
-                "unit": "grammes"
+                "unit": "g"
             },
             {
                 "ingredient": "Sucre glace",
                 "quantity": 500,
-                "unit":"grammes"
+                "unit":"g"
             }
         ],
         "time": 60,
@@ -1724,3 +1724,4 @@ const recipes = [
         "ustensils":["rouleau à patisserie","fouet"]
     }
 ]
+export{recipes}
