@@ -1,7 +1,7 @@
 @use "../abstracts/variables" as *;
 
 body {
-  margin: 20px 3git add0px;
+  margin: 20px 30px;
 }
 section {
   margin-bottom: 20px;
@@ -59,14 +59,14 @@ section {
 .btn-dropdown-ingredients {
   background: $btn-ingredients;
 }
-.btn-dropdown-device {
+.btn-dropdown-appliances {
   background: $btn-device;
 }
 .btn-dropdown-utensils {
   background: $btn-utensils;
 }
 .btn-dropdown-ingredients,
-.btn-dropdown-device,
+.btn-dropdown-appliances,
 .btn-dropdown-utensils {
   width: 80%;
   height: 50px;
@@ -113,11 +113,12 @@ section {
 }
 .recipe-tittle {
   font-size: 0.8em;
+  width:60%;
 }
 .wrapper-recipe-ingredients-making {
   display: flex;
   justify-content: space-between;
-  height: 180px;
+  //height: 150px;
 }
 .recipe-ingredients {
   width: 47%;
@@ -126,10 +127,11 @@ section {
   font-family: "Lato", sans-serif;
   padding-left: 0;
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
+ // display: flex;
+ 
+  //flex-wrap: wrap;
   margin:0;
-  line-height: 1em;
+ // line-height: 1em;
   //flex-direction: column;
   
 }
@@ -145,13 +147,15 @@ section {
   width: 50%;
   font-size: 0.7em;
   font-family: "Roboto", sans-serif;
- overflow:hidden;
+
 }
 .wrapper {
  // height: 180px;
   padding: 0 10px 10px 10px;
   background-color: $recipe-light-bg;
  border-radius:  0 0 5px 5px;
+ height: 160px;
+ overflow:hidden;
 }
 .recipes {
   margin-top: 35px;

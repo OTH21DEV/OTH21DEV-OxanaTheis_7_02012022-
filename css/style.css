@@ -1,5 +1,5 @@
 body {
-  margin: 20px 3git add0px;
+  margin: 20px 30px;
 }
 
 section {
@@ -60,7 +60,7 @@ section {
   background: #3282F7;
 }
 
-.btn-dropdown-device {
+.btn-dropdown-appliances {
   background: #68D9A4;
 }
 
@@ -69,7 +69,7 @@ section {
 }
 
 .btn-dropdown-ingredients,
-.btn-dropdown-device,
+.btn-dropdown-appliances,
 .btn-dropdown-utensils {
   width: 80%;
   height: 50px;
@@ -111,12 +111,12 @@ section {
 
 .recipe-tittle {
   font-size: 0.8em;
+  width: 60%;
 }
 
 .wrapper-recipe-ingredients-making {
   display: flex;
   justify-content: space-between;
-  height: 180px;
 }
 
 .recipe-ingredients {
@@ -125,10 +125,7 @@ section {
   font-family: "Lato", sans-serif;
   padding-left: 0;
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
   margin: 0;
-  line-height: 1em;
 }
 
 .recipe-ingredients__li {
@@ -141,13 +138,14 @@ section {
   width: 50%;
   font-size: 0.7em;
   font-family: "Roboto", sans-serif;
-  overflow: hidden;
 }
 
 .wrapper {
   padding: 0 10px 10px 10px;
   background-color: #E7E7E7;
   border-radius: 0 0 5px 5px;
+  height: 160px;
+  overflow: hidden;
 }
 
 .recipes {
