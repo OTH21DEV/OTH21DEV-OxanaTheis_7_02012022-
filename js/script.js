@@ -132,26 +132,27 @@ showUtensilsDropdown();
 //tableau vide de recettes
 let filteredRecipes = [];
 /*
-Fonction de creation de nouveau tableau par rapport aux mots clés renseignés dans la barre de recherche
-Si le nom de recette comporte le mot clé tapé alors cette recette est ajouté dans 
+Fonction de creation de nouveau tableau recettes par rapport aux mots clés renseignés dans la barre de recherche
+Si le nom de recette , sa description ou ingredients comportent le mot clé tapé alors cette recette est ajouté dans 
 le nouveau tableau filteredRecipes
 */
 
 function searchByKeywords(value) {
   for (let i = 0; i < recipes.length; i++) {
-    if (recipes[i].name.toLowerCase().includes(value.toLowerCase())) {
-      filteredRecipes.push(recipes[i]);
+    if (
+      recipes[i].name.toLowerCase().includes(value.toLowerCase()) ||
+      recipes[i].description.toLowerCase().includes(value.toLowerCase())
+    ) {
+      for (let ingredient of recipes[i].ingredients) {
+        if (ingredient.ingredient.toLowerCase().includes(value.toLowerCase())) {
+          filteredRecipes.push(recipes[i]);
+          console.log(filteredRecipes);
+        }
+      }
     }
-   /*
-    ingredientsListDropdown.forEach((ingredient) => {
-      if (ingredient.toLowerCase().includes(value.toLowerCase())) {
-        filteredRecipes.push(recipes[i]);
-    }*/
-//console.log(ingredient);
   }
 }
-//}
-//}
+
 /*
 Cherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 
@@ -170,8 +171,8 @@ mainSearch.addEventListener("input", (e) => {
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
     filteredRecipes.forEach((recipe) => {
       createRecipe(recipe);
-      console.log(document.querySelectorAll('.wrapper-recipe'))
-    //  document.querySelector('.recipes').style.justifyContent = "flex-start";
+      //  console.log(document.querySelectorAll('.wrapper-recipe'))
+      //  document.querySelector('.recipes').style.justifyContent = "flex-start";
       //document.querySelectorAll('.wrapper-recipe').style.marginRight = "10px";
     });
   }
