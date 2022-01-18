@@ -32,7 +32,7 @@ section {
   top: 50%;
 }
 */
-.test {
+.form {
   display: flex;
   justify-content: space-between;
 }

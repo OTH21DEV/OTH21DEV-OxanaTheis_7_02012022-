@@ -1,74 +1,19 @@
 import { recipes } from "/recipes.js";
-/*
-for (let i = 0; i < recipes.length; i++) {
-  //tous les recettes
-  const allRecipes = recipes[i];
 
-  createRecipes(allRecipes);
-}
-
-function createRecipes(data) {
-  // des Ingredients pour chaque recette
-  const ingredientsDetails = data.ingredients;
-
-  const sectionRecipes = document.querySelector(".recipes");
-
-  let listIngredients = "";
-  for (let ingredient of ingredientsDetails) {
-    console.log(ingredient.ingredient)
-    if (ingredient.unit) {
-      listIngredients += `<li class="recipe-ingredients__li"><strong>${ingredient.ingredient}:</strong>${ingredient.quantity}${ingredient.unit}</li>`;
-    } else {
-      listIngredients += `<li class="recipe-ingredients__li"><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</li>`;
-    }
-  }
-
-  sectionRecipes.innerHTML += `
-<article class="wrapper-recipe">
-<div class= "recipe-img"></div>
-<div class="wrapper">
-<div class="wrapper-recipe-tittle-time">
-<h2 class="recipe-tittle">${data.name}</h2>
-<div class = "recipe-time">
-<i class="far fa-clock"></i>
-<div>${data.time} min</div>
-</div>
-</div>
-<div class="wrapper-recipe-ingredients-making">
-<ul class="recipe-ingredients">
-${listIngredients}
-</ul>
-<div class="recipe-making">${data.description}
-</div>
-</div>
-</div>
-</article>
-`;
-
-}
-*/
+const mainSearch = document.querySelector(".search");
+const sectionRecipes = document.querySelector(".recipes");
 
 for (let i = 0; i < recipes.length; i++) {
-  //une recette
-  const recipe = recipes[i];
-
+  let recipe = recipes[i];
   createRecipe(recipe);
 }
-
 function createRecipe(data) {
   // des Ingredients pour chaque recette
   const ingredientsDetails = data.ingredients;
 
   const sectionRecipes = document.querySelector(".recipes");
-
   let listIngredients = "";
   for (let ingredient of ingredientsDetails) {
-    //  btnDropdownIngredients.innerHTML += `
-
-    //    <option class= "listbox__date" value="">${ingredient.ingredient}</option>
-
-    //  `;
-    // console.log(ingredient.ingredient);
     if (ingredient.unit) {
       listIngredients += `<li class="recipe-ingredients__li"><strong>${ingredient.ingredient}:</strong>${ingredient.quantity}${ingredient.unit}</li>`;
     } else {
@@ -125,7 +70,7 @@ function createContentDropdown() {
 
     */
     let recipeIngredients = recipe.ingredients;
-    console.log(recipeIngredients);
+    // console.log(recipeIngredients);
 
     recipeIngredients.forEach((ingredient) => {
       //ingredient - un objet contenant {ingredient: 'Beurre', quantity: 500, unit: 'g'}
@@ -133,10 +78,10 @@ function createContentDropdown() {
         ...new Set(ingredientsListDropdown.concat(ingredient.ingredient)),
       ].sort();
       //ingredient.ingredient - un seul ingredient de l'objet
-      console.log(recipeIngredients);
-      console.log(ingredient);
-      console.log(ingredient.ingredient);
-      console.log(ingredientsListDropdown);
+      //    console.log(recipeIngredients);
+      //    console.log(ingredient);
+      //console.log(ingredient.ingredient);
+      // console.log(ingredientsListDropdown);
     });
 
     //on remplie (concate)  le tableau vide utensilsListDropdown par les tableaux recipe.ustensils par recette
@@ -149,8 +94,7 @@ function createContentDropdown() {
     appliancesListDropdown = [
       ...new Set(appliancesListDropdown.concat(recipeAppliances)),
     ].sort();
-
-    
+    //  console.log(appliancesListDropdown)
   });
 }
 createContentDropdown();
@@ -184,8 +128,51 @@ function showUtensilsDropdown() {
   });
 }
 showUtensilsDropdown();
+
+//tableau vide de recettes
+let filteredRecipes = [];
 /*
-document.querySelector(".listbox__popular").addEventListener("click", function () {
-  document.querySelector(".listbox__popular").style.display = "none";
-})
+Fonction de creation de nouveau tableau par rapport aux mots clés renseignés dans la barre de recherche
+Si le nom de recette comporte le mot clé tapé alors cette recette est ajouté dans 
+le nouveau tableau filteredRecipes
 */
+
+function searchByKeywords(value) {
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].name.toLowerCase().includes(value.toLowerCase())) {
+      filteredRecipes.push(recipes[i]);
+    }
+   /*
+    ingredientsListDropdown.forEach((ingredient) => {
+      if (ingredient.toLowerCase().includes(value.toLowerCase())) {
+        filteredRecipes.push(recipes[i]);
+    }*/
+//console.log(ingredient);
+  }
+}
+//}
+//}
+/*
+Cherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
+
+*/
+mainSearch.addEventListener("input", (e) => {
+  let valueInput = e.target.value.toLowerCase();
+
+  if (valueInput.length >= 3) {
+    e.preventDefault();
+    //efface le contenu initial
+    sectionRecipes.innerHTML = "";
+    //vide le tableau de recettes
+    filteredRecipes = [];
+    //reapplique la fonction de mots clés
+    searchByKeywords(valueInput);
+    //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
+    filteredRecipes.forEach((recipe) => {
+      createRecipe(recipe);
+      console.log(document.querySelectorAll('.wrapper-recipe'))
+    //  document.querySelector('.recipes').style.justifyContent = "flex-start";
+      //document.querySelectorAll('.wrapper-recipe').style.marginRight = "10px";
+    });
+  }
+});
