@@ -59,7 +59,7 @@ let ingredientsListDropdown = [];
 /*
 Fonction pour creer le contenu initial de dropdown
 */
-function createContentDropdown() {
+function removeDuplicatesDropdown() {
   recipes.forEach((recipe) => {
     let recipeUtensils = recipe.ustensils;
     let recipeAppliances = recipe.appliance;
@@ -78,59 +78,86 @@ function createContentDropdown() {
         ...new Set(ingredientsListDropdown.concat(ingredient.ingredient)),
       ].sort();
       //ingredient.ingredient - un seul ingredient de l'objet
-      //    console.log(recipeIngredients);
-      //    console.log(ingredient);
-      //console.log(ingredient.ingredient);
-      // console.log(ingredientsListDropdown);
+
+      //on remplie (concate)  le tableau vide utensilsListDropdown par les tableaux recipe.ustensils par recette
+      //on imbrique les tableaux recipeUtensils dans le tableau cree utensilsListDropdown
+      utensilsListDropdown = [
+        ...new Set(utensilsListDropdown.concat(recipeUtensils)),
+      ].sort();
+
+      //on remplie (concate)  le tableau vide appliancesListDropdown par les tableaux recipe.appliance par recette
+      appliancesListDropdown = [
+        ...new Set(appliancesListDropdown.concat(recipeAppliances)),
+      ].sort();
     });
-
-    //on remplie (concate)  le tableau vide utensilsListDropdown par les tableaux recipe.ustensils par recette
-    utensilsListDropdown = [
-      ...new Set(utensilsListDropdown.concat(recipeUtensils)),
-    ].sort();
-    //  console.log(utensilsListDropdown);
-
-    //on remplie (concate)  le tableau vide appliancesListDropdown par les tableaux recipe.appliance par recette
-    appliancesListDropdown = [
-      ...new Set(appliancesListDropdown.concat(recipeAppliances)),
-    ].sort();
-    //  console.log(appliancesListDropdown)
   });
 }
-createContentDropdown();
 
-function showUtensilsDropdown() {
-  const btnDropdownIngredients = document.querySelector(
-    ".btn-dropdown-ingredients"
-  );
-  const btnDropdownAppliances = document.querySelector(
-    ".btn-dropdown-appliances"
-  );
-  const btnDropdownUstensiles = document.querySelector(
-    ".btn-dropdown-utensils"
-  );
+removeDuplicatesDropdown();
 
-  utensilsListDropdown.forEach((utensil) => {
-    btnDropdownUstensiles.innerHTML += `
-          <option class= "listbox__date" value="">${utensil}</option>
-          `;
-  });
-  appliancesListDropdown.forEach((appliance) => {
-    btnDropdownAppliances.innerHTML += `
-          <option class= "listbox__date" value="">${appliance}</option>
-          `;
-  });
+const btnDropdownIngredients = document.querySelector(
+  ".btn-dropdown-ingredients"
+);
+const btnDropdownAppliances = document.querySelector(
+  ".btn-dropdown-appliances"
+);
+const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 
-  ingredientsListDropdown.forEach((ingredient) => {
-    btnDropdownIngredients.innerHTML += `
-          <option class= "listbox__date" value="">${ingredient}</option>
+function displayDropdown(array, btn) {
+  array.forEach((element) => {
+    btn.innerHTML += `
+          <option class= "listbox__date" value="">${element}</option>
           `;
   });
 }
-showUtensilsDropdown();
+displayDropdown(utensilsListDropdown, btnDropdownUstensiles);
+displayDropdown(appliancesListDropdown, btnDropdownAppliances);
+displayDropdown(ingredientsListDropdown, btnDropdownIngredients);
 
-//tableau vide de recettes
+
+/*
+tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 
+mots clés tapés dans la barre de recherche
+*/
 let filteredRecipes = [];
+
+let filteredUtensils = [];
+
+function searchByKeywordsUtensil(value) {
+ /* a partir de tableau filtré de recette (par mots cles) 
+ on filtre chaque recette 
+
+*/
+  filteredRecipes.forEach((element) => {
+
+   // on accede aux ustensils filtrés de chaque recette 
+    let newRecipeUstensils = element.ustensils;
+   
+    //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette 
+
+    filteredUtensils = [
+      ...new Set(filteredUtensils.concat(newRecipeUstensils)),
+    ].sort();
+  });
+// on recrée le contenu de dropdown Ustensil
+  displayDropdown(filteredUtensils , btnDropdownUstensiles);
+
+  
+//displayDropdown(filteredUtensil , btnDropdownAppliances);
+//displayDropdown(filteredUtensil , btnDropdownIngredients);
+
+  /*
+  filteredUtensil.forEach((element) => {
+    btnDropdownUstensiles.innerHTML += `
+        <option class= "listbox__date" value="">${element}</option>
+        `;
+  });
+  */
+
+  console.log(filteredUtensils);
+}
+
+//}
 /*
 Fonction de creation de nouveau tableau recettes par rapport aux mots clés renseignés dans la barre de recherche
 Si le nom de recette , sa description ou ingredients comportent le mot clé tapé alors cette recette est ajouté dans 
@@ -143,11 +170,16 @@ function searchByKeywords(value) {
       recipes[i].name.toLowerCase().includes(value.toLowerCase()) ||
       recipes[i].description.toLowerCase().includes(value.toLowerCase())
     ) {
-      for (let ingredient of recipes[i].ingredients) {
-        if (ingredient.ingredient.toLowerCase().includes(value.toLowerCase())) {
-          filteredRecipes.push(recipes[i]);
-          console.log(filteredRecipes);
-        }
+      filteredRecipes.push(recipes[i]);
+    }
+  }
+}
+
+function searchByKeywordsIngredients(value) {
+  for (let i = 0; i < recipes.length; i++) {
+    for (let ingredient of recipes[i].ingredients) {
+      if (ingredient.ingredient.toLowerCase().includes(value.toLowerCase())) {
+        filteredRecipes.push(recipes[i]);
       }
     }
   }
@@ -158,6 +190,8 @@ Cherche par mot clé et affiche uniquement les recettes correspondantes si compo
 
 */
 mainSearch.addEventListener("input", (e) => {
+
+
   let valueInput = e.target.value.toLowerCase();
 
   if (valueInput.length >= 3) {
@@ -166,14 +200,39 @@ mainSearch.addEventListener("input", (e) => {
     sectionRecipes.innerHTML = "";
     //vide le tableau de recettes
     filteredRecipes = [];
+    btnDropdownUstensiles.innerHTML = "";
+    btnDropdownAppliances.innerHTML = "";
+    btnDropdownIngredients.innerHTML = "";
     //reapplique la fonction de mots clés
     searchByKeywords(valueInput);
+    searchByKeywordsIngredients(valueInput);
+    searchByKeywordsUtensil(valueInput);
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
+
     filteredRecipes.forEach((recipe) => {
       createRecipe(recipe);
-      //  console.log(document.querySelectorAll('.wrapper-recipe'))
-      //  document.querySelector('.recipes').style.justifyContent = "flex-start";
-      //document.querySelectorAll('.wrapper-recipe').style.marginRight = "10px";
+      //showUtensilsDropdown();
     });
   }
+
+ // console.log(filteredRecipes);
 });
+
+//.................................................
+/*
+/*
+Fonction qui recupere le tableau des ingredients par mots clés 
+ */
+/*
+let newArrayListeIngredients = [];
+function searchByKeywordsIng(value) {
+  for (let ingredient of ingredientsListDropdown) {
+    console.log(ingredientsListDropdown)
+    if (ingredient.toLowerCase().includes(value.toLowerCase())) {
+      newArrayListeIngredients.push(ingredient);
+      console.log(newArrayListeIngredients);
+    }
+  }
+}
+*/
+console.log(filteredRecipes);
