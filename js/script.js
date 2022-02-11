@@ -114,7 +114,6 @@ displayDropdown(utensilsListDropdown, btnDropdownUstensiles);
 displayDropdown(appliancesListDropdown, btnDropdownAppliances);
 displayDropdown(ingredientsListDropdown, btnDropdownIngredients);
 
-
 /*
 tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 
 mots clés tapés dans la barre de recherche
@@ -122,40 +121,70 @@ mots clés tapés dans la barre de recherche
 let filteredRecipes = [];
 
 let filteredUtensils = [];
+let filteredAppliances = [];
+let filteredIngredients = [];
 
-function searchByKeywordsUtensil(value) {
- /* a partir de tableau filtré de recette (par mots cles) 
+function searchByKeywordsUtensils(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
  on filtre chaque recette 
 
 */
   filteredRecipes.forEach((element) => {
+    // on accede aux ustensils filtrés de chaque recette
+    let newRecipeUtensils = element.ustensils;
 
-   // on accede aux ustensils filtrés de chaque recette 
-    let newRecipeUstensils = element.ustensils;
-   
-    //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette 
+    //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette
 
     filteredUtensils = [
-      ...new Set(filteredUtensils.concat(newRecipeUstensils)),
+      ...new Set(filteredUtensils.concat(newRecipeUtensils)),
     ].sort();
   });
-// on recrée le contenu de dropdown Ustensil
-  displayDropdown(filteredUtensils , btnDropdownUstensiles);
-
-  
-//displayDropdown(filteredUtensil , btnDropdownAppliances);
-//displayDropdown(filteredUtensil , btnDropdownIngredients);
-
-  /*
-  filteredUtensil.forEach((element) => {
-    btnDropdownUstensiles.innerHTML += `
-        <option class= "listbox__date" value="">${element}</option>
-        `;
-  });
-  */
-
-  console.log(filteredUtensils);
+  btnDropdownUstensiles.innerHTML = "";
+  displayDropdown(filteredUtensils, btnDropdownUstensiles);
 }
+
+function searchByKeywordsAppliances(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
+  on filtre chaque recette */
+  filteredRecipes.forEach((element) => {
+    let newRecipeAppliances = element.appliance;
+
+    filteredAppliances = [
+      ...new Set(filteredAppliances.concat(newRecipeAppliances)),
+    ].sort();
+  });
+
+  // on recrée le contenu de dropdown Ustensil
+  // displayDropdown(filteredAppliances , btnDropdownUstensiles);
+
+  btnDropdownAppliances.innerHTML = "";
+  displayDropdown(filteredAppliances, btnDropdownAppliances);
+}
+
+
+function searchByKeywordsIng(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
+  on filtre chaque recette */
+  filteredRecipes.forEach((element) => {
+    let newRecipeIngredients = element.ingredients;
+    for(let i of newRecipeIngredients){
+
+   
+      filteredIngredients = [
+        ...new Set(filteredIngredients.concat(i.ingredient)),
+      ].sort();
+    }
+ 
+  });
+
+  // on recrée le contenu de dropdown Ustensil
+  // displayDropdown(filteredAppliances , btnDropdownUstensiles);
+
+  btnDropdownIngredients.innerHTML = "";
+  displayDropdown(filteredIngredients, btnDropdownIngredients);
+}
+
+
 
 //}
 /*
@@ -190,8 +219,6 @@ Cherche par mot clé et affiche uniquement les recettes correspondantes si compo
 
 */
 mainSearch.addEventListener("input", (e) => {
-
-
   let valueInput = e.target.value.toLowerCase();
 
   if (valueInput.length >= 3) {
@@ -200,13 +227,13 @@ mainSearch.addEventListener("input", (e) => {
     sectionRecipes.innerHTML = "";
     //vide le tableau de recettes
     filteredRecipes = [];
-    btnDropdownUstensiles.innerHTML = "";
-    btnDropdownAppliances.innerHTML = "";
-    btnDropdownIngredients.innerHTML = "";
+  
     //reapplique la fonction de mots clés
     searchByKeywords(valueInput);
     searchByKeywordsIngredients(valueInput);
-    searchByKeywordsUtensil(valueInput);
+    searchByKeywordsUtensils(valueInput);
+    searchByKeywordsAppliances(valueInput);
+    searchByKeywordsIng(valueInput)
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
 
     filteredRecipes.forEach((recipe) => {
@@ -215,7 +242,7 @@ mainSearch.addEventListener("input", (e) => {
     });
   }
 
- // console.log(filteredRecipes);
+  // console.log(filteredRecipes);
 });
 
 //.................................................
