@@ -74,21 +74,15 @@ function removeDuplicatesDropdown() {
 
     recipeIngredients.forEach((ingredient) => {
       //ingredient - un objet contenant {ingredient: 'Beurre', quantity: 500, unit: 'g'}
-      ingredientsListDropdown = [
-        ...new Set(ingredientsListDropdown.concat(ingredient.ingredient)),
-      ].sort();
+      ingredientsListDropdown = [...new Set(ingredientsListDropdown.concat(ingredient.ingredient))].sort();
       //ingredient.ingredient - un seul ingredient de l'objet
 
       //on remplie (concate)  le tableau vide utensilsListDropdown par les tableaux recipe.ustensils par recette
       //on imbrique les tableaux recipeUtensils dans le tableau cree utensilsListDropdown
-      utensilsListDropdown = [
-        ...new Set(utensilsListDropdown.concat(recipeUtensils)),
-      ].sort();
+      utensilsListDropdown = [...new Set(utensilsListDropdown.concat(recipeUtensils))].sort();
 
       //on remplie (concate)  le tableau vide appliancesListDropdown par les tableaux recipe.appliance par recette
-      appliancesListDropdown = [
-        ...new Set(appliancesListDropdown.concat(recipeAppliances)),
-      ].sort();
+      appliancesListDropdown = [...new Set(appliancesListDropdown.concat(recipeAppliances))].sort();
     });
   });
 }
@@ -106,9 +100,7 @@ const btnDropdownIngredients = document.querySelector(
 */
 //const test = document.querySelector(".liste-ingredients");
 
-const btnDropdownAppliances = document.querySelector(
-  ".btn-dropdown-appliances"
-);
+const btnDropdownAppliances = document.querySelector(".btn-dropdown-appliances");
 const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 /*
 function displayDropdown(array, btn) {
@@ -120,39 +112,53 @@ function displayDropdown(array, btn) {
 }
 */
 
-const arrowDownDropdown = document.querySelector(
-  ".btn-dropdown-container__arrow-down"
-);
+const arrowDownDropdown = document.querySelector(".btn-dropdown-container__arrow-down");
 
 function displayDropdown(array, ulElement) {
   arrowDownDropdown.addEventListener("click", () => {
-    
     document.querySelector(".btn-dropdown-ingredients").innerHTML = `
-  <div class = "wrapper-input-ingredients">
+
   <input
   class="input-ingredients"
   type="search"
   placeholder="Rechercher un ingrédient"/>
   <ul class="liste-ingredients"><li></li>
-  </div>
-  
+ 
   
   
   `;
-  document.querySelector(".wrapper-input-ingredients").style.width ='100%';
-  document.querySelector(".wrapper-btns-dropdown").style.marginBottom ='250px';
-  document.querySelector(".wrapper-input-ingredients").style.padding ='inherit';
-  document.querySelector(".input-ingredients").style.width ='100%';
-  document.querySelector(".btn-dropdown-container").style.width ='inherit';
-   
+
+
+    document.querySelector(".btn-dropdown-container").style.width = "inherit";
+    document.querySelector(".btn-dropdown-ingredients").style.flexDirection = "column";
+    document.querySelector(".btn-dropdown-ingredients").style.alignItems = "start";
+    document.querySelector(".btn-dropdown-ingredients").style.padding = "0";
+
+    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
+    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
+
     array.forEach((element) => {
-      const test = document.querySelector(".liste-ingredients");
-     test.innerHTML += `
-        <li>${element}</li>
+      const ulElement = document.querySelector(".liste-ingredients");
+
+      let liElement = document.createElement("li");
+      liElement.classList.add("input-liste");
+      ulElement.appendChild(liElement);
+      let liContent = document.createTextNode(`${element}`);
+      liElement.appendChild(liContent);
+      liElement.style.width = '30%'
+      liElement.style.padding = '0 15px'
+      liElement.style.fontSize= '0.9em';
+      liElement.style.lineHeight = '22px'
+      /*
+
+     ulElement.innerHTML += `
+        <li class test >${element}</li>
       
         `;
-       
+        */
+      
     });
+//document.querySelector('.input-liste').style.width = '40%'
   });
 }
 
@@ -183,9 +189,7 @@ function searchByKeywordsUtensils(value) {
 
     //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette
 
-    filteredUtensils = [
-      ...new Set(filteredUtensils.concat(newRecipeUtensils)),
-    ].sort();
+    filteredUtensils = [...new Set(filteredUtensils.concat(newRecipeUtensils))].sort();
   });
   btnDropdownUstensiles.innerHTML = "";
   displayDropdown(filteredUtensils, btnDropdownUstensiles);
@@ -197,9 +201,7 @@ function searchByKeywordsAppliances(value) {
   filteredRecipes.forEach((element) => {
     let newRecipeAppliances = element.appliance;
 
-    filteredAppliances = [
-      ...new Set(filteredAppliances.concat(newRecipeAppliances)),
-    ].sort();
+    filteredAppliances = [...new Set(filteredAppliances.concat(newRecipeAppliances))].sort();
   });
 
   // on recrée le contenu de dropdown Ustensil
@@ -215,9 +217,7 @@ function searchByKeywordsIng(value) {
   filteredRecipes.forEach((element) => {
     let newRecipeIngredients = element.ingredients;
     for (let i of newRecipeIngredients) {
-      filteredIngredients = [
-        ...new Set(filteredIngredients.concat(i.ingredient)),
-      ].sort();
+      filteredIngredients = [...new Set(filteredIngredients.concat(i.ingredient))].sort();
     }
   });
 
@@ -237,10 +237,7 @@ le nouveau tableau filteredRecipes
 
 function searchByKeywords(value) {
   for (let i = 0; i < recipes.length; i++) {
-    if (
-      recipes[i].name.toLowerCase().includes(value.toLowerCase()) ||
-      recipes[i].description.toLowerCase().includes(value.toLowerCase())
-    ) {
+    if (recipes[i].name.toLowerCase().includes(value.toLowerCase()) || recipes[i].description.toLowerCase().includes(value.toLowerCase())) {
       filteredRecipes.push(recipes[i]);
     }
   }

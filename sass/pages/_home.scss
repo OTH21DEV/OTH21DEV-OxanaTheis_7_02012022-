@@ -15,7 +15,7 @@ section {
   font-family: "Lato", sans-serif;
 
   &::placeholder {
-    padding-left: 20px;
+    padding-left: 15px;
     font-size: 1.2em;
     background-image: url(/assets/icon/loupe.png);
     background-repeat: no-repeat;
@@ -80,7 +80,12 @@ section {
   padding:0;
 
   &::placeholder{
-    color:white;
+    color: white;
+    background-image: url(/assets/icon/chevron-up-solid.svg);
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position-x: right;
+    //filter: invert(90%);
   }
 }
 
@@ -112,9 +117,10 @@ section {
   margin-top: 0;
   display: flex;
   flex-direction: column;
-
+overflow-x :scroll;
   height: 200px;
   flex-wrap: wrap;
+  width:100%;
 }
 
 .btn-dropdown-ingredients {
@@ -127,6 +133,25 @@ section {
   background: $btn-utensils;
 }
 
+.input-ingredients{
+ width: 100%;
+  padding: 0;
+  border-radius: 5px 5px;
+
+  &::placeholder{
+    padding: 0 15px;
+    font-size: 1.1em;
+    opacity:50%;
+  }
+
+
+}
+.test{
+
+width:30%;
+ 
+   
+}
 .wrapper-recipe {
   display: flex;
   flex-direction: column;
