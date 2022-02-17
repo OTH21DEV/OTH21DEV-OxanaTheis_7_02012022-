@@ -50,8 +50,6 @@ section {
 .wrapper-btns-dropdown {
   display: flex;
   width: 80%;
-
-
 }
 
 .btn-dropdown-ingredients {
@@ -61,32 +59,48 @@ section {
     color: white;
   }
 }
-.btn-dropdown-container {
+.btn-dropdown-container,
+.btn-dropdown-container-appliances,
+.btn-dropdown-container-utensils {
   width: 25%;
   height: 50px;
   color: white;
   font-family: "Lato", sans-serif;
   padding: 0 5px;
 }
-
-.input-ingredients{
-  
+.input-ingredients {
   background: $btn-ingredients;
+}
+.input-appliances {
+  background: $btn-device;
+}
+.input-utensils{
+  background: $btn-utensils;
+}
+.input-ingredients,
+.input-appliances,
+.input-utensils {
+  width: 100%;
   height: 50px;
   color: white;
   font-family: "Lato", sans-serif;
-  padding: 0 5px;
-  border:none;
-  padding:0;
+  border-radius: 5px 5px;
+  border: none;
+  padding: 0;
+}
 
-  &::placeholder{
-    color: white;
-    background-image: url(/assets/icon/chevron-up-solid.svg);
-    background-repeat: no-repeat;
-    background-size: 12px;
-    background-position-x: right;
-    //filter: invert(90%);
-  }
+.input-ingredients::placeholder,
+.input-appliances::placeholder,
+.input-utensils::placeholder {
+  color: white;
+  background-image: url(/assets/icon/chevron-up-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position-x: right;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+  //filter: invert(90%);
 }
 
 .btn-dropdown-ingredients,
@@ -106,21 +120,26 @@ section {
   }
 }
 
-.btn-dropdown-container__arrow-down {
+.btn-dropdown-container__arrow-down-ing,
+.btn-dropdown-container__arrow-down-appl,
+.btn-dropdown-container__arrow-down-uts {
   height: 12px;
   filter: invert(100%);
+  cursor: pointer;
 }
 
-.liste-ingredients {
+.elements-liste-ing,
+.elements-liste-appl,
+.elements-liste-uts {
   list-style-type: none;
   padding-left: 0;
   margin-top: 0;
   display: flex;
   flex-direction: column;
-overflow-x :scroll;
+  overflow-x: scroll;
   height: 200px;
   flex-wrap: wrap;
-  width:100%;
+  width: 100%;
 }
 
 .btn-dropdown-ingredients {
@@ -133,24 +152,8 @@ overflow-x :scroll;
   background: $btn-utensils;
 }
 
-.input-ingredients{
- width: 100%;
-  padding: 0;
-  border-radius: 5px 5px;
-
-  &::placeholder{
-    padding: 0 15px;
-    font-size: 1.1em;
-    opacity:50%;
-  }
-
-
-}
-.test{
-
-width:30%;
- 
-   
+.test {
+  width: 30%;
 }
 .wrapper-recipe {
   display: flex;

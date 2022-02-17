@@ -90,83 +90,130 @@ function removeDuplicatesDropdown() {
 //`;
 removeDuplicatesDropdown();
 
-//.....................................................
-
-/*
-const btnDropdownIngredients = document.querySelector(
-  ".btn-dropdown-ingredients"
-);
-
-*/
-//const test = document.querySelector(".liste-ingredients");
-
-const btnDropdownAppliances = document.querySelector(".btn-dropdown-appliances");
 const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 /*
 function displayDropdown(array, btn) {
   array.forEach((element) => {
     btn.innerHTML += `
-          <option value="${element}"></option>
-          `;
+    <option value="${element}"></option>
+    `;
   });
 }
 */
 
-const arrowDownDropdown = document.querySelector(".btn-dropdown-container__arrow-down");
+function displayDropdownIng(array) {
+  const arrowDownDropdownIng = document.querySelector(".btn-dropdown-container__arrow-down-ing");
+  const contentDropdownIng = document.querySelector(".btn-dropdown-ingredients");
 
-function displayDropdown(array, ulElement) {
-  arrowDownDropdown.addEventListener("click", () => {
-    document.querySelector(".btn-dropdown-ingredients").innerHTML = `
-
-  <input
-  class="input-ingredients"
-  type="search"
-  placeholder="Rechercher un ingrédient"/>
-  <ul class="liste-ingredients"><li></li>
- 
-  
-  
-  `;
-
+  arrowDownDropdownIng.addEventListener("click", () => {
+    contentDropdownIng.innerHTML = `
+    
+    <input
+    class="input-ingredients"
+    type="search"
+    placeholder="Rechercher un ingrédient"/>
+    <ul class="elements-liste-ing"></ul>
+    
+    `;
 
     document.querySelector(".btn-dropdown-container").style.width = "inherit";
-    document.querySelector(".btn-dropdown-ingredients").style.flexDirection = "column";
-    document.querySelector(".btn-dropdown-ingredients").style.alignItems = "start";
-    document.querySelector(".btn-dropdown-ingredients").style.padding = "0";
+    contentDropdownIng.style.flexDirection = "column";
+    contentDropdownIng.style.alignItems = "start";
+    contentDropdownIng.style.padding = "0";
 
     document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
     document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
+    let ulElement = document.querySelector(".elements-liste-ing");
 
-    array.forEach((element) => {
-      const ulElement = document.querySelector(".liste-ingredients");
 
-      let liElement = document.createElement("li");
-      liElement.classList.add("input-liste");
-      ulElement.appendChild(liElement);
-      let liContent = document.createTextNode(`${element}`);
-      liElement.appendChild(liContent);
-      liElement.style.width = '30%'
-      liElement.style.padding = '0 15px'
-      liElement.style.fontSize= '0.9em';
-      liElement.style.lineHeight = '22px'
-      /*
+    createElementsListe(array, ulElement);
+  });
+}
+function displayDropdownAppl(array) {
+  const arrowDownDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-down-appl");
+  const contentDropdowAppliances = document.querySelector(".btn-dropdown-appliances");
 
-     ulElement.innerHTML += `
-        <li class test >${element}</li>
+  arrowDownDropdownAppl.addEventListener("click", () => {
+    contentDropdowAppliances.innerHTML = `
       
-        `;
-        */
-      
-    });
-//document.querySelector('.input-liste').style.width = '40%'
+      <input
+      class="input-appliances"
+      type="search"
+      placeholder="Rechercher un appareils"/>
+      <ul class="elements-liste-appl"></ul>
+      `;
+
+    document.querySelector(".btn-dropdown-container-appliances").style.width = "inherit";
+    contentDropdowAppliances.style.flexDirection = "column";
+    contentDropdowAppliances.style.alignItems = "start";
+    contentDropdowAppliances.style.padding = "0";
+
+    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
+    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
+    let ulElement = document.querySelector(".elements-liste-appl");
+
+    createElementsListe(array, ulElement);
   });
 }
 
-//displayDropdown(utensilsListDropdown, btnDropdownUstensiles);
-//displayDropdown(appliancesListDropdown, btnDropdownAppliances);
+function displayDropdownUtensils(array) {
+  const arrowDownDropdownUts = document.querySelector(".btn-dropdown-container__arrow-down-uts");
+  const contentDropdowUtensils = document.querySelector(".btn-dropdown-utensils");
+
+  arrowDownDropdownUts.addEventListener("click", () => {
+    contentDropdowUtensils.innerHTML = `
+      
+      <input
+      class="input-utensils"
+      type="search"
+      placeholder="Rechercher un ustensil"/>
+      <ul class="elements-liste-uts"></ul>
+      `;
+
+    document.querySelector(".btn-dropdown-container-utensils").style.width = "inherit";
+    contentDropdowUtensils.style.flexDirection = "column";
+    contentDropdowUtensils.style.alignItems = "start";
+    contentDropdowUtensils.style.padding = "0";
+
+    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
+    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
+    let ulElement = document.querySelector(".elements-liste-uts");
+
+    createElementsListe(array, ulElement);
+  });
+}
+
+function createElementsListe(array, ulElement) {
+  array.forEach((element) => {
+    const liElement = document.createElement("li");
+    liElement.classList.add("input-liste");
+    ulElement.appendChild(liElement);
+    liElement.innerHTML = element;
+
+    liElement.style.width = "30%";
+    liElement.style.padding = "0 15px";
+    liElement.style.fontSize = "0.9em";
+    liElement.style.lineHeight = "22px";
+
+    /*
+
+    liElement = document.createElement("li");
+    liElement.classList.add("input-liste");
+    ulElement.appendChild(liElement);
+    let liContent = document.createTextNode(`${element}`);
+    liElement.appendChild(liContent);
+    */
+  });
+}
+
+
+
+//displayDropdownIngg(ingredientsListDropdown, contentDropdownIng, arrowDownDropdownIng);
+displayDropdownIng(ingredientsListDropdown);
+displayDropdownAppl(appliancesListDropdown);
+displayDropdownUtensils(utensilsListDropdown);
 //displayDropdown(ingredientsListDropdown, btnDropdownIngredients);
 //displayDropdown(ingredientsListDropdown, test);
-displayDropdown(ingredientsListDropdown);
 
 /*
 tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 

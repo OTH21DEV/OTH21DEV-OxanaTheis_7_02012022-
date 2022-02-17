@@ -60,7 +60,9 @@ section {
   color: white;
 }
 
-.btn-dropdown-container {
+.btn-dropdown-container,
+.btn-dropdown-container-appliances,
+.btn-dropdown-container-utensils {
   width: 25%;
   height: 50px;
   color: white;
@@ -70,19 +72,39 @@ section {
 
 .input-ingredients {
   background: #3282F7;
+}
+
+.input-appliances {
+  background: #68D9A4;
+}
+
+.input-utensils {
+  background: #ED6454;
+}
+
+.input-ingredients,
+.input-appliances,
+.input-utensils {
+  width: 100%;
   height: 50px;
   color: white;
   font-family: "Lato", sans-serif;
-  padding: 0 5px;
+  border-radius: 5px 5px;
   border: none;
   padding: 0;
 }
-.input-ingredients::placeholder {
+
+.input-ingredients::placeholder,
+.input-appliances::placeholder,
+.input-utensils::placeholder {
   color: white;
   background-image: url(/assets/icon/chevron-up-solid.svg);
   background-repeat: no-repeat;
   background-size: 12px;
   background-position-x: right;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
 }
 
 .btn-dropdown-ingredients,
@@ -103,12 +125,17 @@ section {
   font-weight: lighter;
 }
 
-.btn-dropdown-container__arrow-down {
+.btn-dropdown-container__arrow-down-ing,
+.btn-dropdown-container__arrow-down-appl,
+.btn-dropdown-container__arrow-down-uts {
   height: 12px;
   filter: invert(100%);
+  cursor: pointer;
 }
 
-.liste-ingredients {
+.elements-liste-ing,
+.elements-liste-appl,
+.elements-liste-uts {
   list-style-type: none;
   padding-left: 0;
   margin-top: 0;
@@ -130,17 +157,6 @@ section {
 
 .btn-dropdown-utensils {
   background: #ED6454;
-}
-
-.input-ingredients {
-  width: 100%;
-  padding: 0;
-  border-radius: 5px 5px;
-}
-.input-ingredients::placeholder {
-  padding: 0 15px;
-  font-size: 1.1em;
-  opacity: 50%;
 }
 
 .test {
