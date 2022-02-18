@@ -104,38 +104,80 @@ function displayDropdown(array, btn) {
 function displayDropdownIng(array) {
   const arrowDownDropdownIng = document.querySelector(".btn-dropdown-container__arrow-down-ing");
   const contentDropdownIng = document.querySelector(".btn-dropdown-ingredients");
+  const dropDownContainer = document.querySelector(".btn-dropdown-container");
 
   arrowDownDropdownIng.addEventListener("click", () => {
     contentDropdownIng.innerHTML = `
     
+    <img
+    src="./assets/icon/chevron-up-solid.svg"
+    class="btn-dropdown-container__arrow-up-ing"
+    alt="arrow_up"
+    ;
+    />
+
     <input
     class="input-ingredients"
     type="search"
     placeholder="Rechercher un ingrédient"/>
+
+
     <ul class="elements-liste-ing"></ul>
     
     `;
 
-    document.querySelector(".btn-dropdown-container").style.width = "inherit";
-    contentDropdownIng.style.flexDirection = "column";
-    contentDropdownIng.style.alignItems = "start";
-    contentDropdownIng.style.padding = "0";
-
-    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
-    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
     let ulElement = document.querySelector(".elements-liste-ing");
+    const arrowUpDropdownIng = document.querySelector(".btn-dropdown-container__arrow-up-ing");
 
+    dropDownContainer.classList.add("btn-dropdown-container--onclick");
+    contentDropdownIng.classList.add("btn-dropdown-elements-onclick");
+    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
 
     createElementsListe(array, ulElement);
+    closeInput(arrowUpDropdownIng, contentDropdownIng,dropDownContainer );
   });
 }
+function closeInput(arrow, container, element) {
+  //on recree le contenu de btn Dropdown - input
+  arrow.addEventListener("click", () => {
+    container.innerHTML = `
+    <h3>Ingredients</h3>
+    
+    <img
+    src="./assets/icon/arrow_down.svg"
+    class="btn-dropdown-container__arrow-down-ing"
+    alt="arrow_down"
+    ;
+    />
+    
+    
+    </div>
+    
+    </div>
+    `;
+    //on enleve la mise en page
+
+    element.classList.remove("btn-dropdown-container--onclick");
+    container.classList.remove("btn-dropdown-elements-onclick");
+    document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
+  });
+}
+
+
+
 function displayDropdownAppl(array) {
   const arrowDownDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-down-appl");
   const contentDropdowAppliances = document.querySelector(".btn-dropdown-appliances");
+  const dropDownContainerAppl =  document.querySelector(".btn-dropdown-container-appliances");
 
   arrowDownDropdownAppl.addEventListener("click", () => {
     contentDropdowAppliances.innerHTML = `
-      
+    <img
+    src="./assets/icon/chevron-up-solid.svg"
+    class="btn-dropdown-container__arrow-up-appl"
+    alt="arrow_up"
+    ;
+    />
       <input
       class="input-appliances"
       type="search"
@@ -143,16 +185,17 @@ function displayDropdownAppl(array) {
       <ul class="elements-liste-appl"></ul>
       `;
 
-    document.querySelector(".btn-dropdown-container-appliances").style.width = "inherit";
-    contentDropdowAppliances.style.flexDirection = "column";
-    contentDropdowAppliances.style.alignItems = "start";
-    contentDropdowAppliances.style.padding = "0";
-
-    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
-    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
     let ulElement = document.querySelector(".elements-liste-appl");
+    const arrowUpDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-up-appl");
+
+    dropDownContainerAppl.classList.add("btn-dropdown-container--onclick");
+
+    contentDropdowAppliances.classList.add("btn-dropdown-elements-onclick");
+
+    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
 
     createElementsListe(array, ulElement);
+    closeInput(arrowUpDropdownAppl, contentDropdowAppliances,dropDownContainerAppl);
   });
 }
 
@@ -162,22 +205,27 @@ function displayDropdownUtensils(array) {
 
   arrowDownDropdownUts.addEventListener("click", () => {
     contentDropdowUtensils.innerHTML = `
-      
+    <img
+    src="./assets/icon/chevron-up-solid.svg"
+    class="btn-dropdown-container__arrow-up-uts"
+    alt="arrow_up"
+    ;
+    />
       <input
       class="input-utensils"
       type="search"
       placeholder="Rechercher un ustensil"/>
       <ul class="elements-liste-uts"></ul>
       `;
-
-    document.querySelector(".btn-dropdown-container-utensils").style.width = "inherit";
-    contentDropdowUtensils.style.flexDirection = "column";
-    contentDropdowUtensils.style.alignItems = "start";
-    contentDropdowUtensils.style.padding = "0";
-
-    document.querySelector(".wrapper-btns-dropdown").style.marginBottom = "250px";
-    document.querySelector(".wrapper-btns-dropdown").style.marginLeft = "-5px";
+    /*
+      to use .classList + .add('class-name') , .remove('class-name') or .toggle('class-name') to apply changes through CSS. 
+      
+      */
     let ulElement = document.querySelector(".elements-liste-uts");
+    document.querySelector(".btn-dropdown-container-utensils").classList.add("btn-dropdown-container--onclick");
+    contentDropdowUtensils.classList.add("btn-dropdown-elements-onclick");
+
+    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
 
     createElementsListe(array, ulElement);
   });
@@ -190,30 +238,17 @@ function createElementsListe(array, ulElement) {
     ulElement.appendChild(liElement);
     liElement.innerHTML = element;
 
-    liElement.style.width = "30%";
-    liElement.style.padding = "0 15px";
-    liElement.style.fontSize = "0.9em";
-    liElement.style.lineHeight = "22px";
-
     /*
 
-    liElement = document.createElement("li");
-    liElement.classList.add("input-liste");
-    ulElement.appendChild(liElement);
     let liContent = document.createTextNode(`${element}`);
     liElement.appendChild(liContent);
     */
   });
 }
 
-
-
-//displayDropdownIngg(ingredientsListDropdown, contentDropdownIng, arrowDownDropdownIng);
 displayDropdownIng(ingredientsListDropdown);
 displayDropdownAppl(appliancesListDropdown);
 displayDropdownUtensils(utensilsListDropdown);
-//displayDropdown(ingredientsListDropdown, btnDropdownIngredients);
-//displayDropdown(ingredientsListDropdown, test);
 
 /*
 tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 

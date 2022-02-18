@@ -98,18 +98,25 @@ section {
 .input-appliances::placeholder,
 .input-utensils::placeholder {
   color: white;
-  background-image: url(/assets/icon/chevron-up-solid.svg);
-  background-repeat: no-repeat;
-  background-size: 12px;
-  background-position-x: right;
   padding: 0 15px;
   font-size: 1.1em;
   opacity: 50%;
 }
 
+.btn-dropdown-container__arrow-up-ing,
+.btn-dropdown-container__arrow-up-appl,
+.btn-dropdown-container__arrow-up-uts {
+  filter: invert(100%);
+  width: 12px;
+  position: absolute;
+  right: 13px;
+  top: 15px;
+}
+
 .btn-dropdown-ingredients,
 .btn-dropdown-appliances,
 .btn-dropdown-utensils {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -159,8 +166,26 @@ section {
   background: #ED6454;
 }
 
-.test {
+.btn-dropdown-elements-onclick {
+  flex-direction: column;
+  align-items: start;
+  padding: 0;
+}
+
+.btn-dropdown-container--onclick {
+  width: inherit;
+}
+
+.wrapper-btns-dropdown--onclick {
+  margin-bottom: 250px;
+  margin-left: -5px;
+}
+
+.input-liste {
   width: 30%;
+  padding: 0 15px;
+  font-size: 0.9em;
+  line-height: 22px;
 }
 
 .wrapper-recipe {
