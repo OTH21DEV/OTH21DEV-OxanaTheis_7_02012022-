@@ -49,15 +49,18 @@ Tableau des ustensils vide ( puis trier sans doublon)
 */
 let utensilsListDropdown = [];
 /*
-Tableau des ustensils vide ( puis trier sans doublon)
+Tableau des appareils vide ( puis trier sans doublon)
 */
 let appliancesListDropdown = [];
 /*
-Tableau des ustensils vide ( puis trier sans doublon)
+Tableau des ingredients vide ( puis trier sans doublon)
 */
 let ingredientsListDropdown = [];
+
+//....................................................
+
 /*
-Fonction pour creer le contenu initial de dropdown
+Fonction pour supprimer des doublons afin de recreer le contenu initial de dropdown
 */
 function removeDuplicatesDropdown() {
   recipes.forEach((recipe) => {
@@ -86,42 +89,35 @@ function removeDuplicatesDropdown() {
     });
   });
 }
-//    <option class= "listbox__date" value="">${element}</option>
-//`;
+
 removeDuplicatesDropdown();
 
-const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 /*
-function displayDropdown(array, btn) {
-  array.forEach((element) => {
-    btn.innerHTML += `
-    <option value="${element}"></option>
-    `;
-  });
-}
+A verifier cette const...
 */
+const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 
+/*
+Affichage dropDown Ingredient
+*/
 function displayDropdownIng(array) {
   const arrowDownDropdownIng = document.querySelector(".btn-dropdown-container__arrow-down-ing");
   const contentDropdownIng = document.querySelector(".btn-dropdown-ingredients");
   const dropDownContainer = document.querySelector(".btn-dropdown-container");
+  
 
   arrowDownDropdownIng.addEventListener("click", () => {
     contentDropdownIng.innerHTML = `
-    
     <img
     src="./assets/icon/chevron-up-solid.svg"
     class="btn-dropdown-container__arrow-up-ing"
     alt="arrow_up"
     ;
     />
-
     <input
     class="input-ingredients"
     type="search"
     placeholder="Rechercher un ingrédient"/>
-
-
     <ul class="elements-liste-ing"></ul>
     
     `;
@@ -129,46 +125,18 @@ function displayDropdownIng(array) {
     let ulElement = document.querySelector(".elements-liste-ing");
     const arrowUpDropdownIng = document.querySelector(".btn-dropdown-container__arrow-up-ing");
 
-    dropDownContainer.classList.add("btn-dropdown-container--onclick");
-    contentDropdownIng.classList.add("btn-dropdown-elements-onclick");
-    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-
+    addInputLayout(dropDownContainer, contentDropdownIng);
     createElementsListe(array, ulElement);
-    closeInput(arrowUpDropdownIng, contentDropdownIng,dropDownContainer );
+    closeInputListeIng(arrowUpDropdownIng, contentDropdownIng, dropDownContainer);
   });
 }
-function closeInput(arrow, container, element) {
-  //on recree le contenu de btn Dropdown - input
-  arrow.addEventListener("click", () => {
-    container.innerHTML = `
-    <h3>Ingredients</h3>
-    
-    <img
-    src="./assets/icon/arrow_down.svg"
-    class="btn-dropdown-container__arrow-down-ing"
-    alt="arrow_down"
-    ;
-    />
-    
-    
-    </div>
-    
-    </div>
-    `;
-    //on enleve la mise en page
-
-    element.classList.remove("btn-dropdown-container--onclick");
-    container.classList.remove("btn-dropdown-elements-onclick");
-    document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
-  });
-}
-
-
-
+/*
+Affichage dropDown Appliances
+*/
 function displayDropdownAppl(array) {
   const arrowDownDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-down-appl");
   const contentDropdowAppliances = document.querySelector(".btn-dropdown-appliances");
-  const dropDownContainerAppl =  document.querySelector(".btn-dropdown-container-appliances");
+  const dropDownContainerAppl = document.querySelector(".btn-dropdown-container-appliances");
 
   arrowDownDropdownAppl.addEventListener("click", () => {
     contentDropdowAppliances.innerHTML = `
@@ -181,27 +149,25 @@ function displayDropdownAppl(array) {
       <input
       class="input-appliances"
       type="search"
-      placeholder="Rechercher un appareils"/>
+      placeholder="Rechercher un appareil"/>
       <ul class="elements-liste-appl"></ul>
       `;
 
     let ulElement = document.querySelector(".elements-liste-appl");
     const arrowUpDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-up-appl");
 
-    dropDownContainerAppl.classList.add("btn-dropdown-container--onclick");
-
-    contentDropdowAppliances.classList.add("btn-dropdown-elements-onclick");
-
-    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-
+    addInputLayout(dropDownContainerAppl, contentDropdowAppliances);
     createElementsListe(array, ulElement);
-    closeInput(arrowUpDropdownAppl, contentDropdowAppliances,dropDownContainerAppl);
+    closeInputListeApll(arrowUpDropdownAppl, contentDropdowAppliances, dropDownContainerAppl);
   });
 }
-
+/*
+Affichage dropDown Ustensils
+*/
 function displayDropdownUtensils(array) {
   const arrowDownDropdownUts = document.querySelector(".btn-dropdown-container__arrow-down-uts");
   const contentDropdowUtensils = document.querySelector(".btn-dropdown-utensils");
+  const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
 
   arrowDownDropdownUts.addEventListener("click", () => {
     contentDropdowUtensils.innerHTML = `
@@ -217,19 +183,28 @@ function displayDropdownUtensils(array) {
       placeholder="Rechercher un ustensil"/>
       <ul class="elements-liste-uts"></ul>
       `;
-    /*
-      to use .classList + .add('class-name') , .remove('class-name') or .toggle('class-name') to apply changes through CSS. 
-      
-      */
+
     let ulElement = document.querySelector(".elements-liste-uts");
-    document.querySelector(".btn-dropdown-container-utensils").classList.add("btn-dropdown-container--onclick");
-    contentDropdowUtensils.classList.add("btn-dropdown-elements-onclick");
-
-    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-
+    const arrowUpDropdownUts = document.querySelector(".btn-dropdown-container__arrow-up-uts");
+    addInputLayout(dropDownContainerUts, contentDropdowUtensils);
     createElementsListe(array, ulElement);
+    closeInputListeUts(arrowUpDropdownUts, contentDropdowUtensils, dropDownContainerUts);
   });
 }
+
+/*
+La mise en page pour popup des elements (ing, appl, ustensiles)
+*/
+
+function addInputLayout(element, container) {
+  element.classList.add("btn-dropdown-container--onclick");
+  container.classList.add("btn-dropdown-elements-onclick");
+  document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
+}
+
+/*
+Creation des listes -  li pour chaque element de dropdown - ing, appl, uts 
+*/
 
 function createElementsListe(array, ulElement) {
   array.forEach((element) => {
@@ -237,12 +212,74 @@ function createElementsListe(array, ulElement) {
     liElement.classList.add("input-liste");
     ulElement.appendChild(liElement);
     liElement.innerHTML = element;
+  });
+}
 
-    /*
+/*
+Enleve la mise en page pour popup des elements (ing, appl, ustensiles)
+Fonction est appellée dans des functions closeInputListeIng/Appl/Uts 
+*/
 
-    let liContent = document.createTextNode(`${element}`);
-    liElement.appendChild(liContent);
-    */
+function removeInputLayout(element, container) {
+  element.classList.remove("btn-dropdown-container--onclick");
+  container.classList.remove("btn-dropdown-elements-onclick");
+  document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
+}
+
+function closeInputListeIng(arrow, container, element) {
+  //on recree le contenu de btn Dropdown - input
+  arrow.addEventListener("click", () => {
+    container.innerHTML = `
+    <h3>Ingredients</h3>
+    <img
+    src="./assets/icon/arrow_down.svg"
+    class="btn-dropdown-container__arrow-down-ing"
+    alt="arrow_down"
+    ;
+    />
+    </div>
+    </div>
+    `;
+
+    removeInputLayout(element, container);
+  });
+}
+
+function closeInputListeApll(arrow, container, element) {
+  //on recree le contenu de btn Dropdown - input
+  arrow.addEventListener("click", () => {
+    container.innerHTML = `
+    <h3>Appareils</h3>
+    <img
+    src="./assets/icon/arrow_down.svg"
+    class="btn-dropdown-container__arrow-down-appl"
+    alt="arrow_down"
+    ;
+    />
+    </div>
+    </div>
+    `;
+
+    removeInputLayout(element, container);
+  });
+}
+
+function closeInputListeUts(arrow, container, element) {
+  //on recree le contenu de btn Dropdown - input
+  arrow.addEventListener("click", () => {
+    container.innerHTML = `
+    <h3>Ustensiles</h3>
+    <img
+    src="./assets/icon/arrow_down.svg"
+    class="btn-dropdown-container__arrow-down-uts"
+    alt="arrow_down"
+    ;
+    />
+    </div>
+    </div>
+    `;
+
+    removeInputLayout(element, container);
   });
 }
 
