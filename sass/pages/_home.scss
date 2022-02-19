@@ -71,10 +71,13 @@ section {
 .input-ingredients {
   background: $btn-ingredients;
 }
-.input-appliances {
+.input-appliances,
+.popup-input-appl
+{
   background: $btn-device;
 }
-.input-utensils {
+.input-utensils,
+.popup-input-uts {
   background: $btn-utensils;
 }
 .input-ingredients,
@@ -97,6 +100,34 @@ section {
   font-size: 1.1em;
   opacity: 50%;
 }
+
+//TEST
+
+.popup-input-ing, 
+.popup-input-appl,
+.popup-input-uts{
+  display: none;
+}
+
+.popup-input--onclick{
+  display: block;
+  flex-direction: column;
+  align-items: start;
+   padding: 0;
+   position: relative;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .btn-dropdown-ingredients,
 .btn-dropdown-appliances,
@@ -149,7 +180,7 @@ section {
   width: 100%;
 }
 
-.btn-dropdown-ingredients {
+.btn-dropdown-ingredients, .elements-liste-ing {
   background: $btn-ingredients;
 }
 .btn-dropdown-appliances {
@@ -159,11 +190,11 @@ section {
   background: $btn-utensils;
 }
 
-.btn-dropdown-elements-onclick {
-  flex-direction: column;
-  align-items: start;
-  padding: 0;
-}
+//.btn-dropdown-elements-onclick {
+ // flex-direction: column;
+ // align-items: start;
+//  padding: 0;
+//}
 
 .btn-dropdown-container--onclick {
   width: inherit;

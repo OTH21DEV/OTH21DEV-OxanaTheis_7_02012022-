@@ -98,112 +98,94 @@ A verifier cette const...
 const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 
 /*
-Affichage dropDown Ingredient
+TEST
 */
-function displayDropdownIng(array) {
-  const arrowDownDropdownIng = document.querySelector(".btn-dropdown-container__arrow-down-ing");
-  const contentDropdownIng = document.querySelector(".btn-dropdown-ingredients");
-  const dropDownContainer = document.querySelector(".btn-dropdown-container");
-  
+//Element Dom UL pour le dropdown Ingredient
 
-  arrowDownDropdownIng.addEventListener("click", () => {
-    contentDropdownIng.innerHTML = `
-    <img
-    src="./assets/icon/chevron-up-solid.svg"
-    class="btn-dropdown-container__arrow-up-ing"
-    alt="arrow_up"
-    ;
-    />
-    <input
-    class="input-ingredients"
-    type="search"
-    placeholder="Rechercher un ingrédient"/>
-    <ul class="elements-liste-ing"></ul>
-    
-    `;
+const ulElementIng = document.querySelector(".elements-liste-ing");
+const btnIng = document.querySelector(".btn-dropdown-ingredients");
+const dropDownContainerIng = document.querySelector(".btn-dropdown-container");
+const popupIng = document.querySelector(".popup-input-ing");
 
-    let ulElement = document.querySelector(".elements-liste-ing");
-    const arrowUpDropdownIng = document.querySelector(".btn-dropdown-container__arrow-up-ing");
+//Appareils
+const ulElementAppl = document.querySelector(".elements-liste-appl");
+const btnAppl = document.querySelector(".btn-dropdown-appliances");
+const dropDownContainerAppl = document.querySelector(".btn-dropdown-container-appliances");
+const popupAppl = document.querySelector(".popup-input-appl");
 
-    addInputLayout(dropDownContainer, contentDropdownIng);
-    createElementsListe(array, ulElement);
-    closeInputListeIng(arrowUpDropdownIng, contentDropdownIng, dropDownContainer);
+
+//Ustensils
+const ulElementUts = document.querySelector(".elements-liste-uts");
+const btnUts = document.querySelector(".btn-dropdown-utensils");
+const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
+const popupUts = document.querySelector(".popup-input-uts");
+
+
+function displayDropdownIng(elementPopup,array, ulElement, btn, elementContainer) {
+  window.addEventListener("click", (e) => {
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-down-ing") {
+      OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+    }
+
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-up-ing") {
+      ClosePopup(elementPopup, btn, elementContainer);
+
+      // window.location.reload();
+    }
   });
 }
-/*
-Affichage dropDown Appliances
-*/
-function displayDropdownAppl(array) {
-  const arrowDownDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-down-appl");
-  const contentDropdowAppliances = document.querySelector(".btn-dropdown-appliances");
-  const dropDownContainerAppl = document.querySelector(".btn-dropdown-container-appliances");
+function displayDropdownAppl(elementPopup, array, ulElement, btn, elementContainer) {
+  window.addEventListener("click", (e) => {
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-down-appl") {
+      console.log(e.target.classList[0]);
+      OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+    }
 
-  arrowDownDropdownAppl.addEventListener("click", () => {
-    contentDropdowAppliances.innerHTML = `
-    <img
-    src="./assets/icon/chevron-up-solid.svg"
-    class="btn-dropdown-container__arrow-up-appl"
-    alt="arrow_up"
-    ;
-    />
-      <input
-      class="input-appliances"
-      type="search"
-      placeholder="Rechercher un appareil"/>
-      <ul class="elements-liste-appl"></ul>
-      `;
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-up-appl") {
+      ClosePopup(elementPopup, btn, elementContainer);
 
-    let ulElement = document.querySelector(".elements-liste-appl");
-    const arrowUpDropdownAppl = document.querySelector(".btn-dropdown-container__arrow-up-appl");
-
-    addInputLayout(dropDownContainerAppl, contentDropdowAppliances);
-    createElementsListe(array, ulElement);
-    closeInputListeApll(arrowUpDropdownAppl, contentDropdowAppliances, dropDownContainerAppl);
-  });
-}
-/*
-Affichage dropDown Ustensils
-*/
-function displayDropdownUtensils(array) {
-  const arrowDownDropdownUts = document.querySelector(".btn-dropdown-container__arrow-down-uts");
-  const contentDropdowUtensils = document.querySelector(".btn-dropdown-utensils");
-  const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
-
-  arrowDownDropdownUts.addEventListener("click", () => {
-    contentDropdowUtensils.innerHTML = `
-    <img
-    src="./assets/icon/chevron-up-solid.svg"
-    class="btn-dropdown-container__arrow-up-uts"
-    alt="arrow_up"
-    ;
-    />
-      <input
-      class="input-utensils"
-      type="search"
-      placeholder="Rechercher un ustensil"/>
-      <ul class="elements-liste-uts"></ul>
-      `;
-
-    let ulElement = document.querySelector(".elements-liste-uts");
-    const arrowUpDropdownUts = document.querySelector(".btn-dropdown-container__arrow-up-uts");
-    addInputLayout(dropDownContainerUts, contentDropdowUtensils);
-    createElementsListe(array, ulElement);
-    closeInputListeUts(arrowUpDropdownUts, contentDropdowUtensils, dropDownContainerUts);
+      // window.location.reload();
+    }
   });
 }
 
-/*
-La mise en page pour popup des elements (ing, appl, ustensiles)
-*/
+function displayDropdownUts(elementPopup, array, ulElement, btn, elementContainer) {
+  window.addEventListener("click", (e) => {
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-down-uts") {
+      console.log(e.target.classList[0]);
+      OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+    }
 
-function addInputLayout(element, container) {
-  element.classList.add("btn-dropdown-container--onclick");
-  container.classList.add("btn-dropdown-elements-onclick");
+    if (e.target.classList[0] == "btn-dropdown-container__arrow-up-uts") {
+      ClosePopup(elementPopup, btn, elementContainer);
+
+      // window.location.reload();
+    }
+  });
+}
+
+function OpenPopup(elementPopup, array, ulElement, btn, elementContainer) {
+  btn.style.display = "none";
+  elementPopup.classList.add("popup-input--onclick");
+  elementContainer.classList.add("btn-dropdown-container--onclick");
   document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
+  createElementsListe(array, ulElement);
 }
 
+
+function ClosePopup(elementPopup, btn, elementContainer) {
+  elementPopup.style.display = "none";
+  document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
+  btn.style.display = "flex";
+  elementContainer.classList.remove("btn-dropdown-container--onclick");
+}
+
+displayDropdownIng(popupIng,ingredientsListDropdown, ulElementIng, btnIng, dropDownContainerIng);
+displayDropdownAppl(popupAppl, appliancesListDropdown, ulElementAppl, btnAppl, dropDownContainerAppl);
+displayDropdownUts(popupUts,utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
+
 /*
-Creation des listes -  li pour chaque element de dropdown - ing, appl, uts 
+Creation de la liste pour chaque element -ingredients, appareils, ustensiles
 */
 
 function createElementsListe(array, ulElement) {
@@ -215,77 +197,7 @@ function createElementsListe(array, ulElement) {
   });
 }
 
-/*
-Enleve la mise en page pour popup des elements (ing, appl, ustensiles)
-Fonction est appellée dans des functions closeInputListeIng/Appl/Uts 
-*/
 
-function removeInputLayout(element, container) {
-  element.classList.remove("btn-dropdown-container--onclick");
-  container.classList.remove("btn-dropdown-elements-onclick");
-  document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
-}
-
-function closeInputListeIng(arrow, container, element) {
-  //on recree le contenu de btn Dropdown - input
-  arrow.addEventListener("click", () => {
-    container.innerHTML = `
-    <h3>Ingredients</h3>
-    <img
-    src="./assets/icon/arrow_down.svg"
-    class="btn-dropdown-container__arrow-down-ing"
-    alt="arrow_down"
-    ;
-    />
-    </div>
-    </div>
-    `;
-
-    removeInputLayout(element, container);
-  });
-}
-
-function closeInputListeApll(arrow, container, element) {
-  //on recree le contenu de btn Dropdown - input
-  arrow.addEventListener("click", () => {
-    container.innerHTML = `
-    <h3>Appareils</h3>
-    <img
-    src="./assets/icon/arrow_down.svg"
-    class="btn-dropdown-container__arrow-down-appl"
-    alt="arrow_down"
-    ;
-    />
-    </div>
-    </div>
-    `;
-
-    removeInputLayout(element, container);
-  });
-}
-
-function closeInputListeUts(arrow, container, element) {
-  //on recree le contenu de btn Dropdown - input
-  arrow.addEventListener("click", () => {
-    container.innerHTML = `
-    <h3>Ustensiles</h3>
-    <img
-    src="./assets/icon/arrow_down.svg"
-    class="btn-dropdown-container__arrow-down-uts"
-    alt="arrow_down"
-    ;
-    />
-    </div>
-    </div>
-    `;
-
-    removeInputLayout(element, container);
-  });
-}
-
-displayDropdownIng(ingredientsListDropdown);
-displayDropdownAppl(appliancesListDropdown);
-displayDropdownUtensils(utensilsListDropdown);
 
 /*
 tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 
@@ -420,4 +332,3 @@ function searchByKeywordsIng(value) {
   }
 }
 */
-console.log(filteredRecipes);
