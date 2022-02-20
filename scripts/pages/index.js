@@ -95,7 +95,7 @@ removeDuplicatesDropdown();
 /*
 A verifier cette const...
 */
-const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
+//const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 
 /*
 TEST
@@ -113,18 +113,17 @@ const btnAppl = document.querySelector(".btn-dropdown-appliances");
 const dropDownContainerAppl = document.querySelector(".btn-dropdown-container-appliances");
 const popupAppl = document.querySelector(".popup-input-appl");
 
-
 //Ustensils
 const ulElementUts = document.querySelector(".elements-liste-uts");
 const btnUts = document.querySelector(".btn-dropdown-utensils");
 const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
 const popupUts = document.querySelector(".popup-input-uts");
 
-
-function displayDropdownIng(elementPopup,array, ulElement, btn, elementContainer) {
+function displayDropdownIng(elementPopup, array, ulElement, btn, elementContainer) {
   window.addEventListener("click", (e) => {
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-ing") {
       OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+      createElementsListe(array, ulElement);
     }
 
     if (e.target.classList[0] == "btn-dropdown-container__arrow-up-ing") {
@@ -137,8 +136,8 @@ function displayDropdownIng(elementPopup,array, ulElement, btn, elementContainer
 function displayDropdownAppl(elementPopup, array, ulElement, btn, elementContainer) {
   window.addEventListener("click", (e) => {
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-appl") {
-      console.log(e.target.classList[0]);
       OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+      createElementsListe(array, ulElement);
     }
 
     if (e.target.classList[0] == "btn-dropdown-container__arrow-up-appl") {
@@ -154,6 +153,7 @@ function displayDropdownUts(elementPopup, array, ulElement, btn, elementContaine
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-uts") {
       console.log(e.target.classList[0]);
       OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+      createElementsListe(array, ulElement);
     }
 
     if (e.target.classList[0] == "btn-dropdown-container__arrow-up-uts") {
@@ -169,9 +169,11 @@ function OpenPopup(elementPopup, array, ulElement, btn, elementContainer) {
   elementPopup.classList.add("popup-input--onclick");
   elementContainer.classList.add("btn-dropdown-container--onclick");
   document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-  createElementsListe(array, ulElement);
+  /*
+ version initiale avec creation LI dans cette fonction
+ */
+  //createElementsListe(array, ulElement);
 }
-
 
 function ClosePopup(elementPopup, btn, elementContainer) {
   elementPopup.style.display = "none";
@@ -180,9 +182,9 @@ function ClosePopup(elementPopup, btn, elementContainer) {
   elementContainer.classList.remove("btn-dropdown-container--onclick");
 }
 
-displayDropdownIng(popupIng,ingredientsListDropdown, ulElementIng, btnIng, dropDownContainerIng);
+displayDropdownIng(popupIng, ingredientsListDropdown, ulElementIng, btnIng, dropDownContainerIng);
 displayDropdownAppl(popupAppl, appliancesListDropdown, ulElementAppl, btnAppl, dropDownContainerAppl);
-displayDropdownUts(popupUts,utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
+displayDropdownUts(popupUts, utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
 
 /*
 Creation de la liste pour chaque element -ingredients, appareils, ustensiles
@@ -196,8 +198,6 @@ function createElementsListe(array, ulElement) {
     liElement.innerHTML = element;
   });
 }
-
-
 
 /*
 tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 
@@ -222,8 +222,15 @@ function searchByKeywordsUtensils(value) {
 
     filteredUtensils = [...new Set(filteredUtensils.concat(newRecipeUtensils))].sort();
   });
+  /*
   btnDropdownUstensiles.innerHTML = "";
   displayDropdown(filteredUtensils, btnDropdownUstensiles);
+  */
+  ulElementUts.innerHTML = "";
+
+  createElementsListe(filteredUtensils, ulElementUts);
+  //displayDropdownUts(popupUts,filteredUtensils, ulElementUts, btnUts, dropDownContainerUts);
+  //displayDropdownUts(filteredUtensils, btnDropdownUstensiles);
 }
 
 function searchByKeywordsAppliances(value) {
@@ -236,10 +243,14 @@ function searchByKeywordsAppliances(value) {
   });
 
   // on recrée le contenu de dropdown Ustensil
-  // displayDropdown(filteredAppliances , btnDropdownUstensiles);
 
-  btnDropdownAppliances.innerHTML = "";
-  displayDropdown(filteredAppliances, btnDropdownAppliances);
+  //tri bien si popup ouvert pas quand il est fermé
+  ulElementAppl.innerHTML = "";
+  createElementsListe(filteredAppliances, ulElementAppl);
+
+  console.log(ulElementAppl);
+
+  //displayDropdownAppl(popupAppl, filteredAppliances, ulElementAppl, btnAppl, dropDownContainerAppl);
 }
 
 function searchByKeywordsIng(value) {
@@ -255,8 +266,9 @@ function searchByKeywordsIng(value) {
   // on recrée le contenu de dropdown Ustensil
   // displayDropdown(filteredAppliances , btnDropdownUstensiles);
 
-  btnDropdownIngredients.innerHTML = "";
-  displayDropdown(filteredIngredients, btnDropdownIngredients);
+  ulElementIng.innerHTML = "";
+  createElementsListe(filteredIngredients, ulElementIng);
+  //displayDropdownIng(popupIng,filteredIngredients, ulElementIng, btnIng, dropDownContainerIng);
 }
 
 //}
@@ -308,11 +320,8 @@ mainSearch.addEventListener("input", (e) => {
 
     filteredRecipes.forEach((recipe) => {
       createRecipe(recipe);
-      //showUtensilsDropdown();
     });
   }
-
-  // console.log(filteredRecipes);
 });
 
 //.................................................
