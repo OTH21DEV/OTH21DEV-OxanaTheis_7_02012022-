@@ -92,16 +92,12 @@ function removeDuplicatesDropdown() {
 
 removeDuplicatesDropdown();
 
-/*
-A verifier cette const...
-*/
-//const btnDropdownUstensiles = document.querySelector(".btn-dropdown-utensils");
 
 /*
-TEST
+Const des elements Dropdowns
 */
-//Element Dom UL pour le dropdown Ingredient
 
+//Ingredients
 const ulElementIng = document.querySelector(".elements-liste-ing");
 const btnIng = document.querySelector(".btn-dropdown-ingredients");
 const dropDownContainerIng = document.querySelector(".btn-dropdown-container");
@@ -151,8 +147,9 @@ function displayDropdownAppl(elementPopup, array, ulElement, btn, elementContain
 function displayDropdownUts(elementPopup, array, ulElement, btn, elementContainer) {
   window.addEventListener("click", (e) => {
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-uts") {
-      console.log(e.target.classList[0]);
+    
       OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
+      //searchByKeywordsUtensils(value)
       createElementsListe(array, ulElement);
     }
 
@@ -172,7 +169,7 @@ function OpenPopup(elementPopup, array, ulElement, btn, elementContainer) {
   /*
  version initiale avec creation LI dans cette fonction
  */
-  //createElementsListe(array, ulElement);
+ // createElementsListe(array, ulElement);
 }
 
 function ClosePopup(elementPopup, btn, elementContainer) {
@@ -222,15 +219,17 @@ function searchByKeywordsUtensils(value) {
 
     filteredUtensils = [...new Set(filteredUtensils.concat(newRecipeUtensils))].sort();
   });
-  /*
-  btnDropdownUstensiles.innerHTML = "";
-  displayDropdown(filteredUtensils, btnDropdownUstensiles);
-  */
+  console.log(ulElementUts)
   ulElementUts.innerHTML = "";
-
   createElementsListe(filteredUtensils, ulElementUts);
-  //displayDropdownUts(popupUts,filteredUtensils, ulElementUts, btnUts, dropDownContainerUts);
-  //displayDropdownUts(filteredUtensils, btnDropdownUstensiles);
+
+
+
+//ulElementUts.innerHTML = "";
+
+
+ // displayDropdownUts(popupUts,filteredUtensils, ulElementUts, btnUts, dropDownContainerUts);
+  
 }
 
 function searchByKeywordsAppliances(value) {
@@ -248,7 +247,7 @@ function searchByKeywordsAppliances(value) {
   ulElementAppl.innerHTML = "";
   createElementsListe(filteredAppliances, ulElementAppl);
 
-  console.log(ulElementAppl);
+ 
 
   //displayDropdownAppl(popupAppl, filteredAppliances, ulElementAppl, btnAppl, dropDownContainerAppl);
 }
@@ -310,10 +309,14 @@ mainSearch.addEventListener("input", (e) => {
     //vide le tableau de recettes
     filteredRecipes = [];
 
+    filteredUtensils = [];
+    filteredAppliances = [];
+    filteredIngredients = [];
     //reapplique la fonction de mots clés
     searchByKeywords(valueInput);
     searchByKeywordsIngredients(valueInput);
-    searchByKeywordsUtensils(valueInput);
+    //displayDropdownUts(valueInput, popupUts, utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
+   searchByKeywordsUtensils(valueInput);
     searchByKeywordsAppliances(valueInput);
     searchByKeywordsIng(valueInput);
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
@@ -322,6 +325,8 @@ mainSearch.addEventListener("input", (e) => {
       createRecipe(recipe);
     });
   }
+
+
 });
 
 //.................................................
