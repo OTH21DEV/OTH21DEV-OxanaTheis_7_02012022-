@@ -1,47 +1,13 @@
 import { recipes } from "/data/recipes.js";
+import { Recipe } from "../factories/Recipe.js";
 
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
 
 for (let i = 0; i < recipes.length; i++) {
   let recipe = recipes[i];
-  createRecipe(recipe);
-}
-function createRecipe(data) {
-  // des Ingredients pour chaque recette
-  const ingredientsDetails = data.ingredients;
-
-  const sectionRecipes = document.querySelector(".recipes");
-  let listIngredients = "";
-  for (let ingredient of ingredientsDetails) {
-    if (ingredient.unit) {
-      listIngredients += `<li class="recipe-ingredients__li"><strong>${ingredient.ingredient}:</strong>${ingredient.quantity}${ingredient.unit}</li>`;
-    } else {
-      listIngredients += `<li class="recipe-ingredients__li"><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</li>`;
-    }
-  }
-
-  sectionRecipes.innerHTML += `
-<article class="wrapper-recipe" ${data.id}>
-<div class= "recipe-img"></div>
-<div class="wrapper">
-<div class="wrapper-recipe-tittle-time">
-<h2 class="recipe-tittle">${data.name}</h2>
-<div class = "recipe-time">
-<i class="far fa-clock"></i>
-<div>${data.time} min</div>
-</div>
-</div>
-<div class="wrapper-recipe-ingredients-making">
-<ul class="recipe-ingredients">
-${listIngredients}
-</ul>
-<div class="recipe-making">${data.description}
-</div>
-</div>
-</div>
-</article>
-`;
+  // createRecipe(recipe);
+  new Recipe(recipe);
 }
 
 /*
@@ -91,7 +57,6 @@ function removeDuplicatesDropdown() {
 }
 
 removeDuplicatesDropdown();
-
 
 /*
 Const des elements Dropdowns
@@ -147,9 +112,8 @@ function displayDropdownAppl(elementPopup, array, ulElement, btn, elementContain
 function displayDropdownUts(elementPopup, array, ulElement, btn, elementContainer) {
   window.addEventListener("click", (e) => {
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-uts") {
-    
       OpenPopup(elementPopup, array, ulElement, btn, elementContainer);
-      //searchByKeywordsUtensils(value)
+
       createElementsListe(array, ulElement);
     }
 
@@ -169,7 +133,7 @@ function OpenPopup(elementPopup, array, ulElement, btn, elementContainer) {
   /*
  version initiale avec creation LI dans cette fonction
  */
- // createElementsListe(array, ulElement);
+  // createElementsListe(array, ulElement);
 }
 
 function ClosePopup(elementPopup, btn, elementContainer) {
@@ -197,15 +161,62 @@ function createElementsListe(array, ulElement) {
 }
 
 /*
-tableau vide de recettes, rempli au fur et au mesure par les recettes en fonction de 
-mots clés tapés dans la barre de recherche
+tableau vide de recettes( rempli au fur et au mesure par les recettes en fonction de 
+mots clés depuis  la barre de recherche)
 */
 let filteredRecipes = [];
-
+/*
+tableaux vides des ingredients, appareils, ustensils(remplis au fur et au mesure 
+en fonction de recettes restantes lors de recherche par mots clés depuis la barre de recherche)
+*/
 let filteredUtensils = [];
 let filteredAppliances = [];
 let filteredIngredients = [];
 
+/*
+Fonction de creation d'un nouveau tableau des ingredients 
+*/
+
+function searchByKeywordsIng(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
+  on filtre chaque recette */
+  filteredRecipes.forEach((element) => {
+    let newRecipeIngredients = element.ingredients;
+    for (let i of newRecipeIngredients) {
+      filteredIngredients = [...new Set(filteredIngredients.concat(i.ingredient))].sort();
+    }
+  });
+
+  // on recrée le contenu de dropdown Ustensil
+
+  ulElementIng.innerHTML = "";
+  createElementsListe(filteredIngredients, ulElementIng);
+  //displayDropdownIng(popupIng,filteredIngredients, ulElementIng, btnIng, dropDownContainerIng);
+}
+
+/*
+Fonction de creation d'un nouveau tableau des appareils
+*/
+
+function searchByKeywordsAppliances(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
+  on filtre chaque recette */
+  filteredRecipes.forEach((element) => {
+    let newRecipeAppliances = element.appliance;
+
+    filteredAppliances = [...new Set(filteredAppliances.concat(newRecipeAppliances))].sort();
+  });
+
+  //tri bien si popup ouvert pas quand il est fermé
+  ulElementAppl.innerHTML = "";
+  createElementsListe(filteredAppliances, ulElementAppl);
+
+  //displayDropdownAppl(popupAppl, filteredAppliances, ulElementAppl, btnAppl, dropDownContainerAppl);
+}
+
+/*
+Fonction de creation d'un nouveau tableau des appareils
+*/
 function searchByKeywordsUtensils(value) {
   /* a partir de tableau filtré de recette (par mots cles) 
  on filtre chaque recette 
@@ -219,62 +230,17 @@ function searchByKeywordsUtensils(value) {
 
     filteredUtensils = [...new Set(filteredUtensils.concat(newRecipeUtensils))].sort();
   });
-  console.log(ulElementUts)
+
   ulElementUts.innerHTML = "";
   createElementsListe(filteredUtensils, ulElementUts);
 
-
-
-//ulElementUts.innerHTML = "";
-
-
- // displayDropdownUts(popupUts,filteredUtensils, ulElementUts, btnUts, dropDownContainerUts);
-  
+  // displayDropdownUts(popupUts,filteredUtensils, ulElementUts, btnUts, dropDownContainerUts);
 }
 
-function searchByKeywordsAppliances(value) {
-  /* a partir de tableau filtré de recette (par mots cles) 
-  on filtre chaque recette */
-  filteredRecipes.forEach((element) => {
-    let newRecipeAppliances = element.appliance;
-
-    filteredAppliances = [...new Set(filteredAppliances.concat(newRecipeAppliances))].sort();
-  });
-
-  // on recrée le contenu de dropdown Ustensil
-
-  //tri bien si popup ouvert pas quand il est fermé
-  ulElementAppl.innerHTML = "";
-  createElementsListe(filteredAppliances, ulElementAppl);
-
- 
-
-  //displayDropdownAppl(popupAppl, filteredAppliances, ulElementAppl, btnAppl, dropDownContainerAppl);
-}
-
-function searchByKeywordsIng(value) {
-  /* a partir de tableau filtré de recette (par mots cles) 
-  on filtre chaque recette */
-  filteredRecipes.forEach((element) => {
-    let newRecipeIngredients = element.ingredients;
-    for (let i of newRecipeIngredients) {
-      filteredIngredients = [...new Set(filteredIngredients.concat(i.ingredient))].sort();
-    }
-  });
-
-  // on recrée le contenu de dropdown Ustensil
-  // displayDropdown(filteredAppliances , btnDropdownUstensiles);
-
-  ulElementIng.innerHTML = "";
-  createElementsListe(filteredIngredients, ulElementIng);
-  //displayDropdownIng(popupIng,filteredIngredients, ulElementIng, btnIng, dropDownContainerIng);
-}
-
-//}
 /*
-Fonction de creation de nouveau tableau recettes par rapport aux mots clés renseignés dans la barre de recherche
-Si le nom de recette , sa description ou ingredients comportent le mot clé tapé alors cette recette est ajouté dans 
-le nouveau tableau filteredRecipes
+Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description
+les mots clés renseignés dans la barre de recherche
+
 */
 
 function searchByKeywords(value) {
@@ -284,6 +250,11 @@ function searchByKeywords(value) {
     }
   }
 }
+/*
+Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent des ingredients correspondants
+aux mots clés renseignés dans la barre de recherche
+
+*/
 
 function searchByKeywordsIngredients(value) {
   for (let i = 0; i < recipes.length; i++) {
@@ -308,25 +279,21 @@ mainSearch.addEventListener("input", (e) => {
     sectionRecipes.innerHTML = "";
     //vide le tableau de recettes
     filteredRecipes = [];
-
     filteredUtensils = [];
     filteredAppliances = [];
     filteredIngredients = [];
     //reapplique la fonction de mots clés
     searchByKeywords(valueInput);
     searchByKeywordsIngredients(valueInput);
-    //displayDropdownUts(valueInput, popupUts, utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
-   searchByKeywordsUtensils(valueInput);
+    searchByKeywordsUtensils(valueInput);
     searchByKeywordsAppliances(valueInput);
     searchByKeywordsIng(valueInput);
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
 
     filteredRecipes.forEach((recipe) => {
-      createRecipe(recipe);
+      new Recipe(recipe);
     });
   }
-
-
 });
 
 //.................................................
