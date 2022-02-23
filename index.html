@@ -2,53 +2,53 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="./css/style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet"> 
-    
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Les petits plats</title>
   </head>
 
   <body>
     <header class="header">
-     
-        <p><img src="./assets/logo/logo.png" alt="Logo les petits plats">
-        </p>
-        <h1>Les petits plats</h1>
+      <p><img src="./assets/logo/logo.png" alt="Logo les petits plats" /></p>
+      <h1>Les petits plats</h1>
     </header>
 
     <main>
-     
-      <section >
-        <form class ="form" method="POST" action="traitement.php">
-            
-               
-         <input type="search" class="search" placeholder="Rechercher un ingredient, appareil, ustensiles ou une recette" />
-      <!--   <i class="fas fa-search"></i>--> 
-        
-          </form>
+      <section>
+        <form class="form" method="POST" action="traitement.php">
+          <input type="search" class="search" placeholder="Rechercher un ingredient, appareil, ustensiles ou une recette" />
+          <!--   <i class="fas fa-search"></i>-->
+        </form>
       </section>
-      <section class = "wrapper-btns-dropdown" >
-       <!--
+      <section class="wrapper-btns-dropdown">
+        <!--
         <p>
         <form method="post" action="traitement.php">-->
-        
-           <!-- <label for="listbox">Ingredients</label>-->
+
+        <!-- <label for="listbox">Ingredients</label>-->
         <!-- 
         <select  name="listbox" class ="btn-dropdown-ingredients" value="" > 
        <option class= "listbox__popular" value="">Ingredients</option>-->
-           <!--   <option class= "listbox__date" value="">b</option>
+        <!--   <option class= "listbox__date" value="">b</option>
             <option class= "listbox__title" value="">c</option>
             
         </select> -->
 
-         <!-- VERSION INITIALE
+        <!-- VERSION INITIALE
 
         <div class="btn-dropdown-container">
           <div class = "btn-dropdown-ingredients">
@@ -68,77 +68,37 @@ alt="arrow_down"
 </div>
 -->
 
- <!-- TEST-->
+        <!-- TEST-->
 
+        <div class="btn-dropdown-container">
+          <div class="btn-dropdown-ingredients">
+            <h3>Ingredients</h3>
 
- <div class="btn-dropdown-container">
-  <div class = "btn-dropdown-ingredients">
+            <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down-ing" alt="arrow_down" ; />
+          </div>
 
-<h3>Ingredients</h3>
+          <div class="popup-input-ing">
+            <img src="./assets/icon/chevron-up-solid.svg" class="btn-dropdown-container__arrow-up-ing" alt="arrow_up" ; />
+            <input class="input-ingredients" type="search" placeholder="Rechercher un ingrédient" />
+            <ul class="elements-liste-ing"></ul>
+          </div>
+        </div>
 
-<img
-src="./assets/icon/arrow_down.svg"
-class="btn-dropdown-container__arrow-down-ing"
-alt="arrow_down"
-;
-/>
+        <div class="btn-dropdown-container-appliances">
+          <div class="btn-dropdown-appliances">
+            <h3>Appareils</h3>
 
+            <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down-appl" alt="arrow_down" ; />
+          </div>
 
-</div>
+          <div class="popup-input-appl">
+            <img src="./assets/icon/chevron-up-solid.svg" class="btn-dropdown-container__arrow-up-appl" alt="arrow_up" ; />
+            <input class="input-appliances" type="search" placeholder="Rechercher un appareil" />
+            <ul class="elements-liste-appl"></ul>
+          </div>
+        </div>
 
-<div class = "popup-input-ing">
-  <img
-  src="./assets/icon/chevron-up-solid.svg"
-  class="btn-dropdown-container__arrow-up-ing"
-  alt="arrow_up"
-  ;
-  />
-  <input
-  class="input-ingredients"
-  type="search"
-  placeholder="Rechercher un ingrédient"/>
-  <ul class="elements-liste-ing"></ul>
-  
-
-
-</div>
-
-</div>
-
-<div class="btn-dropdown-container-appliances">
-  <div class = "btn-dropdown-appliances">
-
-<h3>Appareils</h3>
-
-<img
-src="./assets/icon/arrow_down.svg"
-class="btn-dropdown-container__arrow-down-appl"
-alt="arrow_down"
-;
-/>
-</div>
-
-<div class = "popup-input-appl">
-
-  <img
-  src="./assets/icon/chevron-up-solid.svg"
-  class="btn-dropdown-container__arrow-up-appl"
-  alt="arrow_up"
-  ;
-  />
-  <input
-  class="input-appliances"
-  type="search"
-  placeholder="Rechercher un appareil"/>
-  <ul class="elements-liste-appl"></ul>
-
-</div>
-
-
-
-</div>
-
-<!--
+        <!--
 
 
 
@@ -159,52 +119,23 @@ alt="arrow_down"
 
 -->
 
-        
-   
-        
-<div class="btn-dropdown-container-utensils">
-  <div class = "btn-dropdown-utensils">
+        <div class="btn-dropdown-container-utensils">
+          <div class="btn-dropdown-utensils">
+            <h3>Ustensiles</h3>
 
-<h3>Ustensiles</h3>
+            <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down-uts" alt="arrow_down" ; />
+          </div>
 
-<img
-src="./assets/icon/arrow_down.svg"
-class="btn-dropdown-container__arrow-down-uts"
-alt="arrow_down"
-;
-/>
-</div>
+          <div class="popup-input-uts">
+            <img src="./assets/icon/chevron-up-solid.svg" class="btn-dropdown-container__arrow-up-uts" alt="arrow_up" ; />
+            <input class="input-utensils" type="search" placeholder="Rechercher un ustensil" />
+            <ul class="elements-liste-uts"></ul>
+          </div>
+        </div>
+      </section>
 
-<div class = "popup-input-uts">
-
-  <img
-  src="./assets/icon/chevron-up-solid.svg"
-  class="btn-dropdown-container__arrow-up-uts"
-  alt="arrow_up"
-  ;
-  />
-    <input
-    class="input-utensils"
-    type="search"
-    placeholder="Rechercher un ustensil"/>
-    <ul class="elements-liste-uts"></ul>
-    
-
-</div>
-
-
-
-
-</div>
-
-
-
-         
-    </section>
-
-<section class="recipes">
-
-  <!--
+      <section class="recipes">
+        <!--
   <article class="wrapper-recipe">
   <div class= "recipe-img"></div>
   <div class="wrapper">
@@ -229,12 +160,9 @@ alt="arrow_down"
 </article>
 
 -->
+      </section>
 
-
-</section>
-
-<script type = "module" src="./scripts/pages/index.js"></script>
+      <script type="module" src="./scripts/pages/index.js"></script>
     </main>
-    
   </body>
 </html>

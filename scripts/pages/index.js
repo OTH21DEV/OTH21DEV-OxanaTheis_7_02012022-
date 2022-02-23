@@ -1,4 +1,4 @@
-import { recipes } from "/data/recipes.js";
+import { recipes } from "./../../data/recipes.js";
 import { Recipe } from "../factories/Recipe.js";
 
 const mainSearch = document.querySelector(".search");
