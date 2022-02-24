@@ -35,55 +35,62 @@
         </form>
       </section>
       <section class="wrapper-btns-dropdown">
-        <!--
-        <p>
-        <form method="post" action="traitement.php">-->
+     
 
-        <!-- <label for="listbox">Ingredients</label>-->
-        <!-- 
-        <select  name="listbox" class ="btn-dropdown-ingredients" value="" > 
-       <option class= "listbox__popular" value="">Ingredients</option>-->
-        <!--   <option class= "listbox__date" value="">b</option>
-            <option class= "listbox__title" value="">c</option>
-            
-        </select> -->
+       
 
-        <!-- VERSION INITIALE
+        <div class="btn-dropdown-container" id = "container-ingredient">
+          <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down" alt="arrow_down"/>
 
-        <div class="btn-dropdown-container">
-          <div class = "btn-dropdown-ingredients">
-
-<h3>Ingredients</h3>
-
-<img
-src="./assets/icon/arrow_down.svg"
-class="btn-dropdown-container__arrow-down-ing"
-alt="arrow_down"
-;
-/>
-
-
-</div>
-
-</div>
--->
-
-        <!-- TEST-->
-
-        <div class="btn-dropdown-container">
-          <div class="btn-dropdown-ingredients">
+          <div class="btn-dropdown">
             <h3>Ingredients</h3>
 
-            <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down-ing" alt="arrow_down" ; />
+         
           </div>
 
-          <div class="popup-input-ing">
-            <img src="./assets/icon/chevron-up-solid.svg" class="btn-dropdown-container__arrow-up-ing" alt="arrow_up" ; />
-            <input class="input-ingredients" type="search" placeholder="Rechercher un ingrédient" />
+          <div class="popup-input">
+          
+            <input class="input" type="search" placeholder="Rechercher un ingrédient" />
             <ul class="elements-liste-ing"></ul>
           </div>
         </div>
 
+
+        <div class="btn-dropdown-container" id = "container-appliances">
+          <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down" alt="arrow_down"/>
+
+          <div class="btn-dropdown">
+            <h3>Appareils</h3>
+
+         
+          </div>
+
+          <div class="popup-input">
+          
+            <input class="input" type="search" placeholder="Rechercher un appareil" />
+            <ul class="elements-liste"></ul>
+          </div>
+        </div>
+
+
+        <div class="btn-dropdown-container" id = "container-ustensils">
+          <img src="./assets/icon/arrow_down.svg" class="btn-dropdown-container__arrow-down" alt="arrow_down"/>
+
+          <div class="btn-dropdown">
+            <h3>Ustensils</h3>
+
+         
+          </div>
+
+          <div class="popup-input">
+          
+            <input class="input" type="search" placeholder="Rechercher un ustensil" />
+            <ul class="elements-liste"></ul>
+          </div>
+        </div>
+
+</section>
+ <!--
         <div class="btn-dropdown-container-appliances">
           <div class="btn-dropdown-appliances">
             <h3>Appareils</h3>
@@ -98,26 +105,6 @@ alt="arrow_down"
           </div>
         </div>
 
-        <!--
-
-
-
-<div class="btn-dropdown-container-appliances">
-  <div class = "btn-dropdown-appliances">
-
-<h3>Appareils</h3>
-
-<img
-src="./assets/icon/arrow_down.svg"
-class="btn-dropdown-container__arrow-down-appl"
-alt="arrow_down"
-;
-/>
-</div>
-
-</div>
-
--->
 
         <div class="btn-dropdown-container-utensils">
           <div class="btn-dropdown-utensils">
@@ -133,33 +120,11 @@ alt="arrow_down"
           </div>
         </div>
       </section>
+-->
+
 
       <section class="recipes">
-        <!--
-  <article class="wrapper-recipe">
-  <div class= "recipe-img"></div>
-  <div class="wrapper">
-<div class="wrapper-recipe-tittle-time">
-  <h2 class="recipe-tittle">Limonade de Coco</h2>
-<div class = "recipe-time">
-  <i class="far fa-clock"></i>
-  <div>10 min</div>
-</div>
-</div>
-<div class="wrapper-recipe-ingredients-making">
-  <div class="recipe-ingredients"><strong>Lait de coco :</strong> 400ml <br>
-    <strong>Jus de citron :</strong> 2 <br>
-      <strong>Créme de coco: </strong>4 cuillères <br>
-        <strong>Sucre : </strong>20g <br>
-          <strong>Glaçons: </strong>2 
-</div>
-<div class="recipe-making">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée 
-</div>
-</div>
-</div>
-</article>
 
--->
       </section>
 
       <script type="module" src="./scripts/pages/index.js"></script>

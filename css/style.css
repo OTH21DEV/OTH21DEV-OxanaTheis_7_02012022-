@@ -23,15 +23,6 @@ section {
   background-position-x: right;
 }
 
-/*
-.fa-search {
-  position: absolute;
-  font-size: l9em;
-
-  right: 10px;
-  top: 50%;
-}
-*/
 .form {
   display: flex;
   justify-content: space-between;
@@ -50,16 +41,11 @@ section {
 
 .wrapper-btns-dropdown {
   display: flex;
+  justify-content: space-between;
   width: 80%;
 }
 
-.btn-dropdown-ingredients {
-  background: #3282F7;
-}
-.btn-dropdown-ingredients::placeholder {
-  color: white;
-}
-
+/*
 .btn-dropdown-container,
 .btn-dropdown-container-appliances,
 .btn-dropdown-container-utensils {
@@ -69,21 +55,124 @@ section {
   font-family: "Lato", sans-serif;
   padding: 0 5px;
 }
+*/
+/*
+.btn-dropdown-container__arrow-down-ing,
+.btn-dropdown-container__arrow-down-appl,
+.btn-dropdown-container__arrow-down-uts,
+.btn-dropdown-container__arrow-up-ing,
+.btn-dropdown-container__arrow-up-appl,
+.btn-dropdown-container__arrow-up-uts {
+  height: 12px;
+  filter: invert(100%);
+  cursor: pointer;
+}
 
-.input-ingredients {
+
+.btn-dropdown-container__arrow-up-ing,
+.btn-dropdown-container__arrow-up-appl,
+.btn-dropdown-container__arrow-up-uts {
+  position: absolute;
+  right: 13px;
+  top: 15px;
+}
+
+.btn-dropdown-ingredients,
+.btn-dropdown-appliances,
+.btn-dropdown-utensils {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  border: none;
+  border-radius: 5px;
+
+  & h3 {
+    color: white;
+    font-size: 0.9em;
+    font-weight: lighter;
+  }
+}
+.btn-dropdown-ingredients, .elements-liste-ing {
+  background: $btn-ingredients;
+}
+.btn-dropdown-appliances {
+  background: $btn-device;
+}
+.btn-dropdown-utensils {
+  background: $btn-utensils;
+}
+*/
+.btn-dropdown-container__arrow-down {
+  height: 12px;
+  filter: invert(100%);
+  cursor: pointer;
+  position: absolute;
+  right: 13px;
+  top: 18px;
+}
+
+.btn-dropdown-container {
+  width: 25%;
+  height: 50px;
+  font-family: "Lato", sans-serif;
+  padding: 0 5px;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  border: none;
+  border-radius: 5px;
+}
+.btn-dropdown h3 {
+  color: white;
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+
+#container-ingredient {
   background: #3282F7;
 }
 
-.input-appliances,
-.popup-input-appl {
+#container-appliances {
   background: #68D9A4;
 }
 
-.input-utensils,
-.popup-input-uts {
+#container-ustensils {
   background: #ED6454;
 }
 
+/*
+.popup-input-ing, 
+.popup-input-appl,
+.popup-input-uts{
+  display: none;
+}
+*/
+.popup-input {
+  display: none;
+}
+
+/*
+.input-ingredients {
+  background: $btn-ingredients;
+}
+.input-appliances,
+.popup-input-appl
+{
+  background: $btn-device;
+}
+.input-utensils,
+.popup-input-uts {
+  background: $btn-utensils;
+}
 .input-ingredients,
 .input-appliances,
 .input-utensils {
@@ -104,11 +193,21 @@ section {
   font-size: 1.1em;
   opacity: 50%;
 }
+*/
+.input {
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-family: "Lato", sans-serif;
+  border-radius: 5px 5px;
+  border: none;
+  padding: 0;
+}
 
-.popup-input-ing,
-.popup-input-appl,
-.popup-input-uts {
-  display: none;
+.input::placeholder {
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
 }
 
 .popup-input--onclick {
@@ -117,44 +216,6 @@ section {
   align-items: start;
   padding: 0;
   position: relative;
-}
-
-.btn-dropdown-ingredients,
-.btn-dropdown-appliances,
-.btn-dropdown-utensils {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5px;
-  border: none;
-  border-radius: 5px;
-}
-.btn-dropdown-ingredients h3,
-.btn-dropdown-appliances h3,
-.btn-dropdown-utensils h3 {
-  color: white;
-  font-size: 0.9em;
-  font-weight: lighter;
-}
-
-.btn-dropdown-container__arrow-down-ing,
-.btn-dropdown-container__arrow-down-appl,
-.btn-dropdown-container__arrow-down-uts,
-.btn-dropdown-container__arrow-up-ing,
-.btn-dropdown-container__arrow-up-appl,
-.btn-dropdown-container__arrow-up-uts {
-  height: 12px;
-  filter: invert(100%);
-  cursor: pointer;
-}
-
-.btn-dropdown-container__arrow-up-ing,
-.btn-dropdown-container__arrow-up-appl,
-.btn-dropdown-container__arrow-up-uts {
-  position: absolute;
-  right: 13px;
-  top: 15px;
 }
 
 .elements-liste-ing,
@@ -169,18 +230,6 @@ section {
   height: 200px;
   flex-wrap: wrap;
   width: 100%;
-}
-
-.btn-dropdown-ingredients, .elements-liste-ing {
-  background: #3282F7;
-}
-
-.btn-dropdown-appliances {
-  background: #68D9A4;
-}
-
-.btn-dropdown-utensils {
-  background: #ED6454;
 }
 
 .btn-dropdown-container--onclick {
