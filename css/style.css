@@ -111,13 +111,13 @@ section {
   position: absolute;
   right: 13px;
   top: 18px;
+  z-index: 99;
 }
 
 .btn-dropdown-container {
   width: 25%;
   height: 50px;
   font-family: "Lato", sans-serif;
-  padding: 0 5px;
   position: relative;
   border: none;
   border-radius: 5px;
@@ -137,15 +137,21 @@ section {
   font-weight: lighter;
 }
 
-#container-ingredient {
+#container-ingredient,
+#container-ingredient .popup-input,
+#container-ingredient .input {
   background: #3282F7;
 }
 
-#container-appliances {
+#container-appliances,
+#container-appliances .popup-input,
+#container-appliances .input {
   background: #68D9A4;
 }
 
-#container-ustensils {
+#container-ustensils,
+#container-ustensils .popup-input,
+#container-ustensils .input {
   background: #ED6454;
 }
 
@@ -158,6 +164,11 @@ section {
 */
 .popup-input {
   display: none;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+  border: none;
+  border-radius: 5px;
 }
 
 /*
@@ -205,6 +216,7 @@ section {
 }
 
 .input::placeholder {
+  color: white;
   padding: 0 15px;
   font-size: 1.1em;
   opacity: 50%;
@@ -217,6 +229,25 @@ section {
   padding: 0;
   position: relative;
 }
+
+.elements-liste {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  height: 200px;
+  flex-wrap: wrap;
+  width: 100%;
+  color: white;
+}
+.elements-liste li {
+  padding: 0 15px;
+}
+
+/*
+
 
 .elements-liste-ing,
 .elements-liste-appl,
@@ -232,6 +263,7 @@ section {
   width: 100%;
 }
 
+*/
 .btn-dropdown-container--onclick {
   width: inherit;
 }

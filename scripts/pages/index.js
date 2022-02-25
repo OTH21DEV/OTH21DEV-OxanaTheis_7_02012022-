@@ -80,6 +80,65 @@ const btnUts = document.querySelector(".btn-dropdown-utensils");
 const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
 const popupUts = document.querySelector(".popup-input-uts");
 
+function createListe(container) {
+  let ulElement = document.querySelector(`${container} .elements-liste`);
+  console.log(ulElement);
+  for (let ingredient of ingredientsListDropdown) {
+    let liElement = document.createElement("li");
+    ulElement.appendChild(liElement);
+    liElement.textContent = `${ingredient}`;
+    //ulElement.appendChild(`<li> ${ingredient}</li>`);
+  }
+}
+
+/*
+function createElementsListe(array, ulElement) {
+  array.forEach((element) => {
+    const liElement = document.createElement("li");
+    liElement.classList.add("input-liste");
+    ulElement.appendChild(liElement);
+    liElement.innerHTML = element;
+  });
+}
+
+*/
+
+function displayDropdown(container) {
+  //container-ingredient, container-appliances, container-utensils
+  let arrow = document.querySelectorAll(`${container} .btn-dropdown-container__arrow-down`)[0];
+  arrow.setAttribute("data-open", "false");
+
+  createListe(container);
+
+  arrow.addEventListener("click", (e) => {
+    arrow.setAttribute("data-open", "true");
+    let title = document.querySelectorAll(`${container} .btn-dropdown`)[0];
+    let liste = document.querySelectorAll(`${container} .popup-input`)[0];
+    let cont=  document.querySelectorAll(`${container}`)[0];
+    console.log(cont)
+
+    if (arrow.dataset.open === false) {
+      title.style.display = "flex";
+      liste.style.display = "none";
+      let test = arrow.getAttribute("data-open");
+      console.log(test);
+    } else {
+      console.log(e.target);
+      // arrow.setAttribute('data-open', 'true')
+      cont.style.width= '42%';
+      cont.style.marginLeft = '5px';
+      liste.style.display = "flex";
+      title.style.display = "none";
+      document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
+    }
+
+    arrow.style.transform = "rotate(180deg)";
+  });
+}
+displayDropdown("#container-ingredient");
+displayDropdown("#container-appliances");
+displayDropdown("#container-ustensils");
+
 function displayDropdownIng(elementPopup, array, ulElement, btn, elementContainer) {
   window.addEventListener("click", (e) => {
     if (e.target.classList[0] == "btn-dropdown-container__arrow-down-ing") {
@@ -143,9 +202,9 @@ function ClosePopup(elementPopup, btn, elementContainer) {
   elementContainer.classList.remove("btn-dropdown-container--onclick");
 }
 
-displayDropdownIng(popupIng, ingredientsListDropdown, ulElementIng, btnIng, dropDownContainerIng);
-displayDropdownAppl(popupAppl, appliancesListDropdown, ulElementAppl, btnAppl, dropDownContainerAppl);
-displayDropdownUts(popupUts, utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
+//displayDropdownIng(popupIng, ingredientsListDropdown, ulElementIng, btnIng, dropDownContainerIng);
+//displayDropdownAppl(popupAppl, appliancesListDropdown, ulElementAppl, btnAppl, dropDownContainerAppl);
+//displayDropdownUts(popupUts, utensilsListDropdown, ulElementUts, btnUts, dropDownContainerUts);
 
 /*
 Creation de la liste pour chaque element -ingredients, appareils, ustensiles
