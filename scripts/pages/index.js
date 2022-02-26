@@ -59,28 +59,6 @@ function removeDuplicatesDropdown() {
 removeDuplicatesDropdown();
 
 /*
-Const des elements Dropdowns
-*/
-
-//Ingredients
-const ulElementIng = document.querySelector(".elements-liste-ing");
-const btnIng = document.querySelector(".btn-dropdown-ingredients");
-const dropDownContainerIng = document.querySelector(".btn-dropdown-container");
-const popupIng = document.querySelector(".popup-input-ing");
-
-//Appareils
-const ulElementAppl = document.querySelector(".elements-liste-appl");
-const btnAppl = document.querySelector(".btn-dropdown-appliances");
-const dropDownContainerAppl = document.querySelector(".btn-dropdown-container-appliances");
-const popupAppl = document.querySelector(".popup-input-appl");
-
-//Ustensils
-const ulElementUts = document.querySelector(".elements-liste-uts");
-const btnUts = document.querySelector(".btn-dropdown-utensils");
-const dropDownContainerUts = document.querySelector(".btn-dropdown-container-utensils");
-const popupUts = document.querySelector(".popup-input-uts");
-
-/*
 Creation de la liste pour chaque element -ingredients, appareils, ustensiles
 */
 function createListe(container, array) {
@@ -107,15 +85,11 @@ function displayDropdown(container, array) {
     let title = document.querySelectorAll(`${container} .btn-dropdown`)[0];
     let liste = document.querySelectorAll(`${container} .popup-input`)[0];
     let cont = document.querySelectorAll(`${container}`)[0];
-    console.log(cont);
 
     if (arrow.dataset.open === false) {
       title.style.display = "flex";
       liste.style.display = "none";
-      let test = arrow.getAttribute("data-open");
-      console.log(test);
     } else {
-      console.log(e.target);
       // arrow.setAttribute('data-open', 'true')
       cont.style.width = "42%";
       cont.style.marginLeft = "5px";
@@ -232,6 +206,7 @@ function searchByKeywordsIngredients(value) {
 Cherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 
 */
+
 mainSearch.addEventListener("input", (e) => {
   let valueInput = e.target.value.toLowerCase();
 
@@ -258,20 +233,34 @@ mainSearch.addEventListener("input", (e) => {
   }
 });
 
-//.................................................
-/*
-/*
-Fonction qui recupere le tableau des ingredients par mots clés 
- */
-/*
-let newArrayListeIngredients = [];
-function searchByKeywordsIng(value) {
-  for (let ingredient of ingredientsListDropdown) {
-    console.log(ingredientsListDropdown)
-    if (ingredient.toLowerCase().includes(value.toLowerCase())) {
-      newArrayListeIngredients.push(ingredient);
-      console.log(newArrayListeIngredients);
-    }
-  }
+
+
+function searchInDropdown(container, array) {
+  const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
+
+  dropdownInput.addEventListener("input", (e) => {
+    let inputValue = e.target.value.toLowerCase();
+
+    // let newListe = ingredientsListDropdown.filter((element) => {
+    let newListe = array.filter((element) => {
+      return element.toLowerCase().includes(inputValue);
+    });
+
+   // displayDropdown("#container-ingredient", newListe);
+    displayDropdown(container, newListe);
+  });
 }
-*/
+
+searchInDropdown("#container-ingredient", ingredientsListDropdown);
+searchInDropdown("#container-appliances", appliancesListDropdown);
+searchInDropdown("#container-ustensils", utensilsListDropdown);
+
+function displayTag (container, array) {
+//  const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
+
+  array.forEach((element) => {
+ element.addEventListener("click", (e) => {
+   
+  });
+})}
+displayTag(ingredientsListDropdown);
