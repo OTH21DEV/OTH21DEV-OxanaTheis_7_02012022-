@@ -65,11 +65,36 @@ function createListe(container, array) {
   let ulElement = document.querySelector(`${container} .elements-liste`);
   //on vide le contenu pour repartir à chaque fois avec une nouvelle liste maj en fonction des mots clés
   ulElement.innerHTML = "";
+
+  //on cree le container pour les tags (n 7,8)
+  let tagContainer = document.createElement("div");
+    tagContainer.className = "tag-container";
+    ulElement.appendChild(tagContainer);
+//document.querySelector('section').appendChild(tagContainer);
+
   array.forEach((element) => {
     const liElement = document.createElement("li");
     //  liElement.classList.add("input-liste");
     ulElement.appendChild(liElement);
     liElement.innerHTML = element;
+
+
+    //on rajoute evenement au click pour rajouter des tags (n 7,8)
+    liElement.addEventListener("click", (e) => {
+      let value = e.target.childNodes[0].data;
+     
+      let tag = document.createElement("div");
+      tag.className = "tag";
+      tagContainer.appendChild(tag)
+     
+      
+      tag.style.display = "flex";
+      tagContainer.style.display = "flex";
+      tag.innerHTML =
+        value +
+        `<i class="fa-regular fa-circle-xmark"></i>
+      `;
+    });
   });
 }
 
@@ -233,8 +258,7 @@ mainSearch.addEventListener("input", (e) => {
   }
 });
 
-
-
+let newListe;
 function searchInDropdown(container, array) {
   const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
 
@@ -242,25 +266,29 @@ function searchInDropdown(container, array) {
     let inputValue = e.target.value.toLowerCase();
 
     // let newListe = ingredientsListDropdown.filter((element) => {
-    let newListe = array.filter((element) => {
+    newListe = array.filter((element) => {
       return element.toLowerCase().includes(inputValue);
     });
 
-   // displayDropdown("#container-ingredient", newListe);
+    // displayDropdown("#container-ingredient", newListe);
     displayDropdown(container, newListe);
+
+    //   displayTag(newListe);
   });
+  // console.log(newListe)
 }
 
 searchInDropdown("#container-ingredient", ingredientsListDropdown);
 searchInDropdown("#container-appliances", appliancesListDropdown);
 searchInDropdown("#container-ustensils", utensilsListDropdown);
 
-function displayTag (container, array) {
-//  const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
+function displayTag(container, array) {
+  const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
 
   array.forEach((element) => {
- element.addEventListener("click", (e) => {
-   
+    element.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
   });
-})}
-displayTag(ingredientsListDropdown);
+}
+//displayTag(newListe);
