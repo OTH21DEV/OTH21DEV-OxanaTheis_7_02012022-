@@ -96,11 +96,10 @@ function createListe(container, array) {
         value +
         `<i class="fa-regular fa-circle-xmark"></i>
       `;
-//.....................................................................
+      //.....................................................................
       //V1 TEST de trie de recette par tag - filtre par un seul element
       //nouveau tableau de recette
-
-      
+      /*
       let newArray = [];
       //nouveau tableau des ingredients
       let newIngred = [];
@@ -123,9 +122,8 @@ function createListe(container, array) {
       newArray.forEach((recipe) => {
         new Recipe(recipe);
       });
-
-//.............................................................................
-
+*/
+      //.............................................................................
     });
   });
 }
@@ -133,35 +131,29 @@ function createListe(container, array) {
 function displayDropdown(container, array) {
   //container-ingredient, container-appliances, container-utensils
   let arrow = document.querySelectorAll(`${container} .btn-dropdown-container__arrow-down`)[0];
+  let title = document.querySelectorAll(`${container} .btn-dropdown`)[0];
+  let liste = document.querySelectorAll(`${container} .popup-input`)[0];
+  let cont = document.querySelectorAll(`${container}`)[0];
+
   createListe(container, array);
-
   arrow.addEventListener("click", (e) => {
-    let title = document.querySelectorAll(`${container} .btn-dropdown`)[0];
-    let liste = document.querySelectorAll(`${container} .popup-input`)[0];
-    let cont = document.querySelectorAll(`${container}`)[0];
-
-    console.log(arrow.dataset.open);
-
-    cont.style.width = "42%";
-    cont.style.marginLeft = "5px";
-    liste.style.display = "flex";
-    title.style.display = "none";
-    document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-
-    if (arrow.dataset.open === false) {
-      console.log(arrow);
-
-      title.style.display = "flex";
-      liste.style.display = "none";
-    } else {
-      cont.style.width = "42%";
-      cont.style.marginLeft = "5px";
-      liste.style.display = "flex";
-      title.style.display = "none";
+    if (arrow.dataset.open === "false") {
+      cont.className = "btn-dropdown-container--onclick";
+      liste.classList.add("popup-input--onclick");
+      title.classList.add("btn-dropdown--onclick");
       document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
-    }
+      arrow.classList.add("btn-dropdown-container__arrow-down--onclick");
+      arrow.setAttribute("data-open", "true");
+    } else {
+      title.classList.remove("btn-dropdown--onclick");
 
-    arrow.style.transform = "rotate(180deg)";
+      liste.classList.remove("popup-input--onclick");
+      arrow.classList.remove("btn-dropdown-container__arrow-down--onclick");
+
+      cont.className = "btn-dropdown-container";
+      document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
+      arrow.setAttribute("data-open", "false");
+    }
   });
 }
 
@@ -184,6 +176,7 @@ let filteredIngredients = [];
 
 /*
 Fonction de creation d'un nouveau tableau des ingredients 
+MAJ la liste dans le dropdown des ingredients par rapport aux mots clés tapés dans la barre de recherche principale
 */
 
 function searchByKeywordsIng(value) {
@@ -200,67 +193,28 @@ function searchByKeywordsIng(value) {
 }
 
 /*
-Fonction de creation d'un nouveau tableau des appareils
+Fonction de creation d'un nouveau tableau des appareils et ustensils
+MAJ la liste dans les dropdown des ustensils et appareils par rapport aux mots clés tapés dans la barre de recherche principale
 */
-
-function searchByKeywordsAppliances(value) {
-  /* a partir de tableau filtré de recette (par mots cles) 
-  on filtre chaque recette */
-  filteredRecipes.forEach((element) => {
-    let newRecipeAppliances = element.appliance;
-
-    filteredAppliances = [...new Set(filteredAppliances.concat(newRecipeAppliances))].sort();
-  });
-
-  displayDropdown("#container-appliances", filteredAppliances);
-}
-
-/*
-Fonction de creation d'un nouveau tableau des appareils
+function searchByKeywordsDropdowns(value, container, array, name) {
+  /*array = filteredUtensils;filteredAppliances
+  container = "#container-ustensils"
+  element[name] = element.ustensils, element.appliance
 */
-function searchByKeywordsUtensils(value) {
-  /* a partir de tableau filtré de recette (par mots cles) 
- on filtre chaque recette 
+  /*a partir de tableau filtré de recette (par mots cles)
+  on filtre chaque recette*/
 
-*/
   filteredRecipes.forEach((element) => {
     // on accede aux ustensils filtrés de chaque recette
-    let newRecipeUtensils = element.ustensils;
+    let newRecipeEl = element[name];
 
-    //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette
-
-    filteredUtensils = [...new Set(filteredUtensils.concat(newRecipeUtensils))].sort();
-  });
-
-  displayDropdown("#container-ustensils", filteredUtensils);
-}
-
-//..................................................................
-/*
-//TEST
-let ustensils = "ustensils";
-let ingredients = "ingredients";
-console.log(ustensils)
-function searchByKeywordsDropdowns(value, container,array,name) {
-  //array = filteredUtensils;
-  //container = "#container-ustensils"
-
-  /* a partir de tableau filtré de recette (par mots cles) 
- on filtre chaque recette 
-
-*/
-/*
-  filteredRecipes.forEach((element, name) => {
-    // on accede aux ustensils filtrés de chaque recette
-   let newRecipeEl = element.name;
-console.log(newRecipeEl)
     //on remplie le nouveau tableau des ustensiles filtrés par les ustensils de chaque recette
 
     array = [...new Set(array.concat(newRecipeEl))].sort();
   });
 
   displayDropdown(container, array);
-}*/
+}
 //............................................................................
 /*
 Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description
@@ -313,14 +267,15 @@ mainSearch.addEventListener("input", (e) => {
 
     searchByKeywords(valueInput);
     searchByKeywordsIngredients(valueInput);
-    //test
 
-    //searchByKeywordsDropdowns(valueInput, "#container-ingredient", filteredIngredients,ingredients);
-    //searchByKeywordsDropdowns(valueInput, "#container-ustensils", filteredUtensils,ustensils);
-
-    searchByKeywordsAppliances(valueInput);
-    searchByKeywordsUtensils(valueInput);
+    /*
+MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
+la barre de recherche principale
+*/
+    //searchByKeywordsDropdowns(valueInput, "#container-ingredient", filteredIngredients, "ingredients");
     searchByKeywordsIng(valueInput);
+    searchByKeywordsDropdowns(valueInput, "#container-appliances", filteredUtensils, "appliance");
+    searchByKeywordsDropdowns(valueInput, "#container-ustensils", filteredUtensils, "ustensils");
 
     //a partir de nouveau tableau reconstitué grace à la fonction searchByKeywords, recrée la recette pour chauqe recette de tableau
 
