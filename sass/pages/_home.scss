@@ -91,20 +91,20 @@ section {
 
 #container-ingredient,
 #container-ingredient .popup-input,
-#container-ingredient .input,
-#container-ingredient .tag {
+#container-ingredient .input{
+//#container-ingredient.tag {
   background: $btn-ingredients;
 }
 #container-appliances,
 #container-appliances .popup-input,
-#container-appliances .input,
-#container-appliances .tag {
+#container-appliances .input{
+//#container-appliances .tag {
   background: $btn-device;
 }
 #container-ustensils,
 #container-ustensils .popup-input,
-#container-ustensils .input,
-#container-ustensils .tag {
+#container-ustensils .input{
+//#container-ustensils .tag {
   background: $btn-utensils;
 }
 .btn-dropdown-container--onclick {
@@ -184,13 +184,14 @@ section {
   border-radius: 5px;
   border: none;
   height: 30px;
-  width: 30%;
 
+color: white;
   font-size: 0.8em;
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
   margin-right: 5px;
+  margin-bottom: 5px;
   //  display:none;
   // position:absolute;
   //top: -35px;
@@ -198,41 +199,11 @@ section {
 
 .tag-container {
   display: none;
-  position: absolute;
-  top: -35px;
-  width: 100%;
-  //  justify-content: space-between;
-  //flex-wrap: wrap;
+ flex-wrap: wrap;
+
 }
 
-/*
-.tag{
-  display:none;
-  border-radius: 5px;
-  border: none;
-  height: 30px;
-  width:30%;
- 
-  font-size: 0.8em;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-  margin-right: 5px;
-//  display:none;
- // position:absolute;
-  //top: -35px;
-}
 
-.tag-container{
-  display:none;
- // position:absolute;
- // top: -35px;
-  width:100%;
-//  justify-content: space-between;
-  //flex-wrap: wrap;
- 
-}
-*/
 
 .elements-liste-ing,
 .elements-liste-appl,
