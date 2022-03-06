@@ -69,10 +69,10 @@ function createListe(container, array) {
   ulElement.innerHTML = "";
 
   //on cree le container pour les tags (n 7,8)
- // let tagContainer = document.createElement("div");
- let tagContainer = document.querySelector(".tag-container");
- // tagContainer.className = "tag-container";
- // ulElement.appendChild(tagContainer);
+  // let tagContainer = document.createElement("div");
+  let tagContainer = document.querySelector(".tag-container");
+  // tagContainer.className = "tag-container";
+  // ulElement.appendChild(tagContainer);
   //document.querySelector('section').appendChild(tagContainer);
 
   array.forEach((element) => {
@@ -96,10 +96,11 @@ function createListe(container, array) {
       tagContainer.style.display = "flex";
       //" \u00a0" rajoute espace !
       tag.innerHTML +=
-        value + " \u00a0" +
+        value +
+        " \u00a0" +
         `<i class="fa-regular fa-circle-xmark"></i>
       `;
-      //on attribue id de container pour avoir la couleur 
+      //on attribue id de container pour avoir la couleur
       tag.setAttribute("id", `${container}`.replace("#", ""));
       //.....................................................................
       //V1 TEST de trie de recette par tag
@@ -249,97 +250,41 @@ function searchByKeywordsDropdowns(value, container, array, name) {
   displayDropdown(container, array);
 }
 //............................................................................
+
+
 /*
-Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description
+Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description ou dans les ingredients 
 les mots clés renseignés dans la barre de recherche
+
+Recherche dans les ingredients - correspondance stricte - trouve huile d'olive mais n'affiche rien pour huile
 
 */
 
-function searchByKeywords(value) {
-  for (let i = 0; i < recipes.length; i++) {
-    if (recipes[i].name.toLowerCase().includes(value.toLowerCase()) || recipes[i].description.toLowerCase().includes(value.toLowerCase())) {
-      filteredRecipes.push(recipes[i]);
-    }
-  }
- 
 
-  sectionRecipes.innerHTML = "";
-  filteredRecipes.forEach((recipe) => {
-    new Recipe(recipe);
+
+function searchByKeywords(value) {
+  recipes.forEach((element) => {
+    //tableau des ingredients par recette
+    let recipeIngredients = [];
+    for (let ingredient of element.ingredients) {
+      //on remplie le tableau par des ingredients de chaque recette
+      recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
+    }
+    if (element.name.toLowerCase().includes(value.toLowerCase()) || element.description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
+      filteredRecipes.push(element);
+    }
+    //les recettes correpondantes sont envoyées vers nouveau tableau filtré
   });
 }
 
 /*
-Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent des ingredients correspondants
-aux mots clés renseignés dans la barre de recherche
-
-*/
-//Probleme d'affichage de recette en double/triple
-
-//let newArray = [];
-function searchByKeywordsIngredients(value) {
-  for (let i = 0; i < recipes.length; i++) {
-    for (let ingredient of recipes[i].ingredients) {
-      if (ingredient.ingredient.toLowerCase().includes(value.toLowerCase())) {
-        //le probleme - si la recette comporte plusieurs ingredients comportant le mot recherché , la rectte est crée x fois
-        filteredRecipes.push(recipes[i]);
-      }
-    }
-  }
-}
-
-//TEST
-//le probleme - si la recette comporte plusier ingredients comportant le nom recherché , la rectte est pouséé x fois
-
-let newArray = [];
-function testDeRecherchedansIngredient(value) {
- 
-    //  for (let ingredient of recipes[i].ingredients) {
-    //     if (ingredient.ingredient.toLowerCase().includes(value.toLowerCase())) {
-    //le probleme - si la recette comporte plusieurs ingredients comportant le nom recherché , la rectte est pouséé x fois
-
-    //   newArray =  ingredient.find(el => el.includes(value))
-   // console.log(recipes[i].ingredients);
-    /*
- newArray = recipes[i].ingredients.find((ingredient) => {
-      console.log(ingredient);
-      if (ingredient.ingredient.includes(value.toLowerCase())) {
-      //  filteredRecipes.push(recipes[i]);
-      return recipes[i]
-      }
-    });*/
-//................................
-
-//console.log(ingredientsListDropdown);
-
-
-ingredientsListDropdown.filter((ingredient) => {
-  if (ingredient.includes(value.toLowerCase())) {
-    for (let i = 0; i < recipes.length; i++) {
-   newArray.push(recipes[i]);
-  //return recipes[i]
-
-  }
-}
-
-
-  })
-}
-//testDeRecherchedansIngredient("coco");
-console.log(newArray);
-/*
-    sectionRecipes.innerHTML = "";
-    filteredRecipes.forEach((recipe) => {
-      new Recipe(recipe);
-    });*/
-/*
-Cherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
+Barre de recherche principale reCherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 
 */
 
 mainSearch.addEventListener("input", (e) => {
   let valueInput = e.target.value.toLowerCase();
-  console.log(filteredRecipes);
+
   if (valueInput.length >= 3) {
     e.preventDefault();
     //efface le contenu initial
@@ -353,17 +298,13 @@ mainSearch.addEventListener("input", (e) => {
    recherche dans le nom et description de recette depuis la barre principale 
     */
 
-     searchByKeywords(valueInput);
-    /*
-   recherche dans les ingredienst  recette depuis la barre principale 
-    */
-  //  searchByKeywordsIngredients(valueInput);
-  //.........................................................................
+    searchByKeywords(valueInput);
 
+    filteredRecipes.forEach((recipe) => {
+      new Recipe(recipe);
+    });
 
-
-  //testDeRecherchedansIngredient(valueInput);
- // console.log(newArray);
+   
     /*
 
 MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
@@ -375,7 +316,7 @@ la barre de recherche principale
     searchByKeywordsDropdowns(valueInput, "#container-ustensils", filteredUtensils, "ustensils");
 
     // test d'appel des fonctions
-    
+
     searchInDropdown("#container-ingredient", ingredientsListDropdown);
     searchInDropdown("#container-appliances", appliancesListDropdown);
     searchInDropdown("#container-ustensils", utensilsListDropdown);
