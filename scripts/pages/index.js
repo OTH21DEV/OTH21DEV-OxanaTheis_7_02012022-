@@ -24,7 +24,11 @@ Tableau des ingredients vide ( puis trier sans doublon)
 let ingredientsListDropdown = [];
 
 //....................................................
-let testArray = [];
+
+/*
+Tableau des recettes filtrés par ingredient depuis la barre prinicpale 
+*/
+let recipesByIngredients = [];
 
 /*
 Fonction pour supprimer des doublons afin de recreer le contenu initial de dropdown
@@ -103,42 +107,50 @@ function createListe(container, array) {
       `;
       //on attribue id de container pour avoir la couleur
       tag.setAttribute("id", `${container}`.replace("#", ""));
-   
+
       //.....................................................................
       //V1 TEST de trie de recette par tag
       //.........................................................
 
       /*
-      testArray = tableau de recette comportant ingredient recherché dans la barre principale
+      recipesByIngredients = tableau de recette comportant ingredient recherché dans la barre principale
       recipeIngredients = tableau des ingredients de testArray
       newRecipes - tableau vide qui se remplie avec des recettes comprenant le mot depuis la barre de recherche puis le tag 
 
       probleme: à regarder majuscule, minuscule dans les valus 
       
       */
-      //  let recipeIngredients = [];
+
       let newRecipes = [];
-      testArray.forEach((element) => {
+      recipesByIngredients.forEach((element) => {
         let recipeIngredients = [];
 
-        //  let newRecipes = [];
         for (let ingredient of element.ingredients) {
           //on remplie le tableau par des ingredients de chaque recette
           recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient))].sort();
         }
         if (recipeIngredients.includes(value)) {
-        
+          //on remplie le nouveau tableau par des recettes filtrée par click au tag
           newRecipes.push(element);
         }
       });
-      
+
       sectionRecipes.innerHTML = "";
- 
-      console.log(newRecipes);
+      //on parcourt le tableu de nouvelles recettes filtrées par click au tag
+      let newRecipeIngredients = [];
+
       newRecipes.forEach((recipe) => {
+        for (let ingredient of recipe.ingredients) {
+          //on remplie le nouveau tableau par des ingredients de chaque recette filtrée par click au tag
+          newRecipeIngredients = [...new Set(newRecipeIngredients.concat(ingredient.ingredient))].sort();
+          //on reaffiche displaydropdown pour recree la nouvelle liste tirés de newRecipeIngredients
+          displayDropdown("#container-ingredient", newRecipeIngredients);
+        }
+
+        console.log(newRecipeIngredients);
+        //on recré la liste de recettes
         new Recipe(recipe);
       });
-    
     });
   });
 }
@@ -255,7 +267,7 @@ function searchByKeywords(value) {
   });
 }
 
-function test(value) {
+function getRecipesByIngredients(value) {
   recipes.forEach((element) => {
     //tableau des ingredients par recette
     let recipeIngredients = [];
@@ -264,7 +276,7 @@ function test(value) {
       recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
     }
     if (recipeIngredients.includes(value)) {
-      testArray.push(element);
+      recipesByIngredients.push(element);
     }
     //les recettes correpondantes sont envoyées vers nouveau tableau filtré
   });
@@ -291,8 +303,8 @@ mainSearch.addEventListener("input", (e) => {
     */
 
     searchByKeywords(valueInput);
-    test(valueInput);
-    console.log(testArray);
+    getRecipesByIngredients(valueInput);
+    console.log(recipesByIngredients);
     // console.log(newRecipes)
     filteredRecipes.forEach((recipe) => {
       new Recipe(recipe);
