@@ -113,17 +113,55 @@ function createListe(container, array) {
       //.........................................................
 
       /*
-      recipesByIngredients = tableau de recette comportant ingredient recherché dans la barre principale
+      recipesByIngredients = tableau de recette comportant ingredient recherché dans la barre principale remplie dans getRecipesByIngredients(value) 
       recipeIngredients = tableau des ingredients de testArray
       newRecipes - tableau vide qui se remplie avec des recettes comprenant le mot depuis la barre de recherche puis le tag 
 
-      probleme: à regarder majuscule, minuscule dans les valus 
+      
       
       */
+      console.log(recipesByIngredients);
+      /*
+      if (recipesByIngredients.length == 0) {
 
+        let newArray = [];
+        recipes.forEach((element) => {
+          //tableau des ingredients par recette
+          let test = [];
+          let newRecipeIngredients = [];
+          let newRecipeAppliances = [];
+          let newRecipeUtensils = [];
+
+          for (let ingredient of element.ingredients) {
+            //on remplie le tableau par des ingredients de chaque recette
+            test = [...new Set(test.concat(ingredient.ingredient.toLowerCase()))].sort();
+          }
+          if (test.includes(value)) {
+            newArray.push(element);
+            console.log(newArray)
+          }
+          sectionRecipes.innerHTML = "";
+          //les recettes correpondantes sont envoyées vers nouveau tableau filtré
+          searchByKeywordsIng(value, newArray, newRecipeIngredients );
+          searchByKeywordsDropdowns(value, newArray, "#container-appliances", newRecipeAppliances, "appliance");
+          searchByKeywordsDropdowns(value, newArray, "#container-ustensils", newRecipeUtensils, "ustensils");
+        });
+
+
+
+*/
+
+
+
+   //   }
+
+//else {
       let newRecipes = [];
       recipesByIngredients.forEach((element) => {
         let recipeIngredients = [];
+        let newRecipeIngredients = [];
+        let newRecipeAppliances = [];
+        let newRecipeUtensils = [];
 
         for (let ingredient of element.ingredients) {
           //on remplie le tableau par des ingredients de chaque recette
@@ -133,13 +171,41 @@ function createListe(container, array) {
           //on remplie le nouveau tableau par des recettes filtrée par click au tag
           newRecipes.push(element);
         }
-      });
+        sectionRecipes.innerHTML = "";
+        searchByKeywordsIng(value, newRecipes, newRecipeIngredients);
+        searchByKeywordsDropdowns(value, newRecipes, "#container-appliances", newRecipeAppliances, "appliance");
+        searchByKeywordsDropdowns(value, newRecipes, "#container-ustensils", newRecipeUtensils, "ustensils");
+// à regarder la condition , actuellement la recherche esrt uniquement dan sles ingredient  recipeIngredients 
+//peut etre il faut recuperer les tableaux des ustensils et appareils?
+        
 
+
+      });
+   // }
+      //...........................................
+      /*
+     let newRecipes = [];
+     recipesByIngredients.forEach((element) => {
+       let recipeIngredients = [];
+       
+       for (let ingredient of element.ingredients) {
+         //on remplie le tableau par des ingredients de chaque recette
+         recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient))].sort();
+        }
+        if (recipeIngredients.includes(value)) {
+          //on remplie le nouveau tableau par des recettes filtrée par click au tag
+          newRecipes.push(element);
+        }
+      });
+ 
       sectionRecipes.innerHTML = "";
       //on parcourt le tableu de nouvelles recettes filtrées par click au tag
       let newRecipeIngredients = [];
 
+     // searchByKeywordsIng( newRecipes, newRecipeIngredients);
       newRecipes.forEach((recipe) => {
+
+        
         for (let ingredient of recipe.ingredients) {
           //on remplie le nouveau tableau par des ingredients de chaque recette filtrée par click au tag
           newRecipeIngredients = [...new Set(newRecipeIngredients.concat(ingredient.ingredient))].sort();
@@ -150,10 +216,32 @@ function createListe(container, array) {
         console.log(newRecipeIngredients);
         //on recré la liste de recettes
         new Recipe(recipe);
-      });
+        
+      });*/
+      //.........................................................
     });
   });
 }
+console.log(recipesByIngredients);
+/*
+
+remplacer :filteredRecipes par newRecipes
+ filteredIngredients  par newRecipeIngredients
+
+
+function searchByKeywordsIng(value) {
+  /* a partir de tableau filtré de recette (par mots cles) 
+  on remplie le tableau des ingredients restants */
+/*
+  filteredRecipes.forEach((element) => {
+    let newRecipeIngredients = element.ingredients;
+    for (let i of newRecipeIngredients) {
+      filteredIngredients = [...new Set(filteredIngredients.concat(i.ingredient))].sort();
+    }
+  });
+  /* on affiche le nouveau dropdown avec une nouvelle liste filteringredients */
+// displayDropdown("#container-ingredient", filteredIngredients);
+//}
 
 function displayDropdown(container, array) {
   //container-ingredient, container-appliances, container-utensils
@@ -204,24 +292,30 @@ Fonction de creation d'un nouveau tableau des ingredients
 MAJ la liste dans le dropdown des ingredients par rapport aux mots clés tapés dans la barre de recherche principale
 */
 
-function searchByKeywordsIng(value) {
+function searchByKeywordsIng(value, arrayRecipes, arrayIngredients) {
+  //arrayRecipes- filteredRecipes
+  //arrayIngredients - filteredIngredients
+
   /* a partir de tableau filtré de recette (par mots cles) 
   on remplie le tableau des ingredients restants */
-  filteredRecipes.forEach((element) => {
-    let newRecipeIngredients = element.ingredients;
-    for (let i of newRecipeIngredients) {
-      filteredIngredients = [...new Set(filteredIngredients.concat(i.ingredient))].sort();
+  arrayRecipes.forEach((element) => {
+    for (let ingredient of element.ingredients) {
+      arrayIngredients = [...new Set(arrayIngredients.concat(ingredient.ingredient))].sort();
     }
+    /* on affiche le nouveau dropdown avec une nouvelle liste filteringredients */
+    displayDropdown("#container-ingredient", arrayIngredients);
+
+    //test d'affichage recette filtrée ici au lieu de mainsearch
+
+    new Recipe(element);
   });
-  /* on affiche le nouveau dropdown avec une nouvelle liste filteringredients */
-  displayDropdown("#container-ingredient", filteredIngredients);
 }
 
 /*
 Fonction de creation d'un nouveau tableau des appareils et ustensils
 MAJ la liste dans les dropdown des ustensils et appareils par rapport aux mots clés tapés dans la barre de recherche principale
 */
-function searchByKeywordsDropdowns(value, container, array, name) {
+function searchByKeywordsDropdowns(value, arrayRecipes, container, array, name) {
   /*array = filteredUtensils;filteredAppliances
   container = "#container-ustensils"
   element[name] = element.ustensils, element.appliance
@@ -229,16 +323,19 @@ function searchByKeywordsDropdowns(value, container, array, name) {
   /* a partir de tableau filtré de recette (par mots cles) 
   on remplie le tableau des appareils et ustensils(dans le sparametres) restants */
 
-  filteredRecipes.forEach((element) => {
+  arrayRecipes.forEach((element) => {
+  
     // on accede aux ustensils filtrés de chaque recette
     let newRecipeEl = element[name];
 
     // on affiche le nouveau dropdown avec une nouvelle liste filteredAppliances, filteredUstensils
 
     array = [...new Set(array.concat(newRecipeEl))].sort();
+    
   });
 
   displayDropdown(container, array);
+ 
 }
 //............................................................................
 
@@ -306,19 +403,20 @@ mainSearch.addEventListener("input", (e) => {
     getRecipesByIngredients(valueInput);
     console.log(recipesByIngredients);
     // console.log(newRecipes)
+    /*
     filteredRecipes.forEach((recipe) => {
       new Recipe(recipe);
     });
-
+*/
     /*
 
 MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
 la barre de recherche principale
 */
 
-    searchByKeywordsIng(valueInput);
-    searchByKeywordsDropdowns(valueInput, "#container-appliances", filteredAppliances, "appliance");
-    searchByKeywordsDropdowns(valueInput, "#container-ustensils", filteredUtensils, "ustensils");
+    searchByKeywordsIng(valueInput, filteredRecipes, filteredIngredients);
+    searchByKeywordsDropdowns(valueInput, filteredRecipes, "#container-appliances", filteredAppliances, "appliance");
+    searchByKeywordsDropdowns(valueInput, filteredRecipes, "#container-ustensils", filteredUtensils, "ustensils");
   } else {
     recipes.forEach((recipe) => {
       new Recipe(recipe);
