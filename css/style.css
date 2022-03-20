@@ -297,4 +297,40 @@ section {
   flex-wrap: wrap;
 }
 
+.message {
+  color: #D04F4F;
+  text-align: center;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+}
+
+.messageV2 {
+  color: #3282F7;
+  text-align: center;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+  animation: message 0.8s;
+}
+
+@keyframes message {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  25% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

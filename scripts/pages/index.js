@@ -1,5 +1,20 @@
 import { recipes } from "./../../data/recipes.js";
 import { Recipe } from "../factories/Recipe.js";
+/*
+recipes.forEach((element) => {
+  let words = [];
+  let listeIngredients = [];
+  let recipe = []
+
+  for (let ingredient of element.ingredients) {
+    listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
+  }
+
+  words  = [...new Set(words.concat(element.name, listeIngredients, element.description, element.appliance,element.ustensils))];
+  console.log(words);
+
+});
+*/
 
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
@@ -109,10 +124,10 @@ function createListe(container, array) {
       */
 
       let recipesByTags = [];
+
       recipesArrayIncludingKeyword.forEach((element) => {
         let listeIngredients = [];
 
-        sectionRecipes.innerHTML = "";
         for (let ingredient of element.ingredients) {
           //on remplie le tableau par des ingredients de chaque recette
           listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
@@ -128,12 +143,13 @@ function createListe(container, array) {
         searchByKeywordsDropdowns(recipesByTags, "#container-ustensils", "ustensils");
       });
       //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
-      recipesArrayIncludingKeyword = recipesByTags;
 
+      sectionRecipes.innerHTML = "";
+      recipesArrayIncludingKeyword = recipesByTags;
       recipesArrayIncludingKeyword.forEach((element) => {
         new Recipe(element);
       });
-   
+
       console.log(recipesArrayIncludingKeyword);
     });
   });
@@ -237,7 +253,10 @@ function createRecipesArrayIncludedKeyword(value) {
       //les recettes correpondantes sont envoyées vers nouveau tableau filtré
       recipesArrayIncludingKeyword.push(element);
     }
+      
+    
   });
+
 }
 */
 
@@ -257,60 +276,56 @@ function createRecipesArrayIncludedKeyword(value) {
       recipesByKeywords.push(element);
     }
   });
-  
-  recipesArrayIncludingKeyword = recipesByKeywords;
-  console.log(recipesArrayIncludingKeyword);
-  
 
-  console.log(recipesArrayIncludingKeyword);
+  recipesArrayIncludingKeyword = recipesByKeywords;
 }
-console.log(recipesArrayIncludingKeyword);
+
 /*
 Barre de recherche principale reCherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 
 */
 
-
 mainSearch.addEventListener("input", (e) => {
   let valueInput = e.target.value.toLowerCase();
 
   if (valueInput.length >= 3) {
+    console.log(recipesArrayIncludingKeyword);
     e.preventDefault();
 
-    //vide le tableau de recettes
-   //  recipesArrayIncludingKeyword = [];
+    //vide le tableau de recettes dans v1
+    // recipesArrayIncludingKeyword = [];
 
     //efface le contenu initial
-    sectionRecipes.innerHTML = "";
 
     // recherche dans le nom et description de recette depuis la barre principale
 
     createRecipesArrayIncludedKeyword(valueInput);
-    /*
+
+    sectionRecipes.innerHTML = "";
     recipesArrayIncludingKeyword.forEach((element) => {
       new Recipe(element);
     });
-*/
-
-    console.log(recipesArrayIncludingKeyword);
 
     /*
     
     MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
     la barre de recherche principale
     */
-    
+
     searchByKeywordsIng(recipesArrayIncludingKeyword);
     searchByKeywordsDropdowns(recipesArrayIncludingKeyword, "#container-appliances", "appliance");
     searchByKeywordsDropdowns(recipesArrayIncludingKeyword, "#container-ustensils", "ustensils");
-    
-    
+    // recette v1
+    /*
     recipesArrayIncludingKeyword.forEach((element) => {
-      sectionRecipes.innerHTML = "";
-
       new Recipe(element);
     });
-    
+  */
+
+    if (recipesArrayIncludingKeyword.length == 0) {
+     //  displayMessage();
+     displayMessageV2();
+    }
   } else {
     recipes.forEach((recipe) => {
       new Recipe(recipe);
@@ -339,3 +354,30 @@ function searchInDropdown(container, array) {
 searchInDropdown("#container-ingredient", ingredientsListDropdown);
 searchInDropdown("#container-appliances", appliancesListDropdown);
 searchInDropdown("#container-ustensils", utensilsListDropdown);
+
+function displayMessage() {
+  let messageContainer = document.createElement("div");
+  messageContainer.className = "message";
+  let message = `Aucune recette ne correspond à votre critère...vous pouvez chercher "tarte aux pommes", "poisson", etc.`;
+  let arrayMessage = message.split("");
+  let timeLooper;
+  sectionRecipes.appendChild(messageContainer);
+
+  function loop() {
+    if (arrayMessage.length > 0) {
+      messageContainer.innerHTML += arrayMessage.shift();
+    } else {
+      clearTimeout(timeLooper);
+    }
+    timeLooper = setTimeout(loop, 70);
+  }
+
+  loop();
+}
+function displayMessageV2() {
+  let message = document.createElement("h2");
+  message.className = "messageV2";
+  message.innerHTML = `Aucune recette ne correspond à votre critère...vous pouvez chercher "tarte aux pommes", "poisson", etc.`;
+
+  sectionRecipes.appendChild(message);
+}
