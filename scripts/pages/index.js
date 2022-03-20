@@ -118,6 +118,7 @@ function createListe(container, array) {
       `;
       //on attribue id de container pour avoir la couleur
       tag.setAttribute("id", `${container}`.replace("#", ""));
+     
 
       /*
       TEST de trie de recette par tag 
@@ -151,7 +152,27 @@ function createListe(container, array) {
       });
 
       console.log(recipesArrayIncludingKeyword);
+      //.........................................
+      /*
+      Test fermeture tag
+      */
+
+      let cross = tag.children[0];
+      let selectedTags = tagContainer.children.length;
+      
+       console.log(selectedTags)
+
+      cross.addEventListener("click", function () {
+        cross.parentElement.remove();
+      });
+
+   
+
+      //.....................................
     });
+
+
+
   });
 }
 
@@ -323,8 +344,8 @@ mainSearch.addEventListener("input", (e) => {
   */
 
     if (recipesArrayIncludingKeyword.length == 0) {
-     //  displayMessage();
-     displayMessageV2();
+      //  displayMessage();
+      displayMessageV2();
     }
   } else {
     recipes.forEach((recipe) => {
