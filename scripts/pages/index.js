@@ -122,19 +122,21 @@ function createListe(container, array) {
       /*
       TEST de trie de recette par tag 
       */
-/*
-//V2 ne marche pas correctement ??pourquoi?
+      //V2 ne marche pas correctement ??pourquoi?
 
-      let recipesByTags = [];
-
-      sectionRecipes.innerHTML = "";
-      createRecipesArrayIncludedKeyword(value.toLowerCase(), recipesByTags);
-
-      console.log(recipesArrayIncludingKeyword);
+      /*
+recipesByKeywords = [];
+sectionRecipes.innerHTML = "";
+createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByKeywords);
 */
 
+      /*
+let recipesByTags = []
+//recipesByKeywords = [];
+sectionRecipes.innerHTML = "";
+createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
+*/
 
-      
       let recipesByTags = [];
 
       recipesArrayIncludingKeyword.forEach((element) => {
@@ -166,9 +168,9 @@ function createListe(container, array) {
 
       //.........................................
       /*
-      Test fermeture tag
+     Fermeture tag
       */
-      /*
+
       let cross = tag.children[0];
       let selectedTags = tagContainer.children.length - 1;
 
@@ -177,31 +179,38 @@ function createListe(container, array) {
 
         if (selectedTags == 0 && mainSearch.value.length == 0) {
           sectionRecipes.innerHTML = "";
+
           recipes.forEach((element) => {
             new Recipe(element);
           });
+          searchByKeywordsIng(recipes);
+          searchByKeywordsDropdowns(recipes, "#container-appliances", "appliance");
+          searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
         }
-       
-        console.log(tagContainer.children[0].innerText)
-        console.log(tag)
-        //???value de tag ou mainSearch.value ?
+/*
+        if (selectedTags >= 1) {
+           createRecipesArrayIncludedKeyword(tagContainer.children[0].innerText);;
+          
 
-        if (selectedTags >=1 && mainSearch.value.length >= 1) {
-     
-          createRecipesArrayIncludedKeyword(value);
           
         }
-    
-      
-       
-      //  if (selectedTags >=1 && mainSearch.value.length >= 1) {
+        */
+        //???value de tag ou mainSearch.value ?
+/*
+        if (selectedTags == 0 && mainSearch.value.length >= 1) {
+          sectionRecipes.innerHTML = "";
+
+          recipesByKeywords = [];
+          createRecipesArrayIncludedKeyword(mainSearch.value, recipesArrayIncludingKeyword);
+          console.log(mainSearch.value);
+        }
+        */
+
+        //  if (selectedTags >=1 && mainSearch.value.length >= 1) {
         //  createRecipesArrayIncludedKeyword(tagContainer.children[0].innerText);;
-//        }
-
-
-        
+        //        }
       });
-*/
+
       //.....................................
     });
   });

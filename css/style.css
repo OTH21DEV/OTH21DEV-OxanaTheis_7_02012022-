@@ -68,6 +68,7 @@ section {
   border: none;
   border-radius: 5px;
   margin-top: 20px;
+  margin-right: 15px;
 }
 
 .btn-dropdown {
@@ -86,6 +87,50 @@ section {
 
 .btn-dropdown--onclick {
   display: none;
+}
+
+#container-ingredient .btn-dropdown:focus, #container-appliances .btn-dropdown:focus {
+  outline: none;
+  background-size: 300% 100%;
+}
+
+#container-ingredient .btn-dropdown {
+  background: #3282F7;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  transition: all 0.4s ease-in-out;
+}
+#container-ingredient .btn-dropdown:hover {
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
+  background-position: 100% 0;
+}
+
+#container-appliances .btn-dropdown {
+  background: #68D9A4;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  transition: all 0.4s ease-in-out;
+}
+#container-appliances .btn-dropdown:hover {
+  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
+  background-position: 100% 0;
+}
+
+#container-ustensils .btn-dropdown {
+  background: #ED6454;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  transition: all 0.4s ease-in-out;
+}
+#container-ustensils .btn-dropdown:hover {
+  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
+  background-position: 100% 0;
 }
 
 #container-ingredient,
@@ -115,6 +160,7 @@ section {
   border: none;
   border-radius: 5px;
   margin-top: 20px;
+  margin-right: 15px;
 }
 
 .popup-input {
@@ -170,6 +216,10 @@ section {
 .elements-liste li {
   padding: 0 15px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.elements-liste li:hover {
+  transform: scale(1.1);
 }
 
 .tag {
@@ -226,6 +276,8 @@ section {
   flex-direction: column;
   width: 31%;
   margin-bottom: 25px;
+  opacity: 0;
+  margin-right: 20px;
 }
 .wrapper-recipe .recipe-img {
   height: 120px;
@@ -293,10 +345,168 @@ section {
 .recipes {
   margin-top: 35px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
+.recipes .wrapper-recipe {
+  animation: carte 1500ms forwards;
+}
+.recipes .wrapper-recipe:nth-child(2) {
+  animation-delay: 60ms;
+}
+.recipes .wrapper-recipe:nth-child(3) {
+  animation-delay: 90ms;
+}
+.recipes .wrapper-recipe:nth-child(4) {
+  animation-delay: 120ms;
+}
+.recipes .wrapper-recipe:nth-child(5) {
+  animation-delay: 150ms;
+}
+.recipes .wrapper-recipe:nth-child(6) {
+  animation-delay: 180ms;
+}
+.recipes .wrapper-recipe:nth-child(7) {
+  animation-delay: 210ms;
+}
+.recipes .wrapper-recipe:nth-child(8) {
+  animation-delay: 240ms;
+}
+.recipes .wrapper-recipe:nth-child(9) {
+  animation-delay: 270ms;
+}
+.recipes .wrapper-recipe:nth-child(10) {
+  animation-delay: 300ms;
+}
+.recipes .wrapper-recipe:nth-child(11) {
+  animation-delay: 330ms;
+}
+.recipes .wrapper-recipe:nth-child(12) {
+  animation-delay: 360ms;
+}
+.recipes .wrapper-recipe:nth-child(13) {
+  animation-delay: 390ms;
+}
+.recipes .wrapper-recipe:nth-child(14) {
+  animation-delay: 420ms;
+}
+.recipes .wrapper-recipe:nth-child(15) {
+  animation-delay: 450ms;
+}
+.recipes .wrapper-recipe:nth-child(16) {
+  animation-delay: 480ms;
+}
+.recipes .wrapper-recipe:nth-child(17) {
+  animation-delay: 510ms;
+}
+.recipes .wrapper-recipe:nth-child(18) {
+  animation-delay: 540ms;
+}
+.recipes .wrapper-recipe:nth-child(19) {
+  animation-delay: 570ms;
+}
+.recipes .wrapper-recipe:nth-child(20) {
+  animation-delay: 600ms;
+}
+.recipes .wrapper-recipe:nth-child(21) {
+  animation-delay: 630ms;
+}
+.recipes .wrapper-recipe:nth-child(22) {
+  animation-delay: 660ms;
+}
+.recipes .wrapper-recipe:nth-child(23) {
+  animation-delay: 690ms;
+}
+.recipes .wrapper-recipe:nth-child(24) {
+  animation-delay: 720ms;
+}
+.recipes .wrapper-recipe:nth-child(25) {
+  animation-delay: 750ms;
+}
+.recipes .wrapper-recipe:nth-child(26) {
+  animation-delay: 780ms;
+}
+.recipes .wrapper-recipe:nth-child(27) {
+  animation-delay: 810ms;
+}
+.recipes .wrapper-recipe:nth-child(28) {
+  animation-delay: 840ms;
+}
+.recipes .wrapper-recipe:nth-child(29) {
+  animation-delay: 870ms;
+}
+.recipes .wrapper-recipe:nth-child(30) {
+  animation-delay: 900ms;
+}
+.recipes .wrapper-recipe:nth-child(31) {
+  animation-delay: 930ms;
+}
+.recipes .wrapper-recipe:nth-child(32) {
+  animation-delay: 960ms;
+}
+.recipes .wrapper-recipe:nth-child(33) {
+  animation-delay: 990ms;
+}
+.recipes .wrapper-recipe:nth-child(34) {
+  animation-delay: 1020ms;
+}
+.recipes .wrapper-recipe:nth-child(35) {
+  animation-delay: 1050ms;
+}
+.recipes .wrapper-recipe:nth-child(36) {
+  animation-delay: 1080ms;
+}
+.recipes .wrapper-recipe:nth-child(37) {
+  animation-delay: 1110ms;
+}
+.recipes .wrapper-recipe:nth-child(38) {
+  animation-delay: 1140ms;
+}
+.recipes .wrapper-recipe:nth-child(39) {
+  animation-delay: 1170ms;
+}
+.recipes .wrapper-recipe:nth-child(40) {
+  animation-delay: 1200ms;
+}
+.recipes .wrapper-recipe:nth-child(41) {
+  animation-delay: 1230ms;
+}
+.recipes .wrapper-recipe:nth-child(42) {
+  animation-delay: 1260ms;
+}
+.recipes .wrapper-recipe:nth-child(43) {
+  animation-delay: 1290ms;
+}
+.recipes .wrapper-recipe:nth-child(44) {
+  animation-delay: 1320ms;
+}
+.recipes .wrapper-recipe:nth-child(45) {
+  animation-delay: 1350ms;
+}
+.recipes .wrapper-recipe:nth-child(46) {
+  animation-delay: 1380ms;
+}
+.recipes .wrapper-recipe:nth-child(47) {
+  animation-delay: 1410ms;
+}
+.recipes .wrapper-recipe:nth-child(48) {
+  animation-delay: 1440ms;
+}
+.recipes .wrapper-recipe:nth-child(49) {
+  animation-delay: 1470ms;
+}
+.recipes .wrapper-recipe:nth-child(50) {
+  animation-delay: 1500ms;
+}
+
+@keyframes carte {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .message {
   color: #D04F4F;
   text-align: center;
