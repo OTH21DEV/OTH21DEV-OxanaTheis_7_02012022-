@@ -89,7 +89,8 @@ section {
   display: none;
 }
 
-#container-ingredient .btn-dropdown:focus, #container-appliances .btn-dropdown:focus {
+#container-ingredient .btn-dropdown:focus,
+#container-appliances .btn-dropdown:focus {
   outline: none;
   background-size: 300% 100%;
 }
@@ -102,7 +103,7 @@ section {
   transition: all 0.4s ease-in-out;
 }
 #container-ingredient .btn-dropdown:hover {
-  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282F7);
   box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
   background-position: 100% 0;
 }
@@ -217,9 +218,10 @@ section {
   padding: 0 15px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-size: 0.9em;
 }
 .elements-liste li:hover {
-  transform: scale(1.1);
+  font-weight: 600;
 }
 
 .tag {
