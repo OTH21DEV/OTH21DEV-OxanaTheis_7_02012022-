@@ -120,23 +120,9 @@ function createListe(container, array) {
       tag.setAttribute("id", `${container}`.replace("#", ""));
 
       /*
-      TEST de trie de recette par tag 
+   Trie de recette par tag 
       */
-      //V2 ne marche pas correctement ??pourquoi?
-
-      /*
-recipesByKeywords = [];
-sectionRecipes.innerHTML = "";
-createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByKeywords);
-*/
-
-      /*
-let recipesByTags = []
-//recipesByKeywords = [];
-sectionRecipes.innerHTML = "";
-createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
-*/
-
+      
       let recipesByTags = [];
 
       recipesArrayIncludingKeyword.forEach((element) => {
@@ -146,22 +132,33 @@ createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
           //on remplie le tableau par des ingredients de chaque recette
           listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
         }
-
-        if (listeIngredients.includes(value) || element.appliance == `${value}` || element.ustensils.includes(`${value.toLowerCase()}`)) {
-          //on remplie le nouveau tableau par des recettes filtrée par click au tag
-          recipesByTags.push(element);
+  
+        if (container.replace("#", "") == "container-ingredient") {
+          if (listeIngredients.includes(value)) {
+            recipesByTags.push(element);
+          }
         }
 
+        if (container.replace("#", "") == "container-appliances") {
+          if (element.appliance == `${value}`) {
+            recipesByTags.push(element);
+          }
+        }
+
+        if (container.replace("#", "") == "container-ustensils") {
+          if (element.ustensils.includes(`${value.toLowerCase()}`)) {
+            recipesByTags.push(element);
+          }
+        }
         searchByKeywordsIng(recipesByTags);
         searchByKeywordsDropdowns(recipesByTags, "#container-appliances", "appliance");
         searchByKeywordsDropdowns(recipesByTags, "#container-ustensils", "ustensils");
-      });
-      //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
-
-      sectionRecipes.innerHTML = "";
-      recipesArrayIncludingKeyword = recipesByTags;
-      recipesArrayIncludingKeyword.forEach((element) => {
-        new Recipe(element);
+        sectionRecipes.innerHTML = "";
+        //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
+        recipesArrayIncludingKeyword = recipesByTags;
+        recipesArrayIncludingKeyword.forEach((element) => {
+          new Recipe(element);
+        });
       });
 
       console.log(recipesArrayIncludingKeyword);
@@ -176,10 +173,9 @@ createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
 
       cross.addEventListener("click", function () {
         cross.parentElement.remove();
-
         if (selectedTags == 0 && mainSearch.value.length == 0) {
           sectionRecipes.innerHTML = "";
-
+          
           recipes.forEach((element) => {
             new Recipe(element);
           });
@@ -187,7 +183,9 @@ createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
           searchByKeywordsDropdowns(recipes, "#container-appliances", "appliance");
           searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
         }
-/*
+        console.log(tagContainer.children)
+        console.log(tagContainer.childNodes[0].innerText)
+        /*
         if (selectedTags >= 1) {
            createRecipesArrayIncludedKeyword(tagContainer.children[0].innerText);;
           
@@ -196,7 +194,7 @@ createRecipesArrayIncludedKeyword(value.toLowerCase(),recipesByTags);
         }
         */
         //???value de tag ou mainSearch.value ?
-/*
+        /*
         if (selectedTags == 0 && mainSearch.value.length >= 1) {
           sectionRecipes.innerHTML = "";
 
