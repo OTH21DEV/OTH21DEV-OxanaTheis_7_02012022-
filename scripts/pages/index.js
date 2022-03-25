@@ -1,5 +1,6 @@
 import { recipes } from "./../../data/recipes.js";
 import { Recipe } from "../factories/Recipe.js";
+
 /*
 recipes.forEach((element) => {
   let words = [];
@@ -49,16 +50,12 @@ for (let i = 0; i < recipes.length; i++) {
 /*
 Fonction pour supprimer des doublons afin de recreer le contenu initial de dropdown
 */
+
 function removeDuplicatesDropdown() {
   recipes.forEach((recipe) => {
     let recipeUtensils = recipe.ustensils;
     let recipeAppliances = recipe.appliance;
-    /*tableau des ingredients (chaque ingredient est un objet du tableau)
-    (5) [{…}, {…}, {…}, {…}, {…}]
-0: {ingredient: 'Pâte feuilletée', quantity: 400, unit: 'g'}
-1: {ingredient: 'Oeuf', quantity: 6}
 
-    */
     let recipeIngredients = recipe.ingredients;
 
     recipeIngredients.forEach((ingredient) => {
@@ -75,6 +72,7 @@ function removeDuplicatesDropdown() {
     });
   });
 }
+
 
 removeDuplicatesDropdown();
 
@@ -167,15 +165,14 @@ function createListe(container, array) {
       /*
      Fermeture tag
       */
-
       let cross = tag.children[0];
-      let selectedTags = tagContainer.children.length - 1;
+      let selectedTags = tagContainer.children.length;
 
       cross.addEventListener("click", function () {
         cross.parentElement.remove();
+        selectedTags -= 1;
         if (selectedTags == 0 && mainSearch.value.length == 0) {
           sectionRecipes.innerHTML = "";
-
           recipes.forEach((element) => {
             new Recipe(element);
           });
@@ -184,12 +181,9 @@ function createListe(container, array) {
           searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
         }
 
-        // console.log(tagContainer.childNodes[0].innerText)
-
         let newArray = [];
         let newTest = [];
         if (mainSearch.value.length >= 3) {
-          //array = array vide à remplir par de recette en fonction de mots clés/tag
           recipes.forEach((element) => {
             let recipeIngredients = [];
             //tableau des ingredients par recette
@@ -203,66 +197,61 @@ function createListe(container, array) {
               recipeIngredients.includes(mainSearch.value)
             ) {
               newArray.push(element);
-              //...............TRIE des tAGS
-    //v2 test de tri de tag
-    if (selectedTags >= 1 && mainSearch.value.length >= 3) {
-      console.log(tagContainer.childNodes);
-      for (let i of tagContainer.childNodes) {
-        console.log(i.innerText.toLowerCase());
 
-        newArray.forEach((element) => {
-          let listeIngredients = [];
+              if (selectedTags >= 1) {
+                for (let i of tagContainer.childNodes) {
+                  newArray.forEach((element) => {
+                    let listeIngredients = [];
+console.log(tagContainer.childNodes)
+                    for (let ingredient of element.ingredients) {
+                      //on remplie le tableau par des ingredients de chaque recette
+                      listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
+                    }
 
-          for (let ingredient of element.ingredients) {
-            //on remplie le tableau par des ingredients de chaque recette
-            listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-          }
+                    if (container.replace("#", "") == "container-ingredient") {
+                      if (listeIngredients.includes(i.innerText.toLowerCase())) {
+                        newTest.push(element);
+                      }
+                    }
 
-          if (container.replace("#", "") == "container-ingredient") {
-            if (listeIngredients.includes(i.innerText.toLowerCase())) {
-              newTest.push(element);
-            }
-          }
+                    if (container.replace("#", "") == "container-appliances") {
+                      if (element.appliance == `${i.innerText.toLowerCase()}`) {
+                        newTest.push(element);
+                      }
+                    }
 
-          if (container.replace("#", "") == "container-appliances") {
-            if (element.appliance == `${i.innerText.toLowerCase()}`) {
-              newTest.push(element);
-            }
-          }
+                    if (container.replace("#", "") == "container-ustensils") {
+                      if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
+                        newTest.push(element);
+                      }
+                    }
+                  });
+                  newArray = newTest;
+                  sectionRecipes.innerHTML = "";
+                  searchByKeywordsIng(newArray);
+                  searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
+                  searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
 
-          if (container.replace("#", "") == "container-ustensils") {
-            if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
-              newTest.push(element);
-            }
-          }
-        });
-      }
-      newArray = newTest;
-      sectionRecipes.innerHTML = "";
-      searchByKeywordsIng(newArray);
-      searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-      searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-      //   newArray = newTest;
-      newArray.forEach((element) => {
-        new Recipe(element);
-      });
-    }
+                  newArray.forEach((element) => {
+                    new Recipe(element);
+                  });
+                }
+              }
               //.............fin test de tag
-           
             }
           });
+
           sectionRecipes.innerHTML = "";
           searchByKeywordsIng(newArray);
           searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
           searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-          //   newArray = newTest;
+
           newArray.forEach((element) => {
             new Recipe(element);
           });
         }
 
-      
-console.log(newTest)
+        console.log(newTest);
         //fin
       });
 

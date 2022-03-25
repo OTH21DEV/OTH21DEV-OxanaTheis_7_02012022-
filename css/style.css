@@ -103,7 +103,7 @@ section {
   transition: all 0.4s ease-in-out;
 }
 #container-ingredient .btn-dropdown:hover {
-  background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282F7);
+  background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282f7);
   box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
   background-position: 100% 0;
 }
@@ -221,7 +221,7 @@ section {
   font-size: 0.9em;
 }
 .elements-liste li:hover {
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .tag {
@@ -271,20 +271,6 @@ section {
   padding: 0 15px;
   font-size: 0.9em;
   line-height: 22px;
-}
-
-.wrapper-recipe {
-  display: flex;
-  flex-direction: column;
-  width: 31%;
-  margin-bottom: 25px;
-  opacity: 0;
-  margin-right: 20px;
-}
-.wrapper-recipe .recipe-img {
-  height: 120px;
-  background-color: #C7BEBE;
-  border-radius: 5px 5px 0 0;
 }
 
 .wrapper-recipe-tittle-time {
@@ -349,156 +335,319 @@ section {
   display: flex;
   flex-wrap: wrap;
 }
-
-.recipes .wrapper-recipe {
-  animation: carte 1500ms forwards;
+.recipes .wrapper-recipe:nth-child(1) {
+  animation-delay: 200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(2) {
-  animation-delay: 60ms;
+  animation-delay: 400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(3) {
-  animation-delay: 90ms;
+  animation-delay: 600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(4) {
-  animation-delay: 120ms;
+  animation-delay: 800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(5) {
-  animation-delay: 150ms;
+  animation-delay: 1000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(6) {
-  animation-delay: 180ms;
+  animation-delay: 1200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(7) {
-  animation-delay: 210ms;
+  animation-delay: 1400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(8) {
-  animation-delay: 240ms;
+  animation-delay: 1600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(9) {
-  animation-delay: 270ms;
+  animation-delay: 1800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(10) {
-  animation-delay: 300ms;
+  animation-delay: 2000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(11) {
-  animation-delay: 330ms;
+  animation-delay: 2200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(12) {
-  animation-delay: 360ms;
+  animation-delay: 2400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(13) {
-  animation-delay: 390ms;
+  animation-delay: 2600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(14) {
-  animation-delay: 420ms;
+  animation-delay: 2800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(15) {
-  animation-delay: 450ms;
+  animation-delay: 3000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(16) {
-  animation-delay: 480ms;
+  animation-delay: 3200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(17) {
-  animation-delay: 510ms;
+  animation-delay: 3400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(18) {
-  animation-delay: 540ms;
+  animation-delay: 3600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(19) {
-  animation-delay: 570ms;
+  animation-delay: 3800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(20) {
-  animation-delay: 600ms;
+  animation-delay: 4000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(21) {
-  animation-delay: 630ms;
+  animation-delay: 4200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(22) {
-  animation-delay: 660ms;
+  animation-delay: 4400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(23) {
-  animation-delay: 690ms;
+  animation-delay: 4600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(24) {
-  animation-delay: 720ms;
+  animation-delay: 4800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(25) {
-  animation-delay: 750ms;
+  animation-delay: 5000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(26) {
-  animation-delay: 780ms;
+  animation-delay: 5200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(27) {
-  animation-delay: 810ms;
+  animation-delay: 5400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(28) {
-  animation-delay: 840ms;
+  animation-delay: 5600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(29) {
-  animation-delay: 870ms;
+  animation-delay: 5800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(30) {
-  animation-delay: 900ms;
+  animation-delay: 6000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(31) {
-  animation-delay: 930ms;
+  animation-delay: 6200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(32) {
-  animation-delay: 960ms;
+  animation-delay: 6400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(33) {
-  animation-delay: 990ms;
+  animation-delay: 6600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(34) {
-  animation-delay: 1020ms;
+  animation-delay: 6800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(35) {
-  animation-delay: 1050ms;
+  animation-delay: 7000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(36) {
-  animation-delay: 1080ms;
+  animation-delay: 7200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(37) {
-  animation-delay: 1110ms;
+  animation-delay: 7400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(38) {
-  animation-delay: 1140ms;
+  animation-delay: 7600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(39) {
-  animation-delay: 1170ms;
+  animation-delay: 7800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(40) {
-  animation-delay: 1200ms;
+  animation-delay: 8000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(41) {
-  animation-delay: 1230ms;
+  animation-delay: 8200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(42) {
-  animation-delay: 1260ms;
+  animation-delay: 8400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(43) {
-  animation-delay: 1290ms;
+  animation-delay: 8600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(44) {
-  animation-delay: 1320ms;
+  animation-delay: 8800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(45) {
-  animation-delay: 1350ms;
+  animation-delay: 9000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(46) {
-  animation-delay: 1380ms;
+  animation-delay: 9200ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(47) {
-  animation-delay: 1410ms;
+  animation-delay: 9400ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(48) {
-  animation-delay: 1440ms;
+  animation-delay: 9600ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(49) {
-  animation-delay: 1470ms;
+  animation-delay: 9800ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
 }
 .recipes .wrapper-recipe:nth-child(50) {
-  animation-delay: 1500ms;
+  animation-delay: 10000ms;
+  animation-name: carte;
+  animation-duration: 1400ms;
+  animation-fill-mode: forwards;
+}
+
+.wrapper-recipe {
+  display: flex;
+  flex-direction: column;
+  width: 31%;
+  margin-bottom: 25px;
+  opacity: 0;
+  margin-right: 20px;
+}
+.wrapper-recipe .recipe-img {
+  height: 120px;
+  background-color: #C7BEBE;
+  border-radius: 5px 5px 0 0;
 }
 
 @keyframes carte {

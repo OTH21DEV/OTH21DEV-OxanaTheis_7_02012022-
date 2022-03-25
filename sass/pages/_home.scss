@@ -101,7 +101,7 @@ section {
   background-size: 300% 100%;
   transition: all 0.4s ease-in-out;
   &:hover {
-    background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8,  #3282F7);
+    background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282f7);
     box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
     background-position: 100% 0;
   }
@@ -193,8 +193,6 @@ section {
   opacity: 50%;
 }
 
-
-
 .popup-input--onclick {
   display: block;
   flex-direction: column;
@@ -222,7 +220,7 @@ section {
     font-size: 0.9em;
 
     &:hover {
-      font-weight: 600;
+      font-weight: bold;
     }
   }
 }
@@ -276,25 +274,6 @@ section {
   line-height: 22px;
 }
 
-$nmb-btn: 50;
-$anim-dur: 1500ms;
-$anim-delay: $anim-dur/$nmb-btn;
-
-.wrapper-recipe {
-  display: flex;
-  flex-direction: column;
-  width: 31%;
-  //animation: message 1.2s;
-  margin-bottom: 25px;
-  opacity: 0;
-  margin-right: 20px;
-
-  & .recipe-img {
-    height: 120px;
-    background-color: $recipe-dark-bg;
-    border-radius: 5px 5px 0 0;
-  }
-}
 .wrapper-recipe-tittle-time {
   display: flex;
   justify-content: space-between;
@@ -357,28 +336,44 @@ $anim-delay: $anim-dur/$nmb-btn;
   overflow: hidden;
 }
 
+$nmb-btn: 50;
+$anim-dur: 1400ms;
+
 .recipes {
   margin-top: 35px;
   display: flex;
-  //justify-content: space-between;
   flex-wrap: wrap;
-}
-.recipes .wrapper-recipe {
-  @for $i from 2 through $nmb-btn {
-    &:nth-child(#{$i}) {
-      animation-delay: $anim-delay * $i;
+  @for $i from 1 through $nmb-btn {
+    .wrapper-recipe:nth-child(#{$i}) {
+      animation-delay: 200ms * $i;
+      animation-name: carte;
+      animation-duration: $anim-dur;
+      animation-fill-mode: forwards;
     }
   }
-  animation: carte $anim-dur forwards;
 }
+.wrapper-recipe {
+  display: flex;
+  flex-direction: column;
+  width: 31%;
+  //animation: message 1.2s;
+  margin-bottom: 25px;
+  opacity: 0;
+  margin-right: 20px;
+
+  & .recipe-img {
+    height: 120px;
+    background-color: $recipe-dark-bg;
+    border-radius: 5px 5px 0 0;
+  }
+}
+
 @keyframes carte {
   0% {
-    //  transform: translateY(50%);
     opacity: 0;
   }
 
   100% {
-    //  transform: translateY(0%);
     opacity: 1;
   }
 }
