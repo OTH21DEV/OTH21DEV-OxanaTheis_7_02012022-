@@ -1,21 +1,6 @@
 import { recipes } from "./../../data/recipes.js";
 import { Recipe } from "../factories/Recipe.js";
-
-/*
-recipes.forEach((element) => {
-  let words = [];
-  let listeIngredients = [];
-  let recipe = []
-
-  for (let ingredient of element.ingredients) {
-    listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-  }
-
-  words  = [...new Set(words.concat(element.name, listeIngredients, element.description, element.appliance,element.ustensils))];
-  console.log(words);
-
-});
-*/
+import { Dropdown } from "../factories/Dropdown.js";
 
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
@@ -73,7 +58,6 @@ function removeDuplicatesDropdown() {
   });
 }
 
-
 removeDuplicatesDropdown();
 
 /*
@@ -89,9 +73,9 @@ function createListe(container, array) {
   //on cree le container pour les tags (n 7,8)
 
   let tagContainer = document.querySelector(".tag-container");
-
   array.forEach((element) => {
     const liElement = document.createElement("li");
+
     ulElement.appendChild(liElement);
     liElement.innerHTML = element;
 
@@ -162,9 +146,13 @@ function createListe(container, array) {
       console.log(recipesArrayIncludingKeyword);
 
       //.........................................
+
+      //  });
+
       /*
      Fermeture tag
       */
+
       let cross = tag.children[0];
       let selectedTags = tagContainer.children.length;
 
@@ -202,7 +190,7 @@ function createListe(container, array) {
                 for (let i of tagContainer.childNodes) {
                   newArray.forEach((element) => {
                     let listeIngredients = [];
-console.log(tagContainer.childNodes)
+                    console.log(tagContainer.childNodes);
                     for (let ingredient of element.ingredients) {
                       //on remplie le tableau par des ingredients de chaque recette
                       listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
