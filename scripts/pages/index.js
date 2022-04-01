@@ -84,398 +84,162 @@ function createListe(container, array) {
     */
 
     liElement.addEventListener("click", (e) => {
-      let value = e.target.childNodes[0].data;
+      addTags(e, container);
 
-      let tag = document.createElement("div");
-      tag.className = "tag";
-      tagContainer.appendChild(tag);
+    });
+  });
+}
 
-      tag.style.display = "flex";
-      tagContainer.style.display = "flex";
-      //" \u00a0" rajoute espace !
-      tag.innerHTML +=
-        value +
-        " \u00a0" +
-        `<i class="fa-regular fa-circle-xmark"></i>
-      `;
-      //on attribue id de container pour avoir la couleur
-      tag.setAttribute("id", `${container}`.replace("#", ""));
+function addTags(e, container) {
+  /*
+  Create tag 
+  */
+  let value = e.target.childNodes[0].data;
+  let tagContainer = document.querySelector(".tag-container");
+  let tag = document.createElement("div");
+  tag.className = "tag";
+  tagContainer.appendChild(tag);
 
-      /*
-   Trie de recette par tag 
-      */
+  tag.style.display = "flex";
+  tagContainer.style.display = "flex";
+  //" \u00a0" rajoute espace !
+  tag.innerHTML +=
+    value +
+    " \u00a0" +
+    `<i class="fa-regular fa-circle-xmark"></i>
+`;
+  //on attribue id de container pour avoir la couleur
+  tag.setAttribute("id", `${container}`.replace("#", ""));
 
-      let recipesByTags = [];
-
-      recipesArrayIncludingKeyword.forEach((element) => {
-        let listeIngredients = [];
-
-        for (let ingredient of element.ingredients) {
-          //on remplie le tableau par des ingredients de chaque recette
-          listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-        }
-
-        if (container.replace("#", "") == "container-ingredient") {
-          if (listeIngredients.includes(value)) {
-            recipesByTags.push(element);
-          }
-        }
-
-        if (container.replace("#", "") == "container-appliances") {
-          if (element.appliance == `${value}`) {
-            recipesByTags.push(element);
-          }
-        }
-
-        if (container.replace("#", "") == "container-ustensils") {
-          if (element.ustensils.includes(`${value.toLowerCase()}`)) {
-            recipesByTags.push(element);
-          }
-        }
-        searchByKeywordsIng(recipesByTags);
-        searchByKeywordsDropdowns(recipesByTags, "#container-appliances", "appliance");
-        searchByKeywordsDropdowns(recipesByTags, "#container-ustensils", "ustensils");
-        sectionRecipes.innerHTML = "";
-        //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
-        recipesArrayIncludingKeyword = recipesByTags;
-        recipesArrayIncludingKeyword.forEach((element) => {
-          new Recipe(element);
-        });
-      });
-
-      console.log(recipesArrayIncludingKeyword);
-
-      //.........................................
-
-      //  });
-
-      /*
-     Fermeture tag
-      */
-
-      let cross = tag.children[0];
-      // let selectedTags = tagContainer.children.length;
-      let selectedTags = tagContainer.childElementCount;
-
-      /* v1 fonctionne dans l'ordre 
-
-      cross.addEventListener("click", function () {
-        cross.parentElement.remove();
-        selectedTags -= 1;
-        if (selectedTags == 0 && mainSearch.value.length == 0) {
-          sectionRecipes.innerHTML = "";
-          recipes.forEach((element) => {
-            new Recipe(element);
-          });
-          searchByKeywordsIng(recipes);
-          searchByKeywordsDropdowns(recipes, "#container-appliances", "appliance");
-          searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
-        }
-
-        let newArray = [];
-        let newTest = [];
-        if (mainSearch.value.length >= 3) {
-          recipes.forEach((element) => {
-            let recipeIngredients = [];
-            //tableau des ingredients par recette
-            for (let ingredient of element.ingredients) {
-              //on remplie le tableau par des ingredients de chaque recette
-              recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
-            }
-            if (
-              element.name.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-              element.description.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-              recipeIngredients.includes(mainSearch.value)
-            ) {
-              newArray.push(element);
-
-              if (selectedTags >= 1) {
-                for (let i of tagContainer.childNodes) {
-                  newArray.forEach((element) => {
-                    let listeIngredients = [];
-                    console.log(tagContainer.childNodes);
-                    for (let ingredient of element.ingredients) {
-                      //on remplie le tableau par des ingredients de chaque recette
-                      listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-                    }
-
-                    if (container.replace("#", "") == "container-ingredient") {
-                      if (listeIngredients.includes(i.innerText.toLowerCase())) {
-                        newTest.push(element);
-                      }
-                    }
-
-                    if (container.replace("#", "") == "container-appliances") {
-                      if (element.appliance == `${i.innerText.toLowerCase()}`) {
-                        newTest.push(element);
-                      }
-                    }
-
-                    if (container.replace("#", "") == "container-ustensils") {
-                      if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
-                        newTest.push(element);
-                      }
-                    }
-                  });
-                  newArray = newTest;
-                  sectionRecipes.innerHTML = "";
-                  searchByKeywordsIng(newArray);
-                  searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-                  searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-
-                  newArray.forEach((element) => {
-                    new Recipe(element);
-                  });
-                }
-              }
-              //.............fin test de tag
-            }
-          });
-
-          sectionRecipes.innerHTML = "";
-          searchByKeywordsIng(newArray);
-          searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-          searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-
-          newArray.forEach((element) => {
-            new Recipe(element);
-          });
-        }
-
-        console.log(newTest);
-        //fin
-      });
-      */
-
-      //v2 affiche correctement length et child
-      /*
-      cross.addEventListener("click", function () {
-        //  cross.parentElement.remove();
-        tag.remove();
-
-        if (mainSearch.value.length == 0 && tagContainer.childNodes.length == 0) {
-          sectionRecipes.innerHTML = "";
-          recipes.forEach((element) => {
-            new Recipe(element);
-          });
-          searchByKeywordsIng(recipes);
-          searchByKeywordsDropdowns(recipes, "#container-appliances", "appliance");
-          searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
-        }
-
-        let newArray = [];
-        let newTest = [];
-
-        if (mainSearch.value.length >= 3) {
-          recipes.forEach((element) => {
-            let recipeIngredients = [];
-            //tableau des ingredients par recette
-            for (let ingredient of element.ingredients) {
-              //on remplie le tableau par des ingredients de chaque recette
-              recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
-            }
-            if (
-              element.name.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-              element.description.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-              recipeIngredients.includes(mainSearch.value)
-            ) {
-              newArray.push(element);
-            }
-          });
-
-          if (tagContainer.childNodes.length >= 1) {
-            console.log(tagContainer.childNodes);
-            console.log(tagContainer.childNodes.length);
-            newArray.forEach((element) => {
-              let listeIngredients = [];
-              for (let ingredient of element.ingredients) {
-                //on remplie le tableau par des ingredients de chaque recette
-                listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-              }
-              for (let i of tagContainer.childNodes) {
-                console.log(i.innerText);
-                if (container.replace("#", "") == "container-ingredient") {
-                  if (listeIngredients.includes(i.innerText.toLowerCase())) {
-                    newTest.push(element);
-                  }
-                }
-
-                if (container.replace("#", "") == "container-appliances") {
-                  if (element.appliance == `${i.innerText.toLowerCase()}`) {
-                    newTest.push(element);
-                  }
-                }
-
-                if (container.replace("#", "") == "container-ustensils") {
-                  if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
-                    newTest.push(element);
-                  }
-                }
-              }
-            });
-          }
-          sectionRecipes.innerHTML = "";
-          newArray = newTest;
-          searchByKeywordsIng(newArray);
-          searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-          searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-
-          newArray.forEach((element) => {
-            new Recipe(element);
-          });
-        }
+  /*
+Trie de recette par tag 
 */
 
-      //V3 avec deux conditions .........................................
-      
-      let newTest = [];
-      cross.addEventListener("click", function () {
-     
-        tag.remove();
+  let recipesByTags = [];
 
-        if (mainSearch.value.length >= 3 && tagContainer.childNodes.length >= 1) {
-          console.log(tagContainer.childNodes);
-          console.log(tagContainer.childNodes.length);
+  recipesArrayIncludingKeyword.forEach((element) => {
+    let listeIngredients = [];
 
-          //recipesByKeywords -tableau de recette recuperé avec le filtre de recette depuis la barre de recherche principale
+    for (let ingredient of element.ingredients) {
+      //on remplie le tableau par des ingredients de chaque recette
+      listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
+    }
 
-          recipesByKeywords.forEach((element) => {
-            let listeIngredients = [];
-            for (let ingredient of element.ingredients) {
-              //on remplie le tableau par des ingredients de chaque recette
-              listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-            }
-            for (let i of tagContainer.childNodes) {
-              if (container.replace("#", "") == "container-ingredient") {
-                if (listeIngredients.includes(i.innerText.toLowerCase())) {
-                  newTest.push(element);
-                }
-              }
-
-              if (container.replace("#", "") == "container-appliances") {
-                if (element.appliance == `${i.innerText.toLowerCase()}`) {
-                  newTest.push(element);
-                }
-              }
-
-              if (container.replace("#", "") == "container-ustensils") {
-                if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
-                  newTest.push(element);
-                }
-              }
-            }
-          });
-          sectionRecipes.innerHTML = "";
-          recipesByKeywords = newTest;
-          searchByKeywordsIng(recipesByKeywords);
-          searchByKeywordsDropdowns(recipesByKeywords, "#container-appliances", "appliance");
-          searchByKeywordsDropdowns(recipesByKeywords, "#container-ustensils", "ustensils");
-
-          recipesByKeywords.forEach((element) => {
-            new Recipe(element);
-          });
-        }
-
-      
-        console.log(recipesByKeywords);
-      });
-
-
-//V4................................................................
-/*
-
-cross.addEventListener("click", function () {
-tag.remove();
-
-  if (tagContainer.childNodes.length == 0 && mainSearch.value.length == 0) {
-    sectionRecipes.innerHTML = "";
-    recipes.forEach((element) => {
-      new Recipe(element);
-    });
-    searchByKeywordsIng(recipes);
-    searchByKeywordsDropdowns(recipes, "#container-appliances", "appliance");
-    searchByKeywordsDropdowns(recipes, "#container-ustensils", "ustensils");
-  }
-
-  let newArray = [];
-  let newTest = [];
-  if (mainSearch.value.length >= 3) {
-    recipes.forEach((element) => {
-      let recipeIngredients = [];
-      //tableau des ingredients par recette
-      for (let ingredient of element.ingredients) {
-        //on remplie le tableau par des ingredients de chaque recette
-        recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
+    if (container.replace("#", "") == "container-ingredient") {
+      if (listeIngredients.includes(value)) {
+        recipesByTags.push(element);
       }
+    }
+
+    if (container.replace("#", "") == "container-appliances") {
+      if (element.appliance == `${value}`) {
+        recipesByTags.push(element);
+      }
+    }
+
+    if (container.replace("#", "") == "container-ustensils") {
+      if (element.ustensils.includes(`${value.toLowerCase()}`)) {
+        recipesByTags.push(element);
+      }
+    }
+    //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
+    recipesArrayIncludingKeyword = recipesByTags;
+    displayRecipes(recipesArrayIncludingKeyword);
+  });
+
+  console.log(recipesArrayIncludingKeyword);
+
+  /*
+Fermeture tag
+*/
+
+  let cross = tag.children[0];
+
+  cross.addEventListener("click", function (e) {
+    removeTags(e, container);
+  });
+}
+function getIngredients(element) {
+  let listeIngredients = [];
+
+  for (let ingredient of element.ingredients) {
+    //on remplie le tableau par des ingredients de chaque recette
+    listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient.toLowerCase().trim()))].sort();
+  }
+  return listeIngredients;
+}
+/*
+Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
+*/
+function displayRecipes(array) {
+  sectionRecipes.innerHTML = "";
+  searchByKeywordsIng(array);
+  searchByKeywordsDropdowns(array, "#container-appliances", "appliance");
+  searchByKeywordsDropdowns(array, "#container-ustensils", "ustensils");
+  array.forEach((element) => {
+    new Recipe(element);
+  });
+}
+
+function removeTags(e, container) {
+  e.target.parentElement.remove();
+  let tagContainer = document.querySelector(".tag-container");
+  let selectedTags = tagContainer.children.length;
+
+  let recipesSearch = recipes;
+  let newArray = [];
+
+  if (mainSearch.value.length >= 3) {
+    recipesSearch.forEach((element) => {
+      let recipeIngredients = getIngredients(element);
+
       if (
         element.name.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
         element.description.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
         recipeIngredients.includes(mainSearch.value)
       ) {
         newArray.push(element);
-     
       }
-    })
-    console.log(tagContainer.childNodes);
-        if (tagContainer.childNodes.length >= 1) {
-          for (let i of tagContainer.childNodes) {
-            newArray.forEach((element) => {
-              let listeIngredients = [];
-              console.log(tagContainer.childNodes);
-              for (let ingredient of element.ingredients) {
-                //on remplie le tableau par des ingredients de chaque recette
-                listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-              }
-
-              if (container.replace("#", "") == "container-ingredient") {
-                if (listeIngredients.includes(i.innerText.toLowerCase())) {
-                  newTest.push(element);
-                }
-              }
-
-              if (container.replace("#", "") == "container-appliances") {
-                if (element.appliance == `${i.innerText.toLowerCase()}`) {
-                  newTest.push(element);
-                }
-              }
-
-              if (container.replace("#", "") == "container-ustensils") {
-                if (element.ustensils.includes(`${i.innerText.toLowerCase()}`)) {
-                  newTest.push(element);
-                }
-              }
-            });
-            newArray = newTest;
-            sectionRecipes.innerHTML = "";
-            searchByKeywordsIng(newArray);
-            searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-            searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-
-            newArray.forEach((element) => {
-              new Recipe(element);
-            });
-          }
-        }
-        //.............fin test de tag
-    
-    ;
-
-    sectionRecipes.innerHTML = "";
-    searchByKeywordsIng(newArray);
-    searchByKeywordsDropdowns(newArray, "#container-appliances", "appliance");
-    searchByKeywordsDropdowns(newArray, "#container-ustensils", "ustensils");
-
-    newArray.forEach((element) => {
-      new Recipe(element);
     });
+    recipesSearch = newArray;
   }
 
-  console.log(newTest);
-  //fin
-});
-*/
-    });
-  });
+  if (selectedTags >= 1) {
+    newArray = [];
+    for (let i of tagContainer.childNodes) {
+      let tagTxt = i.innerText.toLowerCase().trim();
+
+      recipesSearch.forEach((element) => {
+        let listeIngredients = getIngredients(element);
+
+        if (container.replace("#", "") == "container-ingredient") {
+          if (listeIngredients.includes(tagTxt)) {
+            newArray.push(element);
+          }
+        }
+
+        if (container.replace("#", "") == "container-appliances") {
+          if (element.appliance == `${tagTxt}`) {
+            newArray.push(element);
+          }
+        }
+
+        if (container.replace("#", "") == "container-ustensils") {
+          if (element.ustensils.includes(`${tagTxt}`)) {
+            newArray.push(element);
+          }
+        }
+      });
+
+      recipesSearch = newArray;
+      newArray = [];
+    }
+  }
+  //.............
+
+  displayRecipes(recipesSearch);
+
+  console.log(recipesSearch);
 }
 
 function displayDropdown(container, array) {
@@ -561,7 +325,8 @@ les mots clés renseignés dans la barre de recherche
 */
 
 let recipesByKeywords = [];
-function createRecipesArrayIncludedKeyword(value, array) {
+function createRecipesArrayIncludedKeyword(value) {
+  let array = [];
   //array = array vide à remplir par de recette en fonction de mots clés/tag
   recipesArrayIncludingKeyword.forEach((element) => {
     let recipeIngredients = [];
@@ -582,13 +347,7 @@ function createRecipesArrayIncludedKeyword(value, array) {
     la barre de recherche principale
     */
 
-  searchByKeywordsIng(recipesArrayIncludingKeyword);
-  searchByKeywordsDropdowns(recipesArrayIncludingKeyword, "#container-appliances", "appliance");
-  searchByKeywordsDropdowns(recipesArrayIncludingKeyword, "#container-ustensils", "ustensils");
-
-  recipesArrayIncludingKeyword.forEach((element) => {
-    new Recipe(element);
-  });
+  displayRecipes(recipesArrayIncludingKeyword);
 }
 
 /*
@@ -602,25 +361,24 @@ mainSearch.addEventListener("input", (e) => {
   if (valueInput.length >= 3) {
     //efface le contenu initial
     sectionRecipes.innerHTML = "";
-    //vide le tableau de recettes
 
-    recipesByKeywords = [];
     e.preventDefault();
 
     // recherche dans le nom et description de recette depuis la barre principale
 
-    createRecipesArrayIncludedKeyword(valueInput, recipesByKeywords);
+    createRecipesArrayIncludedKeyword(valueInput);
 
     console.log(recipesArrayIncludingKeyword);
 
     if (recipesArrayIncludingKeyword.length == 0) {
-      //  displayMessage();
       displayMessageV2();
+      recipesArrayIncludingKeyword = recipes;
     }
   } else {
-    recipes.forEach((recipe) => {
-      new Recipe(recipe);
-    });
+    if (valueInput.length === 0) {
+      recipesArrayIncludingKeyword = recipes;
+      displayRecipes(recipesArrayIncludingKeyword);
+    }
   }
 });
 
