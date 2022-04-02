@@ -60,10 +60,18 @@ function removeDuplicatesDropdown() {
 
 removeDuplicatesDropdown();
 
+let test = new Dropdown();
+test.displayDropdown("#container-ingredient", ingredientsListDropdown,recipesArrayIncludingKeyword);
+test.displayDropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
+test.displayDropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
+
+
 /*
 Creation de la liste pour chaque element -ingredients, appareils, ustensiles
 Creation  de tags
 */
+
+/*
 function createListe(container, array) {
   let ulElement = document.querySelector(`${container} .elements-liste`);
 
@@ -83,12 +91,16 @@ function createListe(container, array) {
     Creation  de tags :on rajoute evenement au click pour rajouter des tags (n 7,8)
     */
 
+
+    /*
     liElement.addEventListener("click", (e) => {
       addTags(e, container);
 
     });
   });
 }
+*/
+
 
 function addTags(e, container) {
   /*
@@ -159,6 +171,8 @@ Fermeture tag
     removeTags(e, container);
   });
 }
+
+
 function getIngredients(element) {
   let listeIngredients = [];
 
@@ -171,6 +185,7 @@ function getIngredients(element) {
 /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
 */
+/*
 function displayRecipes(array) {
   sectionRecipes.innerHTML = "";
   searchByKeywordsIng(array);
@@ -180,7 +195,9 @@ function displayRecipes(array) {
     new Recipe(element);
   });
 }
+*/
 
+/*
 function removeTags(e, container) {
   e.target.parentElement.remove();
   let tagContainer = document.querySelector(".tag-container");
@@ -241,7 +258,8 @@ function removeTags(e, container) {
 
   console.log(recipesSearch);
 }
-
+*/
+/*
 function displayDropdown(container, array) {
   //container-ingredient, container-appliances, container-utensils
   let arrow = document.querySelectorAll(`${container} .btn-dropdown-container__arrow-down`)[0];
@@ -268,10 +286,21 @@ function displayDropdown(container, array) {
     }
   });
 }
+*/
 
+/*
 displayDropdown("#container-ingredient", ingredientsListDropdown);
 displayDropdown("#container-appliances", appliancesListDropdown);
 displayDropdown("#container-ustensils", utensilsListDropdown);
+*/
+
+/*
+new Dropdown("#container-ingredient", ingredientsListDropdown,recipesArrayIncludingKeyword);
+new Dropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
+new Dropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
+*/
+
+
 
 /*
 Fonction de creation d'une nouvelle liste  ingredients à partir de tableau de recettes filtrées par 
@@ -324,7 +353,7 @@ les mots clés renseignés dans la barre de recherche
 
 */
 
-let recipesByKeywords = [];
+
 function createRecipesArrayIncludedKeyword(value) {
   let array = [];
   //array = array vide à remplir par de recette en fonction de mots clés/tag
@@ -347,7 +376,10 @@ function createRecipesArrayIncludedKeyword(value) {
     la barre de recherche principale
     */
 
-  displayRecipes(recipesArrayIncludingKeyword);
+  //
+  let newTest = new Dropdown();
+  newTest.displayRecipes(recipesArrayIncludingKeyword)
+ // displayRecipes(recipesArrayIncludingKeyword);
 }
 
 /*
@@ -400,9 +432,21 @@ function searchInDropdown(container, array) {
     createListe(container, newListe);
   });
 }
+
 searchInDropdown("#container-ingredient", ingredientsListDropdown);
 searchInDropdown("#container-appliances", appliancesListDropdown);
 searchInDropdown("#container-ustensils", utensilsListDropdown);
+
+
+/*
+let searchDropdown = new Dropdown();
+
+
+searchDropdown.searchInDropdown("#container-ingredient", ingredientsListDropdown,recipesArrayIncludingKeyword);
+searchDropdown.searchInDropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
+searchDropdown.searchInDropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
+*/
+
 
 function displayMessage() {
   let messageContainer = document.createElement("div");
@@ -430,3 +474,4 @@ function displayMessageV2() {
 
   sectionRecipes.appendChild(message);
 }
+export{recipes}
