@@ -1,7 +1,21 @@
 import { recipes } from "./../../data/recipes.js";
+/*
+Tableau des ustensils vide ( puis trier sans doublon pour appeler dans displayDropDown)
+*/
+let utensilsListDropdown = [];
+
+/*
+Tableau des appareils vide ( puis trier sans doublon pour appele rdans  displayDropDown)
+*/
+let appliancesListDropdown = [];
+
+/*
+Tableau des ingredients vide ( puis trier sans doublon pour appeler dans displayDropDown)
+*/
+let ingredientsListDropdown = [];
 
 
-function removeDuplicatesDropdown(ingredientsListDropdown,utensilsListDropdown,appliancesListDropdown) {
+function removeDuplicatesDropdown() {
     recipes.forEach((recipe) => {
       let recipeUtensils = recipe.ustensils;
       let recipeAppliances = recipe.appliance;
@@ -23,4 +37,4 @@ function removeDuplicatesDropdown(ingredientsListDropdown,utensilsListDropdown,a
     });
     
   }
-  export{removeDuplicatesDropdown}
+  export{removeDuplicatesDropdown,utensilsListDropdown, appliancesListDropdown, ingredientsListDropdown}

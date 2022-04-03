@@ -9,7 +9,7 @@ class MainInput {
     //arrayRecipes = recipesArrayIncludingKeyword
     //this.array = ingredientsListDropdown,appliancesListDropdown,utensilsListDropdow
     this.arrayRecipes = arrayRecipes;
-  //  this.array= array;
+    //  this.array= array;
     this.display();
   }
 
@@ -65,15 +65,16 @@ les mots clés renseignés dans la barre de recherche
       }
     });
     this.arrayRecipes = array;
+
     /*
-      
       MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
       la barre de recherche principale
       */
 
-
     new Dropdown().displayRecipes(this.arrayRecipes);
-    // displayRecipes(recipesArrayIncludingKeyword);
+
+
+   
   };
 }
 export { MainInput };

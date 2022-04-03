@@ -33,7 +33,7 @@ class Dropdown {
       }
     });
   };
-/*
+  /*
 Creation de la liste pour chaque element -ingredients, appareils, ustensiles
 Creation  de tags
 */
@@ -54,11 +54,11 @@ Creation  de tags
     */
 
       liElement.addEventListener("click", (e) => {
-        this.addTags(e, container, arrayRecipes,array);
+        this.addTags(e, container, arrayRecipes, array);
       });
     });
   };
-  addTags = (e, container, arrayRecipes,array) => {
+  addTags = (e, container, arrayRecipes, array) => {
     /*
 Create tag 
 */
@@ -115,7 +115,7 @@ Trie de recette par tag
       //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
       arrayRecipes = recipesByTags;
 
-      this.displayRecipes(arrayRecipes,array);
+      this.displayRecipes(arrayRecipes, array);
     });
 
     console.log(arrayRecipes);
@@ -128,11 +128,11 @@ Fermeture tag
 
     cross.addEventListener("click", (e) => {
       console.log(this);
-      this.removeTags(e, container,array);
+      this.removeTags(e, container, array);
     });
   };
 
-  removeTags = (e, container,array) => {
+  removeTags = (e, container, array) => {
     e.target.parentElement.remove();
     let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
@@ -187,28 +187,28 @@ Fermeture tag
       }
     }
 
-    this.displayRecipes(recipesSearch,array);
+    this.displayRecipes(recipesSearch, array);
     console.log(recipesSearch);
   };
-/*
+  /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
 */
-  displayRecipes = (arrayRecipes,array) => {
+  displayRecipes = (arrayRecipes, array) => {
     sectionRecipes.innerHTML = "";
     this.searchByKeywordsIng(arrayRecipes, "#container-ingredient");
     this.searchByKeywordsDropdowns(arrayRecipes, "#container-appliances", "appliance");
     this.searchByKeywordsDropdowns(arrayRecipes, "#container-ustensils", "ustensils");
-/*
+    /*
 
-    this.searchInDropdown("#container-ingredient",arrayRecipes,array);
-    this.searchInDropdown("#container-appliances",arrayRecipes,array);
-this.searchInDropdown("#container-ustensils",arrayRecipes,array);
+    this.searchInDropdown("#container-ingredient",array,arrayRecipes);
+    this.searchInDropdown("#container-appliances",array,arrayRecipes );
+this.searchInDropdown("#container-ustensils",array,arrayRecipes);
 */
     arrayRecipes.forEach((element) => {
       new Recipe(element);
     });
   };
-/*
+  /*
 Fonction de creation d'une nouvelle liste  ingredients à partir de tableau de recettes filtrées par 
 mots clés tapés dans la barre de recherche principale
 
@@ -227,6 +227,8 @@ on remplie le tableau des ingredients */
     });
     // on crée la nouvelle liste
     this.createListe(container, listeIngredients, arrayRecipes);
+
+   
   };
   /*
 Fonction de creation d'une nouvelle liste des appareils et ustensils a partir de tableau de recettes filtrées par 
@@ -246,19 +248,17 @@ mots clés tapés dans la barre de recherche principale
 
   searchInDropdown = (container, array, arrayRecipes) => {
     const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
-    let newListe;
+    let newListe = [];
 
     dropdownInput.addEventListener("input", (e) => {
       let inputValue = e.target.value.toLowerCase();
-console.log(array)
+    
       newListe = array.filter((element) => {
         return element.toLowerCase().includes(inputValue);
       });
-     
+
       this.createListe(container, newListe, arrayRecipes);
     });
-
   };
-  
 }
 export { Dropdown };
