@@ -54,11 +54,11 @@ Creation  de tags
     */
 
       liElement.addEventListener("click", (e) => {
-        this.addTags(e, container, arrayRecipes, array);
+        this.addTags(e, container, arrayRecipes);
       });
     });
   };
-  addTags = (e, container, arrayRecipes, array) => {
+  addTags = (e, container, arrayRecipes) => {
     /*
 Create tag 
 */
@@ -115,7 +115,7 @@ Trie de recette par tag
       //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
       arrayRecipes = recipesByTags;
 
-      this.displayRecipes(arrayRecipes, array);
+      this.displayRecipes(arrayRecipes);
     });
 
     console.log(arrayRecipes);
@@ -128,11 +128,11 @@ Fermeture tag
 
     cross.addEventListener("click", (e) => {
       console.log(this);
-      this.removeTags(e, container, array);
+      this.removeTags(e, container);
     });
   };
 
-  removeTags = (e, container, array) => {
+  removeTags = (e, container) => {
     e.target.parentElement.remove();
     let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
@@ -187,23 +187,18 @@ Fermeture tag
       }
     }
 
-    this.displayRecipes(recipesSearch, array);
+    this.displayRecipes(recipesSearch);
     console.log(recipesSearch);
   };
   /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
 */
-  displayRecipes = (arrayRecipes, array) => {
+  displayRecipes = (arrayRecipes) => {
     sectionRecipes.innerHTML = "";
     this.searchByKeywordsIng(arrayRecipes, "#container-ingredient");
     this.searchByKeywordsDropdowns(arrayRecipes, "#container-appliances", "appliance");
     this.searchByKeywordsDropdowns(arrayRecipes, "#container-ustensils", "ustensils");
-    /*
 
-    this.searchInDropdown("#container-ingredient",array,arrayRecipes);
-    this.searchInDropdown("#container-appliances",array,arrayRecipes );
-this.searchInDropdown("#container-ustensils",array,arrayRecipes);
-*/
     arrayRecipes.forEach((element) => {
       new Recipe(element);
     });
@@ -228,7 +223,8 @@ on remplie le tableau des ingredients */
     // on crée la nouvelle liste
     this.createListe(container, listeIngredients, arrayRecipes);
 
-   
+    //recherche in dropdown
+    this.searchInDropdown(container, listeIngredients, arrayRecipes);
   };
   /*
 Fonction de creation d'une nouvelle liste des appareils et ustensils a partir de tableau de recettes filtrées par 
@@ -244,18 +240,27 @@ mots clés tapés dans la barre de recherche principale
     });
     // on crée la nouvelle liste
     this.createListe(container, listeElements, arrayRecipes);
+
+    //test recherche in dropdown
+    this.searchInDropdown(container, listeElements, arrayRecipes);
   };
-
-  searchInDropdown = (container, array, arrayRecipes) => {
+  /*
+INPUT DROPDOWN
+Recherche dans  les inputs dropdowns (ing, ust, app) 
+*/
+  searchInDropdown = (container, arrayListe, arrayRecipes) => {
     const dropdownInput = document.querySelectorAll(`${container} .input`)[0];
-    let newListe = [];
-
+    //arrayListe - listeIngredients, listeElements(ustensils, appareils)
     dropdownInput.addEventListener("input", (e) => {
+      let newListe;
       let inputValue = e.target.value.toLowerCase();
-    
-      newListe = array.filter((element) => {
+      console.log(arrayListe);
+      console.log(inputValue);
+
+      newListe = arrayListe.filter((element) => {
         return element.toLowerCase().includes(inputValue);
       });
+      console.log(newListe);
 
       this.createListe(container, newListe, arrayRecipes);
     });

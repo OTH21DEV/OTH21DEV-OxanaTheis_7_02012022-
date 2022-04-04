@@ -50,9 +50,10 @@ les mots clés renseignés dans la barre de recherche
 
 */
   createRecipesArrayIncludedKeyword = (value) => {
-    let array = [];
+    let newArray = [];
     //array = array vide à remplir par de recette en fonction de mots clés/tag
     this.arrayRecipes.forEach((element) => {
+     
       let recipeIngredients = [];
       //tableau des ingredients par recette
       for (let ingredient of element.ingredients) {
@@ -61,10 +62,10 @@ les mots clés renseignés dans la barre de recherche
       }
       if (element.name.toLowerCase().includes(value.toLowerCase()) || element.description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
         //les recettes correpondantes sont envoyées vers nouveau tableau filtré
-        array.push(element);
+        newArray.push(element);
       }
     });
-    this.arrayRecipes = array;
+    this.arrayRecipes = newArray;
 
     /*
       MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
