@@ -31,5 +31,10 @@ new Dropdown().displayDropdown("#container-ustensils", utensilsListDropdown, rec
  reCherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 */
 new MainInput(recipesArrayIncludingKeyword);
+//test
+
+new Dropdown().searchInDropdown("#container-ingredient", ingredientsListDropdown,recipesArrayIncludingKeyword);
+new Dropdown().searchInDropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
+new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
 
 export { recipes };

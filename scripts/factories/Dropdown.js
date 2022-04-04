@@ -161,29 +161,42 @@ Fermeture tag
         let tagTxt = i.innerText.toLowerCase().trim();
 
         recipesSearch.forEach((element) => {
+          console.log(element.appliance.toLowerCase())
           let listeIngredients = getIngredients(element);
 
-          if (container.replace("#", "") == "container-ingredient") {
+console.log(tagTxt)
+console.log(element.ustensils)
+console.log(listeIngredients)
+console.log(container)
+//console log le container qui vient d'etre fermé 
+
+        //  if (container.replace("#", "") == "container-ingredient") {
             if (listeIngredients.includes(tagTxt)) {
+              console.log(`here`)
               newArray.push(element);
             }
-          }
+      //    }
 
-          if (container.replace("#", "") == "container-appliances") {
-            if (element.appliance == `${tagTxt}`) {
+         // if (container.replace("#", "") == "container-appliances") {
+            if (element.appliance.toLowerCase() == `${tagTxt}`)  {
+         
+             console.log(`here`)
               newArray.push(element);
-            }
-          }
 
-          if (container.replace("#", "") == "container-ustensils") {
-            if (element.ustensils.includes(`${tagTxt}`)) {
+            }
+        //  }
+
+          //if (container.replace("#", "") == "container-ustensils") {
+          //  if (element.ustensils.includes(`${tagTxt}`)) {
+            if (element.ustensils.includes(tagTxt)) {
               newArray.push(element);
             }
-          }
+         // }
         });
-
+     
         recipesSearch = newArray;
         newArray = [];
+
       }
     }
 

@@ -7,9 +7,8 @@ const sectionRecipes = document.querySelector(".recipes");
 class MainInput {
   constructor(arrayRecipes) {
     //arrayRecipes = recipesArrayIncludingKeyword
-    //this.array = ingredientsListDropdown,appliancesListDropdown,utensilsListDropdow
+
     this.arrayRecipes = arrayRecipes;
-    //  this.array= array;
     this.display();
   }
 
@@ -20,7 +19,6 @@ class MainInput {
       if (valueInput.length >= 3) {
         //efface le contenu initial
         sectionRecipes.innerHTML = "";
-
         e.preventDefault();
 
         // recherche dans le nom et description de recette depuis la barre principale
@@ -53,7 +51,6 @@ les mots clés renseignés dans la barre de recherche
     let newArray = [];
     //array = array vide à remplir par de recette en fonction de mots clés/tag
     this.arrayRecipes.forEach((element) => {
-     
       let recipeIngredients = [];
       //tableau des ingredients par recette
       for (let ingredient of element.ingredients) {
@@ -73,9 +70,6 @@ les mots clés renseignés dans la barre de recherche
       */
 
     new Dropdown().displayRecipes(this.arrayRecipes);
-
-
-   
   };
 }
 export { MainInput };
