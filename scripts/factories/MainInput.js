@@ -1,6 +1,7 @@
 import { recipes } from "../pages/index.js";
 import { displayMessage } from "../utils/displayMessage.js";
 import { Dropdown } from "./Dropdown.js";
+import { getWords } from "../utils/getWords.js";
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
 
@@ -41,33 +42,31 @@ class MainInput {
       }
     });
   };
+
   /*
-Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description ou dans les ingredients 
-les mots clés renseignés dans la barre de recherche
+  Fonction de remplissage de nouveau tableau de recettes par de recettes qui comportent dans leurs noms et/ou dans la description ou dans les ingredients 
+  les mots clés renseignés dans la barre de recherche
+  */
 
+  /*
+  Changement de l'algorithme de recherche de recettes - recherche par mots
+  */
 
-*/
   createRecipesArrayIncludedKeyword = (value) => {
     let newArray = [];
-    //array = array vide à remplir par de recette en fonction de mots clés/tag
+    //newArray = array vide à remplir par de recette en fonction de mots clés/tag
     this.arrayRecipes.forEach((element) => {
-      let recipeIngredients = [];
-      //tableau des ingredients par recette
-      for (let ingredient of element.ingredients) {
-        //on remplie le tableau par des ingredients de chaque recette
-        recipeIngredients = [...new Set(recipeIngredients.concat(ingredient.ingredient.toLowerCase()))].sort();
-      }
-      if (element.name.toLowerCase().includes(value.toLowerCase()) || element.description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
-        //les recettes correpondantes sont envoyées vers nouveau tableau filtré
+      let recipeWords = getWords(element);
+      if (recipeWords.includes(value.toLowerCase())) {
         newArray.push(element);
       }
     });
     this.arrayRecipes = newArray;
 
     /*
-      MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
-      la barre de recherche principale
-      */
+    MAJ des listes de dropdowns (ing, ust, app) par rapport au mot clé renseigné dans
+    la barre de recherche principale
+    */
 
     new Dropdown().displayRecipes(this.arrayRecipes);
   };

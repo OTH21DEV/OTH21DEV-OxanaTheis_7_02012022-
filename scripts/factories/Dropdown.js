@@ -1,6 +1,7 @@
 import { recipes } from "../pages/index.js";
 import { Recipe } from "../factories/Recipe.js";
 import { getIngredients } from "../utils/getIngredients.js";
+import { getWords } from "../utils/getWords.js";
 
 const sectionRecipes = document.querySelector(".recipes");
 const mainSearch = document.querySelector(".search");
@@ -83,7 +84,7 @@ Create tag
     /*
 Trie de recette par tag 
 */
-
+    //V initiale
     let recipesByTags = [];
 
     //arrayRecipes = recipesArrayIncludingKeyword(array des recettes)
@@ -119,6 +120,30 @@ Trie de recette par tag
     });
 
     console.log(arrayRecipes);
+    //V2 pb de tag en mot composé
+    /*
+    let recipesByTags = [];
+    let recipeWords;
+    /*arrayRecipes = recipesArrayIncludingKeyword(array des recettes)*/
+    /*
+    arrayRecipes.forEach((element) => {
+      recipeWords = getWords(element);
+
+      for (let i of value.toLowerCase().split(" ")) {
+        if (recipeWords.includes(i)) {
+          recipesByTags.push(element);
+          console.log(i);
+          console.log(recipeWords);
+        }
+      }
+
+      //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
+      arrayRecipes = recipesByTags;
+
+      this.displayRecipes(arrayRecipes);
+    });
+
+    console.log(arrayRecipes);*/
 
     /*
 Fermeture tag
@@ -142,13 +167,10 @@ Fermeture tag
 
     if (mainSearch.value.length >= 3) {
       recipesSearch.forEach((element) => {
-        let recipeIngredients = getIngredients(element);
+        //changement de l'algorithme de recherche de recettes -recherche par mots
+        let recipeWords = getWords(element);
 
-        if (
-          element.name.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-          element.description.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
-          recipeIngredients.includes(mainSearch.value)
-        ) {
+        if (recipeWords.includes(mainSearch.value.toLowerCase())) {
           newArray.push(element);
         }
       });
@@ -161,42 +183,23 @@ Fermeture tag
         let tagTxt = i.innerText.toLowerCase().trim();
 
         recipesSearch.forEach((element) => {
-          console.log(element.appliance.toLowerCase())
           let listeIngredients = getIngredients(element);
 
-console.log(tagTxt)
-console.log(element.ustensils)
-console.log(listeIngredients)
-console.log(container)
-//console log le container qui vient d'etre fermé 
+          if (listeIngredients.includes(tagTxt)) {
+            newArray.push(element);
+          }
 
-        //  if (container.replace("#", "") == "container-ingredient") {
-            if (listeIngredients.includes(tagTxt)) {
-              console.log(`here`)
-              newArray.push(element);
-            }
-      //    }
+          if (element.appliance.toLowerCase() == `${tagTxt}`) {
+            newArray.push(element);
+          }
 
-         // if (container.replace("#", "") == "container-appliances") {
-            if (element.appliance.toLowerCase() == `${tagTxt}`)  {
-         
-             console.log(`here`)
-              newArray.push(element);
-
-            }
-        //  }
-
-          //if (container.replace("#", "") == "container-ustensils") {
-          //  if (element.ustensils.includes(`${tagTxt}`)) {
-            if (element.ustensils.includes(tagTxt)) {
-              newArray.push(element);
-            }
-         // }
+          if (element.ustensils.includes(tagTxt)) {
+            newArray.push(element);
+          }
         });
-     
+
         recipesSearch = newArray;
         newArray = [];
-
       }
     }
 
@@ -267,8 +270,6 @@ Recherche dans  les inputs dropdowns (ing, ust, app)
     dropdownInput.addEventListener("input", (e) => {
       let newListe;
       let inputValue = e.target.value.toLowerCase();
-      console.log(arrayListe);
-      console.log(inputValue);
 
       newListe = arrayListe.filter((element) => {
         return element.toLowerCase().includes(inputValue);

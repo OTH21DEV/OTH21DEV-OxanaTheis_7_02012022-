@@ -3,7 +3,7 @@ import { Recipe } from "../factories/Recipe.js";
 import { Dropdown } from "../factories/Dropdown.js";
 import { MainInput } from "../factories/MainInput.js";
 import { removeDuplicatesDropdown, utensilsListDropdown, appliancesListDropdown, ingredientsListDropdown } from "../utils/removeDuplicatesDropdown.js";
-
+import{getWords} from "../utils/getWords.js"
 /*
 tableau vide de recettes( rempli au fur et au mesure par les recettes en fonction de 
 mots clés depuis la barre de recherche principale)
@@ -15,6 +15,7 @@ let recipesArrayIncludingKeyword = recipes;
 for (let i = 0; i < recipes.length; i++) {
   let recipe = recipes[i];
   new Recipe(recipe);
+
 }
 
 /*
@@ -43,8 +44,10 @@ new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown,rec
 export { recipes };
 
 //v1 test de filtrage du 35 au 29 pour premiere recette reste a supprimer la ponctuation"
-let filtered = [];
 
+
+
+/*
 recipes.forEach((element) => {
   let filteredWords = [];
   let test = [];
@@ -79,3 +82,4 @@ recipes.forEach((element) => {
 
   console.log(filtered);
 });
+*/
