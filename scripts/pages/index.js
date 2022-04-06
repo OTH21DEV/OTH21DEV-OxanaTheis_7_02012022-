@@ -43,43 +43,7 @@ new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown,rec
 
 export { recipes };
 
-//v1 test de filtrage du 35 au 29 pour premiere recette reste a supprimer la ponctuation"
 
 
 
-/*
-recipes.forEach((element) => {
-  let filteredWords = [];
-  let test = [];
-  let words = [];
-  let listeIngredients = [];
 
-  for (let ingredient of element.ingredients) {
-    listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient.toLocaleLowerCase()))].sort();
-  }
-//concatenation des mots 
-  words = [...new Set(words.concat(element.name.toLocaleLowerCase(), listeIngredients, element.description.toLocaleLowerCase(), element.appliance.toLocaleLowerCase(), element.ustensils))].join(" ");
-//split en sous chaine 
-  let arrayWords = words.split(" ");
-
-//supression de ponctuation
-  for (let word of arrayWords) {
-    word = word.replace(/[,;.]$/, "");
-    test.push(word);
-  }
-
-  arrayWords = test;
-
-
-//retour de mots contenant plus que 2 lettres
-  filteredWords = arrayWords.filter(function (word) {
-    return word.length > 2;
-  });
-
-
-//supression de doublon
-  filtered = [...new Set(filteredWords)].sort();
-
-  console.log(filtered);
-});
-*/
