@@ -1,10 +1,14 @@
 import { recipes } from "../pages/index.js";
 import { Recipe } from "../factories/Recipe.js";
+
 import { getIngredients } from "../utils/getIngredients.js";
 import { getWords } from "../utils/getWords.js";
 
 const sectionRecipes = document.querySelector(".recipes");
 const mainSearch = document.querySelector(".search");
+
+let recipesByTags = [];
+//let recipesByTags = [];
 
 class Dropdown {
   constructor() {}
@@ -85,9 +89,12 @@ Create tag
 Trie de recette par tag 
 */
     //V initiale
-    let recipesByTags = [];
+    //
+
+    //  let recipesByTags = [];
 
     //arrayRecipes = recipesArrayIncludingKeyword(array des recettes)
+    /*
     arrayRecipes.forEach((element) => {
       let listeIngredients = [];
 
@@ -119,31 +126,14 @@ Trie de recette par tag
       this.displayRecipes(arrayRecipes);
     });
 
-    console.log(arrayRecipes);
-    //V2 pb de tag en mot composé
-    /*
-    let recipesByTags = [];
-    let recipeWords;
-    /*arrayRecipes = recipesArrayIncludingKeyword(array des recettes)*/
-    /*
-    arrayRecipes.forEach((element) => {
-      recipeWords = getWords(element);
+    */
 
-      for (let i of value.toLowerCase().split(" ")) {
-        if (recipeWords.includes(i)) {
-          recipesByTags.push(element);
-          console.log(i);
-          console.log(recipeWords);
-        }
-      }
+    //V2 tri de tag
+    //let newArray = [];
 
-      //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
-      arrayRecipes = recipesByTags;
+    this.triTags(arrayRecipes);
 
-      this.displayRecipes(arrayRecipes);
-    });
-
-    console.log(arrayRecipes);*/
+    //....................
 
     /*
 Fermeture tag
@@ -157,8 +147,105 @@ Fermeture tag
     });
   };
 
+  //test tri tag
+
+  triTags = (arrayRecipes) => {
+
+    let tagContainer = document.querySelector(".tag-container");
+    let selectedTags = tagContainer.children.length;
+  
+  
+    if (selectedTags >= 1) {
+      for (let i of tagContainer.childNodes) {
+        let tagTxt = i.innerText.toLowerCase().trim();
+
+        arrayRecipes.forEach((element) => {
+          let listeIngredients = getIngredients(element);
+
+          if (listeIngredients.includes(tagTxt)) {
+            recipesByTags.push(element);
+          }
+
+          if (element.appliance.toLowerCase() == `${tagTxt}`) {
+            recipesByTags.push(element);
+          }
+
+          if (element.ustensils.includes(tagTxt)) {
+            recipesByTags.push(element);
+          }
+        });
+
+        arrayRecipes = recipesByTags;
+        recipesByTags = [];
+
+        mainSearch.addEventListener("input", (e) => {
+          let valueInput = e.target.value.toLowerCase();
+
+          //si il y a une valeur dans l'input en plus de tag on trie par rapport à l'input
+
+          if (valueInput.length > 0) {
+            arrayRecipes.forEach((element) => {
+              //changement de l'algorithme de recherche de recettes -recherche par mots
+              let recipeWords = getWords(element);
+
+              if (recipeWords.includes(valueInput.toLowerCase())) {
+                recipesByTags.push(element);
+              }
+            });
+
+            arrayRecipes = recipesByTags;
+            console.log(recipesByTags);
+            recipesByTags = [];
+            this.displayRecipes(arrayRecipes);
+          }
+
+         
+          /*
+          si il reste un tag et on efface le mot de l'input (valeur == 0) -ok avec un tag mais si il y a 2 tag - ne fonctionne pas
+          */
+
+
+          if (valueInput.length == 0 && selectedTags >= 1) {
+            console.log(selectedTags)
+          
+            recipesByTags=[]
+            arrayRecipes = recipes;
+        
+            arrayRecipes.forEach((element) => {
+              let listeIngredients = getIngredients(element);
+    
+              if (listeIngredients.includes(tagTxt)) {
+                recipesByTags.push(element);
+              }
+    
+              if (element.appliance.toLowerCase() == `${tagTxt}`) {
+                recipesByTags.push(element);
+              }
+    
+              if (element.ustensils.includes(tagTxt)) {
+                recipesByTags.push(element);
+              }
+            });
+    
+            arrayRecipes = recipesByTags;
+            recipesByTags = [];
+            this.displayRecipes(arrayRecipes);
+            arrayRecipes=[];
+            console.log("here");
+          }
+          
+          //...............................
+        });
+      }
+    }
+
+    this.displayRecipes(arrayRecipes);
+    console.log(arrayRecipes);
+  };
+
   removeTags = (e, container) => {
     e.target.parentElement.remove();
+
     let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
 
@@ -171,6 +258,7 @@ Fermeture tag
         let recipeWords = getWords(element);
 
         if (recipeWords.includes(mainSearch.value.toLowerCase())) {
+          console.log(mainSearch.value);
           newArray.push(element);
         }
       });
