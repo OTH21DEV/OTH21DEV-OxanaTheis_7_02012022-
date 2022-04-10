@@ -23,26 +23,18 @@ class MainInput {
       if (valueInput.length >= 3) {
         sectionRecipes.innerHTML = "";
         e.preventDefault();
+        this.createRecipesArrayIncludedKeyword(valueInput, arrayRecipes);
 
-        /*si pas de tag , on affiche les recettes avec la valeur de l'input*/
-        if (selectedTags === 0) {
-          this.createRecipesArrayIncludedKeyword(valueInput, arrayRecipes);
-        }
-        /*si tag existe, on fait un tri */
+        //si le tag est choisi en premier puis on cherche dans l'input principal-alors on fait un tri
         if (selectedTags >= 1) {
+          console.log("test3");
           new Dropdown().triTags(arrayRecipes);
         }
-
-        /*si  mot dans l'input  n'existe pas dans les recettes , on affiche message d'erreur, on affiche toutes les recettes*/
-        if (arrayRecipes.length == 0) {
-          displayMessage(sectionRecipes);
-          arrayRecipes = recipes;
-        }
       } else {
-      /*si on efface le mot dans l'input on affiche toutes les recettes*/
+        //si on efface le mot dans l'input on affiche toutes les recettes
         if (valueInput.length === 0) {
+          console.log("test4");
           arrayRecipes = recipes;
-
           new Dropdown().displayRecipes(arrayRecipes);
         }
       }
@@ -75,6 +67,15 @@ class MainInput {
     */
 
     new Dropdown().displayRecipes(arrayRecipes);
+
+    console.log(arrayRecipes);
+
+    /*si  mot dans l'input  n'existe pas dans les recettes , on affiche message d'erreur, on affiche toutes les recettes*/
+    if (arrayRecipes.length === 0) {
+      console.log("test2");
+      displayMessage(sectionRecipes);
+      arrayRecipes = recipes;
+    }
   };
 }
 export { MainInput };

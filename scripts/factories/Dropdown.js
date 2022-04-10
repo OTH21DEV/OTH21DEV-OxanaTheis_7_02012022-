@@ -147,7 +147,7 @@ Fermeture tag
     });
   };
 
-  //test tri tag
+  //test tri tag pour trier avec tag + input 
 
   triTags = (arrayRecipes) => {
 
@@ -200,42 +200,21 @@ Fermeture tag
           }
 
          
-          /*
-          si il reste un tag et on efface le mot de l'input (valeur == 0) -ok avec un tag mais si il y a 2 tag - ne fonctionne pas
-          */
+          
+          //si il reste un tag et on efface le mot de l'input (valeur == 0) on refait la recherche depuis le debut
+          
 
 
           if (valueInput.length == 0 && selectedTags >= 1) {
-            console.log(selectedTags)
-          
-            recipesByTags=[]
-            arrayRecipes = recipes;
-        
-            arrayRecipes.forEach((element) => {
-              let listeIngredients = getIngredients(element);
-    
-              if (listeIngredients.includes(tagTxt)) {
-                recipesByTags.push(element);
-              }
-    
-              if (element.appliance.toLowerCase() == `${tagTxt}`) {
-                recipesByTags.push(element);
-              }
-    
-              if (element.ustensils.includes(tagTxt)) {
-                recipesByTags.push(element);
-              }
-            });
-    
-            arrayRecipes = recipesByTags;
-            recipesByTags = [];
-            this.displayRecipes(arrayRecipes);
-            arrayRecipes=[];
-            console.log("here");
+            this.triTags(recipes)
+            
           }
           
-          //...............................
         });
+      
+        
+        //...............................
+
       }
     }
 
