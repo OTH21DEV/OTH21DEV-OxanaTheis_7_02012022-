@@ -1,7 +1,12 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixin" as *;
+
 
 body {
-  margin: 20px 30px;
+  @include desktop{
+    margin: 20px 30px;
+  }
+ 
 }
 section {
   margin-bottom: 20px;
@@ -15,12 +20,20 @@ section {
   font-family: "Lato", sans-serif;
 
   &::placeholder {
-    padding-left: 15px;
+
     font-size: 1.2em;
-    background-image: url(/assets/icon/loupe.png);
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position-x: right;
+
+    @include tablette{
+      margin: 20px 30px;
+      padding-left: 15px;
+    }
+    @include desktop{
+      background-image: url(/assets/icon/loupe.png);
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-position-x: right;
+      padding-left: 15px;
+    }
   }
 }
 
@@ -40,7 +53,11 @@ section {
 .wrapper-btns-dropdown {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
+
+  @include tablette{
+    width: 80%;
+  }
 }
 
 .btn-dropdown-container__arrow-down {
@@ -58,14 +75,20 @@ section {
   transform: rotate(180deg);
 }
 .btn-dropdown-container {
-  width: 25%;
+  width: 32%;
   height: 50px;
   font-family: "Lato", sans-serif;
   position: relative;
   border: none;
   border-radius: 5px;
   margin-top: 20px;
-  margin-right: 15px;
+
+
+  @include desktop {
+    width: 25%;
+    margin-right: 15px;
+  }
+
 }
 
 .btn-dropdown {
@@ -208,6 +231,7 @@ section {
   display: flex;
   flex-direction: column;
   overflow-x: scroll;
+
   height: 200px;
   flex-wrap: wrap;
   width: 100%;
@@ -349,23 +373,35 @@ $anim-dur: 1400ms;
       animation-name: carte;
       animation-duration: $anim-dur;
       animation-fill-mode: forwards;
+ 
     }
   }
 }
 .wrapper-recipe {
   display: flex;
   flex-direction: column;
-  width: 31%;
+ // width: 31%;
+ width: 100%;
   //animation: message 1.2s;
   margin-bottom: 25px;
   opacity: 0;
-  margin-right: 20px;
+ // margin-right: 20px;
 
   & .recipe-img {
     height: 120px;
     background-color: $recipe-dark-bg;
     border-radius: 5px 5px 0 0;
   }
+  @include tablette {
+    width: 45%;
+    margin-right: 20px;
+  }
+  @include desktop {
+    width: 30%;
+    margin-right: 20px;
+  }
+
+
 }
 
 @keyframes carte {

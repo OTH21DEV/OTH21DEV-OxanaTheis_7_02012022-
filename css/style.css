@@ -1,5 +1,7 @@
-body {
-  margin: 20px 30px;
+@media all and (min-width: 880px) {
+  body {
+    margin: 20px 30px;
+  }
 }
 
 section {
@@ -15,12 +17,22 @@ section {
   font-family: "Lato", sans-serif;
 }
 .search::placeholder {
-  padding-left: 15px;
   font-size: 1.2em;
-  background-image: url(/assets/icon/loupe.png);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position-x: right;
+}
+@media all and (min-width: 470px) {
+  .search::placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+}
+@media all and (min-width: 880px) {
+  .search::placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
 }
 
 .form {
@@ -42,7 +54,12 @@ section {
 .wrapper-btns-dropdown {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
+}
+@media all and (min-width: 470px) {
+  .wrapper-btns-dropdown {
+    width: 80%;
+  }
 }
 
 .btn-dropdown-container__arrow-down {
@@ -61,14 +78,19 @@ section {
 }
 
 .btn-dropdown-container {
-  width: 25%;
+  width: 32%;
   height: 50px;
   font-family: "Lato", sans-serif;
   position: relative;
   border: none;
   border-radius: 5px;
   margin-top: 20px;
-  margin-right: 15px;
+}
+@media all and (min-width: 880px) {
+  .btn-dropdown-container {
+    width: 25%;
+    margin-right: 15px;
+  }
 }
 
 .btn-dropdown {
@@ -639,15 +661,26 @@ section {
 .wrapper-recipe {
   display: flex;
   flex-direction: column;
-  width: 31%;
+  width: 100%;
   margin-bottom: 25px;
   opacity: 0;
-  margin-right: 20px;
 }
 .wrapper-recipe .recipe-img {
   height: 120px;
   background-color: #C7BEBE;
   border-radius: 5px 5px 0 0;
+}
+@media all and (min-width: 470px) {
+  .wrapper-recipe {
+    width: 45%;
+    margin-right: 20px;
+  }
+}
+@media all and (min-width: 880px) {
+  .wrapper-recipe {
+    width: 30%;
+    margin-right: 20px;
+  }
 }
 
 @keyframes carte {

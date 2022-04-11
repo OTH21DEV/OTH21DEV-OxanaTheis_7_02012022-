@@ -1,0 +1,16 @@
+$breakpoints: (
+
+  tablette: 470px,
+  desktop: 880px,
+);
+
+@mixin desktop {
+  @media all and (min-width: map-get($breakpoints,desktop)) {
+    @content;
+  }
+}
+@mixin tablette {
+  @media all and (min-width: map-get($breakpoints,tablette)) {
+    @content;
+  }
+}
