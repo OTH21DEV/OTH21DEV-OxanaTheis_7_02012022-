@@ -6,9 +6,9 @@ import { getWords } from "../utils/getWords.js";
 
 const sectionRecipes = document.querySelector(".recipes");
 const mainSearch = document.querySelector(".search");
+let tagContainer = document.querySelector(".tag-container");
 
 let recipesByTags = [];
-//let recipesByTags = [];
 
 class Dropdown {
   constructor() {}
@@ -55,7 +55,7 @@ Creation  de tags
       liElement.innerHTML = element;
 
       /*
-    Creation  de tags :on rajoute evenement au click pour rajouter des tags (n 7,8)
+    Creation  de tags :on rajoute evenement au click pour rajouter des tags 
     */
 
       liElement.addEventListener("click", (e) => {
@@ -69,7 +69,7 @@ Create tag
 */
 
     let value = e.target.childNodes[0].data;
-    let tagContainer = document.querySelector(".tag-container");
+   // let tagContainer = document.querySelector(".tag-container");
     let tag = document.createElement("div");
     tag.className = "tag";
     tagContainer.appendChild(tag);
@@ -88,52 +88,8 @@ Create tag
     /*
 Trie de recette par tag 
 */
-    //V initiale
-    //
 
-    //  let recipesByTags = [];
-
-    //arrayRecipes = recipesArrayIncludingKeyword(array des recettes)
-    /*
-    arrayRecipes.forEach((element) => {
-      let listeIngredients = [];
-
-      for (let ingredient of element.ingredients) {
-        //on remplie le tableau par des ingredients de chaque recette
-        listeIngredients = [...new Set(listeIngredients.concat(ingredient.ingredient))].sort();
-      }
-
-      if (container.replace("#", "") == "container-ingredient") {
-        if (listeIngredients.includes(value)) {
-          recipesByTags.push(element);
-        }
-      }
-
-      if (container.replace("#", "") == "container-appliances") {
-        if (element.appliance == `${value}`) {
-          recipesByTags.push(element);
-        }
-      }
-
-      if (container.replace("#", "") == "container-ustensils") {
-        if (element.ustensils.includes(`${value.toLowerCase()}`)) {
-          recipesByTags.push(element);
-        }
-      }
-      //on attribue la valeur du tableau obtenu au tableau de travail recipesArrayIncludingKeyword - qui recupere les recettes filtrées ici par tag
-      arrayRecipes = recipesByTags;
-
-      this.displayRecipes(arrayRecipes);
-    });
-
-    */
-
-    //V2 tri de tag
-    //let newArray = [];
-
-    this.triTags(arrayRecipes);
-
-    //....................
+    this.filterTags(arrayRecipes);
 
     /*
 Fermeture tag
@@ -142,20 +98,18 @@ Fermeture tag
     let cross = tag.children[0];
 
     cross.addEventListener("click", (e) => {
-      console.log(this);
       this.removeTags(e, container);
     });
   };
 
-  //test tri tag pour trier avec tag + input 
+  //Trie de tag pour filtrer des recettes  avec tag + input
 
-  triTags = (arrayRecipes) => {
-
-    let tagContainer = document.querySelector(".tag-container");
+  filterTags = (arrayRecipes) => {
+    //let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
-  
-  
+
     if (selectedTags >= 1) {
+
       for (let i of tagContainer.childNodes) {
         let tagTxt = i.innerText.toLowerCase().trim();
 
@@ -177,46 +131,43 @@ Fermeture tag
 
         arrayRecipes = recipesByTags;
         recipesByTags = [];
-
-        mainSearch.addEventListener("input", (e) => {
-          let valueInput = e.target.value.toLowerCase();
-
-          //si il y a une valeur dans l'input en plus de tag on trie par rapport à l'input
-
-          if (valueInput.length > 0) {
-            arrayRecipes.forEach((element) => {
-              //changement de l'algorithme de recherche de recettes -recherche par mots
-              let recipeWords = getWords(element);
-
-              if (recipeWords.includes(valueInput.toLowerCase())) {
-                recipesByTags.push(element);
-              }
-            });
-
-            arrayRecipes = recipesByTags;
-            console.log(recipesByTags);
-            recipesByTags = [];
-            this.displayRecipes(arrayRecipes);
-          }
-
-         
-          
-          //si il reste un tag et on efface le mot de l'input (valeur == 0) on refait la recherche depuis le debut
-          
-
-
-          if (valueInput.length == 0 && selectedTags >= 1) {
-            this.triTags(recipes)
-            
-          }
-          
-        });
-      
-        
-        //...............................
-
       }
+
+//this.getRecipesByTags(arrayRecipes)
     }
+      mainSearch.addEventListener("input", (e) => {
+        let valueInput = e.target.value.toLowerCase();
+
+        //si il y a une valeur dans l'input en plus de tag on trie par rapport à l'input
+
+        if (valueInput.length > 0) {
+          arrayRecipes.forEach((element) => {
+            //changement de l'algorithme de recherche de recettes -recherche par mots
+            let recipeWords = getWords(element);
+
+            if (recipeWords.includes(valueInput.toLowerCase())) {
+              recipesByTags.push(element);
+            }
+
+
+
+          });
+
+          arrayRecipes = recipesByTags;
+          recipesByTags = [];
+          this.displayRecipes(arrayRecipes);
+        }
+
+        //si il reste un tag et on efface le mot de l'input (valeur == 0) on refait la recherche depuis le debut
+
+        if (valueInput.length == 0 && selectedTags >= 1) {
+          this.filterTags(recipes);
+        }
+      });
+
+      //...............................
+      //}test boucle
+    //}test if
 
     this.displayRecipes(arrayRecipes);
     console.log(arrayRecipes);
@@ -225,7 +176,7 @@ Fermeture tag
   removeTags = (e, container) => {
     e.target.parentElement.remove();
 
-    let tagContainer = document.querySelector(".tag-container");
+    //let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
 
     let recipesSearch = recipes;
@@ -246,9 +197,9 @@ Fermeture tag
 
     if (selectedTags >= 1) {
       newArray = [];
+      
       for (let i of tagContainer.childNodes) {
         let tagTxt = i.innerText.toLowerCase().trim();
-
         recipesSearch.forEach((element) => {
           let listeIngredients = getIngredients(element);
 
@@ -268,10 +219,42 @@ Fermeture tag
         recipesSearch = newArray;
         newArray = [];
       }
+
+      
+     // this.getRecipesByTags(recipesSearch, newArray)
     }
 
     this.displayRecipes(recipesSearch);
     console.log(recipesSearch);
+  };
+
+  //test de refactoring
+
+  getRecipesByTags = (array) => {
+    
+    for (let i of tagContainer.childNodes) {
+      let tagTxt = i.innerText.toLowerCase().trim();
+      array.forEach((element) => {
+        let listeIngredients = getIngredients(element);
+
+        if (listeIngredients.includes(tagTxt)) {
+          recipesByTags.push(element);
+        }
+
+        if (element.appliance.toLowerCase() == `${tagTxt}`) {
+          recipesByTags.push(element);
+        }
+
+        if (element.ustensils.includes(tagTxt)) {
+          recipesByTags.push(element);
+        }
+      });
+
+      array = recipesByTags;
+      recipesByTags = [];
+    }
+
+
   };
   /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
@@ -324,7 +307,7 @@ mots clés tapés dans la barre de recherche principale
     // on crée la nouvelle liste
     this.createListe(container, listeElements, arrayRecipes);
 
-    //test recherche in dropdown
+    // recherche in dropdown
     this.searchInDropdown(container, listeElements, arrayRecipes);
   };
   /*
