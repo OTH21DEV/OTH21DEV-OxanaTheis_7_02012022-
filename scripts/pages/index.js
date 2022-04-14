@@ -9,15 +9,18 @@ tableau vide de recettes( rempli au fur et au mesure par les recettes en fonctio
 mots clés depuis la barre de recherche principale)
 */
 let recipesArrayIncludingKeyword = recipes;
+//tableau de mots de recettes
+let recipesWords =[];
 
 //Creation des recettes au chargement de la page
+recipes.forEach((element) => {
+  new Recipe(element);
+ 
+//tableau de mots de chaque recette
+recipesWords.push(getWords(element));
 
-for (let i = 0; i < recipes.length; i++) {
-  let recipe = recipes[i];
-  new Recipe(recipe);
-
-}
-
+})
+console.log(recipesWords)
 /*
 Fonction pour supprimer des doublons afin de recreer le contenu initial de dropdown
 */
@@ -41,7 +44,7 @@ new Dropdown().searchInDropdown("#container-ingredient", ingredientsListDropdown
 new Dropdown().searchInDropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
 new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
 
-export { recipes };
+export { recipes,recipesWords };
 
 
 
