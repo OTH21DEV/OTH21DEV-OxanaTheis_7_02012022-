@@ -1,24 +1,19 @@
 import { recipes, recipesWords } from "../pages/index.js";
 import { displayMessage } from "../utils/displayMessage.js";
 import { Dropdown } from "./Dropdown.js";
-import { getWords } from "../utils/getWords.js";
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
 
 class MainInput {
   constructor(arrayRecipes) {
-    //arrayRecipes = recipesArrayIncludingKeyword
-
-    // this.arrayRecipes = arrayRecipes;
     this.display(arrayRecipes);
   }
 
   display = (arrayRecipes) => {
+    let tagContainer = document.querySelector(".tag-container");
+    let selectedTags = tagContainer.children.length;
     mainSearch.addEventListener("input", (e) => {
       let valueInput = e.target.value.toLowerCase();
-      console.log(valueInput);
-      let tagContainer = document.querySelector(".tag-container");
-      let selectedTags = tagContainer.children.length;
 
       if (valueInput.length >= 3) {
         sectionRecipes.innerHTML = "";
@@ -52,31 +47,12 @@ class MainInput {
 
   createRecipesArrayIncludedKeyword = (value, arrayRecipes) => {
     let newArray = [];
-    //v1
-    /*
-   arrayRecipes.forEach((element) => {
-
-      let recipeWords = getWords(element);
-  
-     console.log(recipeWords)
-
- if(recipeWords.find(word => word.slice(0, value.length) === value)){
-  newArray.push(element);
- }
- });
- */
-
-    //........................................................
-    console.log(recipesWords);
 
     recipesWords.forEach((element) => {
       if (element.mots.find((word) => word.slice(0, value.length) === value)) {
         newArray.push(recipes[element.id - 1]);
       }
-
     });
-    //..............................................................
-   // console.log(newArray);
 
     arrayRecipes = newArray;
     /*

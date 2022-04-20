@@ -1,8 +1,7 @@
 import { recipes, recipesWords } from "../pages/index.js";
 import { Recipe } from "../factories/Recipe.js";
-
 import { getIngredients } from "../utils/getIngredients.js";
-import { getWords } from "../utils/getWords.js";
+
 
 const sectionRecipes = document.querySelector(".recipes");
 const mainSearch = document.querySelector(".search");
@@ -25,7 +24,7 @@ class Dropdown {
         cont.className = "btn-dropdown-container--onclick";
         liste.classList.add("popup-input--onclick");
         title.classList.add("btn-dropdown--onclick");
-        document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
+        //document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
         arrow.classList.add("btn-dropdown-container__arrow-down--onclick");
         arrow.setAttribute("data-open", "true");
       } else {
@@ -33,7 +32,7 @@ class Dropdown {
         liste.classList.remove("popup-input--onclick");
         arrow.classList.remove("btn-dropdown-container__arrow-down--onclick");
         cont.className = "btn-dropdown-container";
-        document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
+       // document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
         arrow.setAttribute("data-open", "false");
       }
     });
@@ -69,7 +68,6 @@ Create tag
 */
 
     let value = e.target.childNodes[0].data;
-    // let tagContainer = document.querySelector(".tag-container");
     let tag = document.createElement("div");
     tag.className = "tag";
     tagContainer.appendChild(tag);
@@ -105,10 +103,10 @@ Fermeture tag
   //Trie de tag pour filtrer des recettes  avec tag + input
 
   filterTags = (arrayRecipes) => {
-    //let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
 
     if (selectedTags >= 1) {
+      
       for (let i of tagContainer.childNodes) {
         let tagTxt = i.innerText.toLowerCase().trim();
 
@@ -130,9 +128,12 @@ Fermeture tag
 
         arrayRecipes = recipesByTags;
         recipesByTags = [];
-      }
 
-      //this.getRecipesByTags(arrayRecipes)
+
+
+      }
+    //  this.getRecipesByTags(arrayRecipes)
+ 
     }
     mainSearch.addEventListener("input", (e) => {
       let valueInput = e.target.value.toLowerCase();
@@ -140,9 +141,7 @@ Fermeture tag
       //si il y a une valeur dans l'input en plus de tag on trie par rapport à l'input
 
       if (valueInput.length > 0) {
-       
         arrayRecipes.forEach((element) => {
-          
           let listeIngredients = getIngredients(element);
 
           if (listeIngredients.find((ingredient) => ingredient.slice(0, valueInput.length) === valueInput)) {
@@ -155,10 +154,7 @@ Fermeture tag
           if (element.ustensils.find((ustensil) => ustensil.slice(0, valueInput.length) === valueInput)) {
             recipesByTags.push(element);
           }
-
-
         });
-
 
         arrayRecipes = recipesByTags;
         recipesByTags = [];
@@ -172,8 +168,6 @@ Fermeture tag
       }
     });
 
-
-
     this.displayRecipes(arrayRecipes);
     console.log(arrayRecipes);
   };
@@ -181,26 +175,13 @@ Fermeture tag
   removeTags = (e, container) => {
     e.target.parentElement.remove();
 
-    //let tagContainer = document.querySelector(".tag-container");
     let selectedTags = tagContainer.children.length;
 
     let recipesSearch = recipes;
     let newArray = [];
 
     if (mainSearch.value.length >= 3) {
-      //........................................................
-      /*
-      recipesSearch.forEach((element) => {
-        //changement de l'algorithme de recherche de recettes -recherche par mots
-        let recipeWords = getWords(element);
-
-        if (recipeWords.includes(mainSearch.value.toLowerCase())) {
-          console.log(mainSearch.value);
-          newArray.push(element);
-        }
-      });
-*/
-      //.......................................
+ 
       //Recherche dans recipesWords
 
       recipesWords.forEach((element) => {
@@ -238,7 +219,7 @@ Fermeture tag
         newArray = [];
       }
 
-      // this.getRecipesByTags(recipesSearch, newArray)
+  
     }
 
     this.displayRecipes(recipesSearch);
@@ -248,8 +229,8 @@ Fermeture tag
   //test de refactoring
 
   getRecipesByTags = (array) => {
-    for (let i of tagContainer.childNodes) {
-      let tagTxt = i.innerText.toLowerCase().trim();
+   for (let i of tagContainer.childNodes) {
+   let tagTxt = i.innerText.toLowerCase().trim();
       array.forEach((element) => {
         let listeIngredients = getIngredients(element);
 
@@ -270,6 +251,7 @@ Fermeture tag
       recipesByTags = [];
     }
   };
+  
   /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
 */

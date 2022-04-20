@@ -1,2 +1,1147 @@
+@media all and (min-width: 880px) {
+  body {
+    margin: 20px 30px;
+  }
+}
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MifQ== */
+section {
+  margin-bottom: 20px;
+}
+
+.search {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  font-family: "Lato", sans-serif;
+}
+.search::-webkit-input-placeholder {
+  font-size: 1.2em;
+}
+.search::-moz-placeholder {
+  font-size: 1.2em;
+}
+.search:-ms-input-placeholder {
+  font-size: 1.2em;
+}
+.search::-ms-input-placeholder {
+  font-size: 1.2em;
+}
+.search::placeholder {
+  font-size: 1.2em;
+}
+@media all and (min-width: 470px) {
+  .search::-webkit-input-placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+  .search::-moz-placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+  .search:-ms-input-placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+  .search::-ms-input-placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+  .search::placeholder {
+    margin: 20px 30px;
+    padding-left: 15px;
+  }
+}
+@media all and (min-width: 880px) {
+  .search::-webkit-input-placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
+  .search::-moz-placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
+  .search:-ms-input-placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
+  .search::-ms-input-placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
+  .search::placeholder {
+    background-image: url(/assets/icon/loupe.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: right;
+    padding-left: 15px;
+  }
+}
+
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header p {
+  text-align: center;
+  margin: 0;
+}
+
+.header h1 {
+  color: #D04F4F;
+  text-align: center;
+  margin-top: 0;
+}
+
+.wrapper-btns-dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+@media all and (min-width: 470px) {
+  .wrapper-btns-dropdown {
+    width: 80%;
+  }
+}
+
+.btn-dropdown-container__arrow-down {
+  height: 12px;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  cursor: pointer;
+  position: absolute;
+  right: 13px;
+  top: 18px;
+  z-index: 99;
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.btn-dropdown-container__arrow-down--onclick {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.btn-dropdown-container {
+  width: 32%;
+  height: 50px;
+  font-family: "Lato", sans-serif;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+@media all and (min-width: 880px) {
+  .btn-dropdown-container {
+    width: 25%;
+    margin-right: 15px;
+  }
+}
+
+.btn-dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 5px;
+  border: none;
+  border-radius: 5px;
+}
+.btn-dropdown h3 {
+  color: white;
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+
+.btn-dropdown--onclick {
+  display: none;
+}
+
+#container-ingredient .btn-dropdown:focus,
+#container-appliances .btn-dropdown:focus {
+  outline: none;
+  background-size: 300% 100%;
+}
+
+#container-ingredient .btn-dropdown {
+  background: #3282F7;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+#container-ingredient .btn-dropdown:hover {
+  background-image: -webkit-gradient(linear, left top, right top, from(#649ff7), color-stop(#9ec1f7), color-stop(#5999f8), to(#3282f7));
+  background-image: -o-linear-gradient(left, #649ff7, #9ec1f7, #5999f8, #3282f7);
+  background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282f7);
+  -webkit-box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
+          box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
+  background-position: 100% 0;
+}
+
+#container-appliances .btn-dropdown {
+  background: #68D9A4;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+#container-appliances .btn-dropdown:hover {
+  background-image: -webkit-gradient(linear, left top, right top, from(#40e495), color-stop(#aeebcd), color-stop(#30dd8a), to(#68D9A4));
+  background-image: -o-linear-gradient(left, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  -webkit-box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
+          box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
+  background-position: 100% 0;
+}
+
+#container-ustensils .btn-dropdown {
+  background: #ED6454;
+  cursor: pointer;
+  height: 50px;
+  background-size: 300% 100%;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+#container-ustensils .btn-dropdown:hover {
+  background-image: -webkit-gradient(linear, left top, right top, from(#f0968c), color-stop(#f3d1cd), color-stop(#f3867a), to(#ED6454));
+  background-image: -o-linear-gradient(left, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  -webkit-box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
+          box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
+  background-position: 100% 0;
+}
+
+#container-ingredient,
+#container-ingredient .popup-input,
+#container-ingredient .input {
+  background: #3282F7;
+}
+
+#container-appliances,
+#container-appliances .popup-input,
+#container-appliances .input {
+  background: #68D9A4;
+}
+
+#container-ustensils,
+#container-ustensils .popup-input,
+#container-ustensils .input {
+  background: #ED6454;
+}
+
+.btn-dropdown-container--onclick {
+  width: 42%;
+  margin-left: 5px;
+  min-height: 50px;
+  font-family: "Lato", sans-serif;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+.popup-input {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+}
+
+.popup-input--onclick {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input {
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-family: "Lato", sans-serif;
+  border-radius: 5px 5px;
+  border: none;
+  padding: 0;
+}
+
+.input::-webkit-input-placeholder {
+  color: white;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+}
+
+.input::-moz-placeholder {
+  color: white;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+}
+
+.input:-ms-input-placeholder {
+  color: white;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+}
+
+.input::-ms-input-placeholder {
+  color: white;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+}
+
+.input::placeholder {
+  color: white;
+  padding: 0 15px;
+  font-size: 1.1em;
+  opacity: 50%;
+}
+
+.popup-input--onclick {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  padding: 0;
+  position: relative;
+}
+
+.elements-liste {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-y: scroll;
+  height: 200px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  color: white;
+}
+.elements-liste li {
+  padding: 0 15px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9em;
+}
+.elements-liste li:hover {
+  font-weight: bold;
+}
+
+.elements-liste::-webkit-scrollbar-thumb {
+  border: 5px solid transparent;
+  border-radius: 100px;
+  background-color: #8070d4;
+  background-clip: content-box;
+}
+
+.tag {
+  display: none;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  color: white;
+  font-size: 0.8em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tag-container {
+  display: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.elements-liste-ing,
+.elements-liste-appl,
+.elements-liste-uts {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-x: scroll;
+  height: 200px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+.btn-dropdown-container--onclick {
+  width: inherit;
+}
+
+/*
+.wrapper-btns-dropdown--onclick {
+  margin-bottom: 250px;
+  margin-left: -5px;
+}*/
+.input-liste {
+  width: 30%;
+  padding: 0 15px;
+  font-size: 0.9em;
+  line-height: 22px;
+}
+
+.wrapper-recipe-tittle-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: "Lato", sans-serif;
+}
+
+.recipe-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8em;
+}
+.recipe-time > div {
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.recipe-tittle {
+  font-size: 0.8em;
+  width: 60%;
+}
+
+.wrapper-recipe-ingredients-making {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.recipe-ingredients {
+  width: 47%;
+  font-size: 0.7em;
+  font-family: "Lato", sans-serif;
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+.recipe-ingredients__li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.recipe-making {
+  width: 50%;
+  font-size: 0.7em;
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+  padding: 0 10px 10px 10px;
+  background-color: #E7E7E7;
+  border-radius: 0 0 5px 5px;
+  height: 160px;
+  overflow: hidden;
+}
+
+.recipes {
+  margin-top: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.recipes .wrapper-recipe:nth-child(1) {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(2) {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(3) {
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(4) {
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(5) {
+  -webkit-animation-delay: 1000ms;
+          animation-delay: 1000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(6) {
+  -webkit-animation-delay: 1200ms;
+          animation-delay: 1200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(7) {
+  -webkit-animation-delay: 1400ms;
+          animation-delay: 1400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(8) {
+  -webkit-animation-delay: 1600ms;
+          animation-delay: 1600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(9) {
+  -webkit-animation-delay: 1800ms;
+          animation-delay: 1800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(10) {
+  -webkit-animation-delay: 2000ms;
+          animation-delay: 2000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(11) {
+  -webkit-animation-delay: 2200ms;
+          animation-delay: 2200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(12) {
+  -webkit-animation-delay: 2400ms;
+          animation-delay: 2400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(13) {
+  -webkit-animation-delay: 2600ms;
+          animation-delay: 2600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(14) {
+  -webkit-animation-delay: 2800ms;
+          animation-delay: 2800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(15) {
+  -webkit-animation-delay: 3000ms;
+          animation-delay: 3000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(16) {
+  -webkit-animation-delay: 3200ms;
+          animation-delay: 3200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(17) {
+  -webkit-animation-delay: 3400ms;
+          animation-delay: 3400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(18) {
+  -webkit-animation-delay: 3600ms;
+          animation-delay: 3600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(19) {
+  -webkit-animation-delay: 3800ms;
+          animation-delay: 3800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(20) {
+  -webkit-animation-delay: 4000ms;
+          animation-delay: 4000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(21) {
+  -webkit-animation-delay: 4200ms;
+          animation-delay: 4200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(22) {
+  -webkit-animation-delay: 4400ms;
+          animation-delay: 4400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(23) {
+  -webkit-animation-delay: 4600ms;
+          animation-delay: 4600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(24) {
+  -webkit-animation-delay: 4800ms;
+          animation-delay: 4800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(25) {
+  -webkit-animation-delay: 5000ms;
+          animation-delay: 5000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(26) {
+  -webkit-animation-delay: 5200ms;
+          animation-delay: 5200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(27) {
+  -webkit-animation-delay: 5400ms;
+          animation-delay: 5400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(28) {
+  -webkit-animation-delay: 5600ms;
+          animation-delay: 5600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(29) {
+  -webkit-animation-delay: 5800ms;
+          animation-delay: 5800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(30) {
+  -webkit-animation-delay: 6000ms;
+          animation-delay: 6000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(31) {
+  -webkit-animation-delay: 6200ms;
+          animation-delay: 6200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(32) {
+  -webkit-animation-delay: 6400ms;
+          animation-delay: 6400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(33) {
+  -webkit-animation-delay: 6600ms;
+          animation-delay: 6600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(34) {
+  -webkit-animation-delay: 6800ms;
+          animation-delay: 6800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(35) {
+  -webkit-animation-delay: 7000ms;
+          animation-delay: 7000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(36) {
+  -webkit-animation-delay: 7200ms;
+          animation-delay: 7200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(37) {
+  -webkit-animation-delay: 7400ms;
+          animation-delay: 7400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(38) {
+  -webkit-animation-delay: 7600ms;
+          animation-delay: 7600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(39) {
+  -webkit-animation-delay: 7800ms;
+          animation-delay: 7800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(40) {
+  -webkit-animation-delay: 8000ms;
+          animation-delay: 8000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(41) {
+  -webkit-animation-delay: 8200ms;
+          animation-delay: 8200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(42) {
+  -webkit-animation-delay: 8400ms;
+          animation-delay: 8400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(43) {
+  -webkit-animation-delay: 8600ms;
+          animation-delay: 8600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(44) {
+  -webkit-animation-delay: 8800ms;
+          animation-delay: 8800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(45) {
+  -webkit-animation-delay: 9000ms;
+          animation-delay: 9000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(46) {
+  -webkit-animation-delay: 9200ms;
+          animation-delay: 9200ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(47) {
+  -webkit-animation-delay: 9400ms;
+          animation-delay: 9400ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(48) {
+  -webkit-animation-delay: 9600ms;
+          animation-delay: 9600ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(49) {
+  -webkit-animation-delay: 9800ms;
+          animation-delay: 9800ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.recipes .wrapper-recipe:nth-child(50) {
+  -webkit-animation-delay: 10000ms;
+          animation-delay: 10000ms;
+  -webkit-animation-name: carte;
+          animation-name: carte;
+  -webkit-animation-duration: 1400ms;
+          animation-duration: 1400ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.wrapper-recipe {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  margin-bottom: 25px;
+  opacity: 0;
+}
+.wrapper-recipe .recipe-img {
+  height: 120px;
+  background-color: #C7BEBE;
+  border-radius: 5px 5px 0 0;
+}
+@media all and (min-width: 470px) {
+  .wrapper-recipe {
+    width: 45%;
+    margin-right: 20px;
+  }
+}
+@media all and (min-width: 880px) {
+  .wrapper-recipe {
+    width: 30%;
+    margin-right: 20px;
+  }
+}
+
+@-webkit-keyframes carte {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes carte {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.message {
+  color: #D04F4F;
+  text-align: center;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+}
+
+.messageV2 {
+  color: #D04F4F;
+  text-align: center;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+  -webkit-animation: message 0.8s;
+          animation: message 0.8s;
+}
+
+@-webkit-keyframes message {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  25% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@keyframes message {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  25% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3Nhc3MvYWJzdHJhY3RzL19taXhpbi5zY3NzIiwiLi4vLi4vc2Fzcy9wYWdlcy9faG9tZS5zY3NzIiwiLi4vc3R5bGUuY3NzIiwiLi4vLi4vc2Fzcy9hYnN0cmFjdHMvX3ZhcmlhYmxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU9FO0VDSEY7SUFFSSxpQkFBQTtFQ0hGO0FBQ0Y7O0FETUE7RUFDRSxtQkFBQTtBQ0hGOztBREtBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSx5QkFBQTtFQUNBLCtCQUFBO0FDRkY7QURJRTtFQUVFLGdCQUFBO0FDSEo7QURDRTtFQUVFLGdCQUFBO0FDSEo7QURDRTtFQUVFLGdCQUFBO0FDSEo7QURDRTtFQUVFLGdCQUFBO0FDSEo7QURDRTtFQUVFLGdCQUFBO0FDSEo7QUZSRTtFQ1NBO0lBS0ksaUJBQUE7SUFDQSxrQkFBQTtFQ0ZKO0VESkE7SUFLSSxpQkFBQTtJQUNBLGtCQUFBO0VDRko7RURKQTtJQUtJLGlCQUFBO0lBQ0Esa0JBQUE7RUNGSjtFREpBO0lBS0ksaUJBQUE7SUFDQSxrQkFBQTtFQ0ZKO0VESkE7SUFLSSxpQkFBQTtJQUNBLGtCQUFBO0VDRko7QUFDRjtBRm5CRTtFQ2NBO0lBU0ksNkNBQUE7SUFDQSw0QkFBQTtJQUNBLHFCQUFBO0lBQ0EsNEJBQUE7SUFDQSxrQkFBQTtFQ0FKO0VEYkE7SUFTSSw2Q0FBQTtJQUNBLDRCQUFBO0lBQ0EscUJBQUE7SUFDQSw0QkFBQTtJQUNBLGtCQUFBO0VDQUo7RURiQTtJQVNJLDZDQUFBO0lBQ0EsNEJBQUE7SUFDQSxxQkFBQTtJQUNBLDRCQUFBO0lBQ0Esa0JBQUE7RUNBSjtFRGJBO0lBU0ksNkNBQUE7SUFDQSw0QkFBQTtJQUNBLHFCQUFBO0lBQ0EsNEJBQUE7SUFDQSxrQkFBQTtFQ0FKO0VEYkE7SUFTSSw2Q0FBQTtJQUNBLDRCQUFBO0lBQ0EscUJBQUE7SUFDQSw0QkFBQTtJQUNBLGtCQUFBO0VDQUo7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 */

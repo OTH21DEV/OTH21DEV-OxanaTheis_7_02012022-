@@ -174,10 +174,42 @@ section {
   background: #ED6454;
 }
 
+#container-ingredient .elements-liste::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282f7);
+  box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
+  background-position: 100% 0;
+}
+
+#container-appliances .elements-liste::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
+  background-position: 100% 0;
+}
+
+#container-ustensils .elements-liste::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
+  background-position: 100% 0;
+}
+
+.elements-liste::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+}
+
+.elements-liste::-webkit-scrollbar {
+  height: 8px;
+}
+
+.elements-liste::-webkit-scrollbar-track {
+  background-color: #e7e7e7;
+  border-radius: 40px;
+  margin-left: 15px;
+}
+
 .btn-dropdown-container--onclick {
   width: 42%;
   margin-left: 5px;
-  height: 50px;
+  min-height: 50px;
   font-family: "Lato", sans-serif;
   position: relative;
   border: none;
@@ -230,14 +262,15 @@ section {
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
-  height: 200px;
+  overflow-x: auto;
+  max-height: 200px;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
   color: white;
 }
 .elements-liste li {
   padding: 0 15px;
+  width: 24%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   font-size: 0.9em;
@@ -283,11 +316,11 @@ section {
   width: inherit;
 }
 
+/*
 .wrapper-btns-dropdown--onclick {
   margin-bottom: 250px;
   margin-left: -5px;
-}
-
+}*/
 .input-liste {
   width: 30%;
   padding: 0 15px;
