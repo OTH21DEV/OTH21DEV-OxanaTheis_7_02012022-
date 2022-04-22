@@ -46,7 +46,7 @@ section {
 }
 
 .header h1 {
-  color: #D04F4F;
+  color: #d04f4f;
   text-align: center;
   margin-top: 0;
 }
@@ -118,7 +118,7 @@ section {
 }
 
 #container-ingredient .btn-dropdown {
-  background: #3282F7;
+  background: #3282f7;
   cursor: pointer;
   height: 50px;
   background-size: 300% 100%;
@@ -131,27 +131,27 @@ section {
 }
 
 #container-appliances .btn-dropdown {
-  background: #68D9A4;
+  background: #68d9a4;
   cursor: pointer;
   height: 50px;
   background-size: 300% 100%;
   transition: all 0.4s ease-in-out;
 }
 #container-appliances .btn-dropdown:hover {
-  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68d9a4);
   box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
   background-position: 100% 0;
 }
 
 #container-ustensils .btn-dropdown {
-  background: #ED6454;
+  background: #ed6454;
   cursor: pointer;
   height: 50px;
   background-size: 300% 100%;
   transition: all 0.4s ease-in-out;
 }
 #container-ustensils .btn-dropdown:hover {
-  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ed6454);
   box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
   background-position: 100% 0;
 }
@@ -159,19 +159,19 @@ section {
 #container-ingredient,
 #container-ingredient .popup-input,
 #container-ingredient .input {
-  background: #3282F7;
+  background: #3282f7;
 }
 
 #container-appliances,
 #container-appliances .popup-input,
 #container-appliances .input {
-  background: #68D9A4;
+  background: #68d9a4;
 }
 
 #container-ustensils,
 #container-ustensils .popup-input,
 #container-ustensils .input {
-  background: #ED6454;
+  background: #ed6454;
 }
 
 #container-ingredient .elements-liste::-webkit-scrollbar-thumb {
@@ -181,13 +181,13 @@ section {
 }
 
 #container-appliances .elements-liste::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68D9A4);
+  background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, #68d9a4);
   box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
   background-position: 100% 0;
 }
 
 #container-ustensils .elements-liste::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ED6454);
+  background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, #ed6454);
   box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
   background-position: 100% 0;
 }
@@ -315,11 +315,6 @@ section {
   width: inherit;
 }
 
-/*
-.wrapper-btns-dropdown--onclick {
-  margin-bottom: 250px;
-  margin-left: -5px;
-}*/
 .input-liste {
   width: 30%;
   padding: 0 15px;
@@ -378,7 +373,7 @@ section {
 
 .wrapper {
   padding: 0 10px 10px 10px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
   border-radius: 0 0 5px 5px;
   height: 160px;
   overflow: hidden;
@@ -699,7 +694,7 @@ section {
 }
 .wrapper-recipe .recipe-img {
   height: 120px;
-  background-color: #C7BEBE;
+  background-color: #c7bebe;
   border-radius: 5px 5px 0 0;
 }
 @media all and (min-width: 470px) {
@@ -724,15 +719,7 @@ section {
   }
 }
 .message {
-  color: #D04F4F;
-  text-align: center;
-  width: 100%;
-  font-size: 1em;
-  font-family: "Lato", sans-serif;
-}
-
-.messageV2 {
-  color: #D04F4F;
+  color: #d04f4f;
   text-align: center;
   width: 100%;
   font-size: 1em;
