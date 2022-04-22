@@ -1,7 +1,6 @@
-import { recipes, recipesWords } from "../pages/index.js";
+import { recipes } from "../pages/index.js";
 import { Recipe } from "../factories/Recipe.js";
 import { getIngredients } from "../utils/getIngredients.js";
-
 
 const sectionRecipes = document.querySelector(".recipes");
 const mainSearch = document.querySelector(".search");
@@ -24,7 +23,6 @@ class Dropdown {
         cont.className = "btn-dropdown-container--onclick";
         liste.classList.add("popup-input--onclick");
         title.classList.add("btn-dropdown--onclick");
-        //document.querySelector(".wrapper-btns-dropdown").classList.add("wrapper-btns-dropdown--onclick");
         arrow.classList.add("btn-dropdown-container__arrow-down--onclick");
         arrow.setAttribute("data-open", "true");
       } else {
@@ -32,7 +30,6 @@ class Dropdown {
         liste.classList.remove("popup-input--onclick");
         arrow.classList.remove("btn-dropdown-container__arrow-down--onclick");
         cont.className = "btn-dropdown-container";
-       // document.querySelector(".wrapper-btns-dropdown").classList.remove("wrapper-btns-dropdown--onclick");
         arrow.setAttribute("data-open", "false");
       }
     });
@@ -106,7 +103,6 @@ Fermeture tag
     let selectedTags = tagContainer.children.length;
 
     if (selectedTags >= 1) {
-      
       for (let i of tagContainer.childNodes) {
         let tagTxt = i.innerText.toLowerCase().trim();
 
@@ -128,12 +124,7 @@ Fermeture tag
 
         arrayRecipes = recipesByTags;
         recipesByTags = [];
-
-
-
       }
-    //  this.getRecipesByTags(arrayRecipes)
- 
     }
     mainSearch.addEventListener("input", (e) => {
       let valueInput = e.target.value.toLowerCase();
@@ -181,12 +172,15 @@ Fermeture tag
     let newArray = [];
 
     if (mainSearch.value.length >= 3) {
- 
-      //Recherche dans recipesWords
+      recipesSearch.forEach((element) => {
+        let recipeIngredients = getIngredients(element);
 
-      recipesWords.forEach((element) => {
-        if (element.mots.find((word) => word.slice(0, mainSearch.value.length) === mainSearch.value)) {
-          newArray.push(recipes[element.id - 1]);
+        if (
+          element.name.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
+          element.description.toLowerCase().includes(mainSearch.value.toLowerCase()) ||
+          recipeIngredients.includes(mainSearch.value)
+        ) {
+          newArray.push(element);
         }
       });
 
@@ -218,8 +212,6 @@ Fermeture tag
         recipesSearch = newArray;
         newArray = [];
       }
-
-  
     }
 
     this.displayRecipes(recipesSearch);
@@ -229,8 +221,8 @@ Fermeture tag
   //test de refactoring
 
   getRecipesByTags = (array) => {
-   for (let i of tagContainer.childNodes) {
-   let tagTxt = i.innerText.toLowerCase().trim();
+    for (let i of tagContainer.childNodes) {
+      let tagTxt = i.innerText.toLowerCase().trim();
       array.forEach((element) => {
         let listeIngredients = getIngredients(element);
 
@@ -251,7 +243,7 @@ Fermeture tag
       recipesByTags = [];
     }
   };
-  
+
   /*
 Affiche les recettes suite au filtre , maj la liste et la recherche dropdown
 */
@@ -320,7 +312,6 @@ Recherche dans  les inputs dropdowns (ing, ust, app)
       newListe = arrayListe.filter((element) => {
         return element.toLowerCase().includes(inputValue);
       });
-      console.log(newListe);
 
       this.createListe(container, newListe, arrayRecipes);
     });

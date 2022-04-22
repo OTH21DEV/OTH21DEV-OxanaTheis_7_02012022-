@@ -315,11 +315,6 @@ section {
   width: inherit;
 }
 
-/*
-.wrapper-btns-dropdown--onclick {
-  margin-bottom: 250px;
-  margin-left: -5px;
-}*/
 .input-liste {
   width: 30%;
   padding: 0 15px;
@@ -724,14 +719,6 @@ section {
   }
 }
 .message {
-  color: #D04F4F;
-  text-align: center;
-  width: 100%;
-  font-size: 1em;
-  font-family: "Lato", sans-serif;
-}
-
-.messageV2 {
   color: #D04F4F;
   text-align: center;
   width: 100%;

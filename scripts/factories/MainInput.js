@@ -1,5 +1,6 @@
-import { recipes, recipesWords } from "../pages/index.js";
+import { recipes } from "../pages/index.js";
 import { displayMessage } from "../utils/displayMessage.js";
+import { getIngredients } from "../utils/getIngredients.js";
 import { Dropdown } from "./Dropdown.js";
 const mainSearch = document.querySelector(".search");
 const sectionRecipes = document.querySelector(".recipes");
@@ -18,17 +19,15 @@ class MainInput {
       if (valueInput.length >= 3) {
         sectionRecipes.innerHTML = "";
         e.preventDefault();
-        this.createRecipesArrayIncludedKeyword(valueInput, arrayRecipes);
+        this.searchRecipesMainInput(valueInput, arrayRecipes);
 
         //si le tag est choisi en premier puis on cherche dans l'input principal-alors on fait un tri
         if (selectedTags >= 1) {
-          console.log("test3");
           new Dropdown().filterTags(arrayRecipes);
         }
       } else {
         //si on efface le mot dans l'input on affiche toutes les recettes
         if (valueInput.length === 0) {
-          console.log("test4");
           arrayRecipes = recipes;
           new Dropdown().displayRecipes(arrayRecipes);
         }
@@ -45,12 +44,15 @@ class MainInput {
   Changement de l'algorithme de recherche de recettes - recherche par mots
   */
 
-  createRecipesArrayIncludedKeyword = (value, arrayRecipes) => {
+  searchRecipesMainInput = (value, arrayRecipes) => {
     let newArray = [];
 
-    recipesWords.forEach((element) => {
-      if (element.mots.find((word) => word.slice(0, value.length) === value)) {
-        newArray.push(recipes[element.id - 1]);
+    arrayRecipes.forEach((element) => {
+      let recipeIngredients = getIngredients(element);
+
+      if (element.name.toLowerCase().includes(value.toLowerCase()) || element.description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
+        //les recettes correpondantes sont envoyées vers nouveau tableau filtré
+        newArray.push(element);
       }
     });
 
@@ -67,7 +69,6 @@ class MainInput {
     /*si  mot dans l'input  n'existe pas dans les recettes , on affiche message d'erreur, on affiche toutes les recettes*/
 
     if (arrayRecipes.length === 0) {
-      console.log("test2");
       displayMessage(sectionRecipes);
       arrayRecipes = recipes;
     }

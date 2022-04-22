@@ -3,24 +3,18 @@ import { Recipe } from "../factories/Recipe.js";
 import { Dropdown } from "../factories/Dropdown.js";
 import { MainInput } from "../factories/MainInput.js";
 import { removeDuplicatesDropdown, utensilsListDropdown, appliancesListDropdown, ingredientsListDropdown } from "../utils/removeDuplicatesDropdown.js";
-import{getWords} from "../utils/getWords.js"
+
 /*
 tableau vide de recettes( rempli au fur et au mesure par les recettes en fonction de 
 mots clés depuis la barre de recherche principale)
 */
 let recipesArrayIncludingKeyword = recipes;
-//tableau de mots de recettes
-let recipesWords =[];
 
 //Creation des recettes au chargement de la page
 recipes.forEach((element) => {
   new Recipe(element);
- 
-//tableau de mots de chaque recette
-recipesWords.push(getWords(element));
+});
 
-})
-console.log(recipesWords)
 /*
 Fonction pour supprimer des doublons afin de recreer le contenu initial de dropdown
 */
@@ -35,18 +29,13 @@ new Dropdown().displayDropdown("#container-ustensils", utensilsListDropdown, rec
  reCherche par mot clé et affiche uniquement les recettes correspondantes si comportent les mots 
 */
 new MainInput(recipesArrayIncludingKeyword);
-  /*
+/*
 INPUT DROPDOWN
 Recherche initiale dans la liste complete  (ing, ust, app) 
 */
 
-new Dropdown().searchInDropdown("#container-ingredient", ingredientsListDropdown,recipesArrayIncludingKeyword);
-new Dropdown().searchInDropdown("#container-appliances", appliancesListDropdown,recipesArrayIncludingKeyword);
-new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown,recipesArrayIncludingKeyword);
+new Dropdown().searchInDropdown("#container-ingredient", ingredientsListDropdown, recipesArrayIncludingKeyword);
+new Dropdown().searchInDropdown("#container-appliances", appliancesListDropdown, recipesArrayIncludingKeyword);
+new Dropdown().searchInDropdown("#container-ustensils", utensilsListDropdown, recipesArrayIncludingKeyword);
 
-export { recipes,recipesWords };
-
-
-
-
-
+export { recipes };

@@ -83,12 +83,10 @@ section {
 
   @include desktop {
     width: 25%;
- 
   }
 }
 
 .btn-dropdown {
-  // position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,56 +150,44 @@ section {
 #container-ingredient,
 #container-ingredient .popup-input,
 #container-ingredient .input {
-  //#container-ingredient.tag {
   background: $btn-ingredients;
 }
 #container-appliances,
 #container-appliances .popup-input,
 #container-appliances .input {
-  //#container-appliances .tag {
   background: $btn-device;
 }
 #container-ustensils,
 #container-ustensils .popup-input,
 #container-ustensils .input {
-  //#container-ustensils .tag {
   background: $btn-utensils;
 }
 
 //Scrollbar de dropdown
 
 #container-ingredient .elements-liste::-webkit-scrollbar-thumb {
-  
   background-image: linear-gradient(to right, #649ff7, #9ec1f7, #5999f8, #3282f7);
   box-shadow: 0 1px 15px 0 rgba(65, 132, 234, 0.75);
   background-position: 100% 0;
-
-
 }
 
 #container-appliances .elements-liste::-webkit-scrollbar-thumb {
   background-image: linear-gradient(to right, #40e495, #aeebcd, #30dd8a, $btn-device);
   box-shadow: 0 1px 15px 0 rgba(23, 168, 108, 0.75);
   background-position: 100% 0;
- 
-
 }
 #container-ustensils .elements-liste::-webkit-scrollbar-thumb {
   background-image: linear-gradient(to right, #f0968c, #f3d1cd, #f3867a, $btn-utensils);
   box-shadow: 0 1px 15px rgba(242, 97, 103, 0.4);
   background-position: 100% 0;
-
 }
 
 .elements-liste::-webkit-scrollbar-thumb {
-  //height: 70px;
   border-radius: 40px;
 }
 
 .elements-liste::-webkit-scrollbar {
-  //width: 10px;
   height: 8px;
-
 }
 
 .elements-liste::-webkit-scrollbar-track {
@@ -265,22 +251,17 @@ section {
   padding-left: 0;
   margin-top: 0;
   display: flex;
-flex-direction: column;
-
- // overflow-y: auto;
- overflow-x: auto;
-
-  //height: 200px;
+  flex-direction: column;
+  overflow-x: auto;
   max-height: 200px;
   flex-wrap: wrap;
   width: 95%;
- // width: 100%;
   color: white;
 
   & li {
-  padding: 0 15px;
- //  width si enlever flex colomn pour la barre verticale
-  // width:24%;
+    padding: 0 15px;
+    //  width si enleve flex colomn pour la barre verticale
+    // width:24%;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-size: 0.9em;
@@ -328,11 +309,6 @@ flex-direction: column;
 .btn-dropdown-container--onclick {
   width: inherit;
 }
-/*
-.wrapper-btns-dropdown--onclick {
-  margin-bottom: 250px;
-  margin-left: -5px;
-}*/
 
 .input-liste {
   width: 30%;
@@ -365,29 +341,19 @@ flex-direction: column;
 .wrapper-recipe-ingredients-making {
   display: flex;
   justify-content: space-between;
-  //height: 150px;
 }
 .recipe-ingredients {
   width: 47%;
-  //height: auto;
   font-size: 0.7em;
   font-family: "Lato", sans-serif;
   padding-left: 0;
   list-style-type: none;
-  // display: flex;
-
-  //flex-wrap: wrap;
   margin: 0;
-  // line-height: 1em;
-  //flex-direction: column;
 }
 .recipe-ingredients__li {
   display: flex;
   height: auto;
   flex-wrap: wrap;
-  // line-height: 1em;
-
-  //justify-content: flex-start;
 }
 .recipe-making {
   width: 50%;
@@ -395,7 +361,6 @@ flex-direction: column;
   font-family: "Roboto", sans-serif;
 }
 .wrapper {
-  // height: 180px;
   padding: 0 10px 10px 10px;
   background-color: $recipe-light-bg;
   border-radius: 0 0 5px 5px;
@@ -422,12 +387,9 @@ $anim-dur: 1400ms;
 .wrapper-recipe {
   display: flex;
   flex-direction: column;
-  // width: 31%;
   width: 100%;
-  //animation: message 1.2s;
   margin-bottom: 25px;
   opacity: 0;
-  // margin-right: 20px;
 
   & .recipe-img {
     height: 120px;
@@ -459,15 +421,6 @@ $anim-dur: 1400ms;
   text-align: center;
   width: 100%;
   font-size: 1em;
-  font-family: "Lato", sans-serif;
-}
-.messageV2 {
-  color: $primary-color;
-  // color: $btn-ingredients;
-  text-align: center;
-  width: 100%;
-  font-size: 1em;
-
   font-family: "Lato", sans-serif;
   animation: message 0.8s;
 }
