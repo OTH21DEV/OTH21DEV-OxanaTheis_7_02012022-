@@ -47,14 +47,13 @@ class MainInput {
   searchRecipesMainInput = (value, arrayRecipes) => {
     let newArray = [];
 
-    arrayRecipes.forEach((element) => {
-      let recipeIngredients = getIngredients(element);
-
-      if (element.name.toLowerCase().includes(value.toLowerCase()) || element.description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
+    for (let i = 0; i < arrayRecipes.length; i++) {
+      let recipeIngredients = getIngredients(arrayRecipes[i]);
+      if (arrayRecipes[i].name.toLowerCase().includes(value.toLowerCase()) || arrayRecipes[i].description.toLowerCase().includes(value.toLowerCase()) || recipeIngredients.includes(value)) {
         //les recettes correpondantes sont envoyées vers nouveau tableau filtré
-        newArray.push(element);
+        newArray.push(arrayRecipes[i]);
       }
-    });
+    }
 
     arrayRecipes = newArray;
     /*
